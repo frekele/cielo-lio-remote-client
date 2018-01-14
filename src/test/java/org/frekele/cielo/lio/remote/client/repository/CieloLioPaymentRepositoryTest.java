@@ -1,13 +1,45 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
+import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
+import org.mockito.MockitoAnnotations;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+public class CieloLioPaymentRepositoryTest {
 
-public class CieloOrderManagementProxyClientTest {
+    private CieloLioAuth auth;
+
+    private CieloLioPaymentRepository cieloLioPaymentRepository;
+
+    @BeforeClass
+    public void beforeClass() throws Exception {
+        String clientId = System.getenv("CIELO_LIO_CLIENT_ID");
+        String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
+        String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
+        auth = new CieloLioAuth(clientId, accessToken, merchantId);
+    }
+
+    @AfterClass
+    public void afterClass() throws Exception {
+
+    }
+
+    @BeforeMethod
+    public void beforeMethod() throws Exception {
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @AfterMethod
+    public void afterMethod() throws Exception {
+
+    }
 
     @Test
     public void testOrderGetAll() throws Exception {
+        cieloLioPaymentRepository.orderGetAll(auth);
     }
 
     @Test
