@@ -2,6 +2,9 @@ package org.frekele.cielo.lio.remote.client.utils;
 
 import org.frekele.cielo.lio.remote.client.exception.CieloLioException;
 
+/**
+ * @author frekele - Leandro Kersting de Freitas
+ */
 public class CieloLioUtils {
 
     public static void throwInjection(Object... objects) {
