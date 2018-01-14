@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 /**
- * @author leandro.freitas
+ * @author frekele - Leandro Kersting de Freitas
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)

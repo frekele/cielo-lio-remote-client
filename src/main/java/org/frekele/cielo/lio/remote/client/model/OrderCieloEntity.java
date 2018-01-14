@@ -17,7 +17,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
- * @author leandro.freitas
+ * @author frekele - Leandro Kersting de Freitas
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)

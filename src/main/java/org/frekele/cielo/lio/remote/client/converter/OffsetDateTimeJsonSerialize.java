@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author frekele - Leandro Kersting de Freitas
+ */
 public class OffsetDateTimeJsonSerialize extends StdSerializer<OffsetDateTime> {
 
     protected OffsetDateTimeJsonSerialize() {

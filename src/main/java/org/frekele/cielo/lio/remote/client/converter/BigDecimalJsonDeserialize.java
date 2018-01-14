@@ -8,6 +8,9 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+/**
+ * @author frekele - Leandro Kersting de Freitas
+ */
 public class BigDecimalJsonDeserialize extends StdDeserializer<BigDecimal> {
 
     private static final int SCALE = 2;
