@@ -1,4 +1,4 @@
-package org.frekele.cielo.lio.remote.client;
+package org.frekele.cielo.lio.remote.client.core;
 
 import java.io.Serializable;
 
