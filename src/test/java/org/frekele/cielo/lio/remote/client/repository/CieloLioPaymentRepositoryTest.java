@@ -2,12 +2,15 @@ package org.frekele.cielo.lio.remote.client.repository;
 
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
+import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
+
+import java.util.List;
 
 public class CieloLioPaymentRepositoryTest {
 
@@ -31,7 +34,7 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test
     public void testOrderGetAll() throws Exception {
-        repository.orderGetAll();
+        List<OrderCieloEntity> resultList = repository.orderGetAll();
     }
 
     @Test
