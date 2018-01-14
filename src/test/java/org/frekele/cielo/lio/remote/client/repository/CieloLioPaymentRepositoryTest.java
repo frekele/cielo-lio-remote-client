@@ -1,6 +1,7 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
+import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -19,7 +20,8 @@ public class CieloLioPaymentRepositoryTest {
         String clientId = System.getenv("CIELO_LIO_CLIENT_ID");
         String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
         String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
-        auth = new CieloLioAuth(clientId, accessToken, merchantId);
+        CieloLioEnvironmentEnum environment = CieloLioEnvironmentEnum.SANDBOX;
+        auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
     }
 
     @AfterClass
@@ -39,7 +41,7 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test
     public void testOrderGetAll() throws Exception {
-        cieloLioPaymentRepository.orderGetAll(auth);
+        cieloLioPaymentRepository.orderGetAll();
     }
 
     @Test
