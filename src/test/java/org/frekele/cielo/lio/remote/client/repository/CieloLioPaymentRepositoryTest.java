@@ -4,27 +4,21 @@ import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 public class CieloLioPaymentRepositoryTest {
 
     private CieloLioPaymentRepository repository;
 
-    @BeforeClass
-    public void beforeClass() throws Exception {
+    @BeforeAll
+    static void initAll() {
     }
 
-    @AfterClass
-    public void afterClass() throws Exception {
-    }
-
-    @BeforeMethod
-    public void beforeMethod() throws Exception {
+    @BeforeEach
+    void init() {
         String clientId = System.getenv("CIELO_LIO_CLIENT_ID");
         String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
         String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
@@ -33,11 +27,6 @@ public class CieloLioPaymentRepositoryTest {
         ResteasyClient client = new ResteasyClientBuilder().build();
         repository = new CieloLioPaymentRepositoryImpl(client, auth);
         MockitoAnnotations.initMocks(this);
-    }
-
-    @AfterMethod
-    public void afterMethod() throws Exception {
-
     }
 
     @Test
