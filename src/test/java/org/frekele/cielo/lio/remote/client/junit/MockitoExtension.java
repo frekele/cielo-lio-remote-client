@@ -15,7 +15,7 @@ import java.lang.reflect.Parameter;
 import static org.mockito.Mockito.*;
 
 /**
- * Copied from: https://github.com/junit-team/junit5-samples/blob/r5.0.2/junit5-mockito-extension/src/main/java/com/example/mockito/MockitoExtension.java
+ * @author frekele - Leandro Kersting de Freitas
  */
 public class MockitoExtension implements TestInstancePostProcessor, ParameterResolver {
 
