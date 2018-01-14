@@ -1,23 +1,26 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
-import org.frekele.cielo.lio.remote.client.LifecycleLogger;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.frekele.cielo.lio.remote.client.InvokedMethodListener;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
 import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * @author frekele - Leandro Kersting de Freitas
  */
-public class CieloLioPaymentRepositoryTest implements LifecycleLogger {
-
-    private static final Logger logger = Logger.getLogger(CieloLioPaymentRepositoryTest.class.getName());
+@Listeners(InvokedMethodListener.class)
+public class CieloLioPaymentRepositoryTest {
 
     private CieloLioPaymentRepository repository;
 
@@ -33,9 +36,28 @@ public class CieloLioPaymentRepositoryTest implements LifecycleLogger {
     }
 
     @Test
+    public void testCrud() throws Exception {
+        OrderCieloEntity order = new OrderCieloEntity();
+        order.setNumber("12345");
+        order.setReference("PEDIDO #12345");
+        order.setNotes("Cliente Fulano de Tal");
+        order.setPrice(BigDecimal.valueOf(125.34));
+        order.setItems(new ArrayList<>());
+        OrderItemCieloEntity item = new OrderItemCieloEntity();
+        item.setSku("RTG-234-AQF-6587-C57");
+        item.setName("Mesa de Formica Branca");
+        item.setQuantity((long) 1);
+        item.setUnitOfMeasure("UN");
+        item.setUnitPrice(BigDecimal.valueOf(125.34));
+        order.getItems().add(item);
+    }
+
+    @Test
     public void testOrderGetAll() throws Exception {
         List<OrderCieloEntity> resultList = repository.orderGetAll();
-        System.out.println(resultList);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList);
+        System.out.println(jsonInString);
     }
 
     @Test
