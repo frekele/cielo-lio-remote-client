@@ -25,7 +25,7 @@ import java.util.List;
 @Path("/order-management/v1")
 @Produces({MediaType.APPLICATION_JSON + ";charset=UTF-8"})
 @Consumes({MediaType.APPLICATION_JSON + ";charset=UTF-8"})
-public interface CieloOrderManagementProxyClient extends Serializable {
+interface CieloOrderManagementProxyClient extends Serializable {
 
     /**
      * GET - Consultar todos os Pedidos
@@ -221,7 +221,6 @@ public interface CieloOrderManagementProxyClient extends Serializable {
                                                            @PathParam("orderId") String orderId);
 
     /**
-     *
      * GET - Consultar a transação de um pedido
      * Esse recurso é utilizado para obter as informações de uma transação realizada em um pedido.
      * O id do pedido e o id_transaction são utilizados para realizar a chamada. Em ambiente de produção, uma vez que um pagamento for realizado na Cielo LIO
