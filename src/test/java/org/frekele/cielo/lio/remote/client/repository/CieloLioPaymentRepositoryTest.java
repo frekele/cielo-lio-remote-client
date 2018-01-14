@@ -6,18 +6,16 @@ import org.frekele.cielo.lio.remote.client.junit.LifecycleLogger;
 import org.frekele.cielo.lio.remote.client.junit.MockitoExtension;
 import org.frekele.cielo.lio.remote.client.junit.TimeExecutionLogger;
 import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
 import java.util.List;
 import java.util.logging.Logger;
-
-import static org.mockito.Mockito.*;
 
 /**
  * @author frekele - Leandro Kersting de Freitas
@@ -27,24 +25,27 @@ public class CieloLioPaymentRepositoryTest implements LifecycleLogger, TimeExecu
 
     private static final Logger logger = Logger.getLogger(CieloLioPaymentRepositoryTest.class.getName());
 
+    private CieloLioPaymentRepository repository;
+
     @BeforeAll
     static void initAll() {
     }
 
     @BeforeEach
-    void init(@Mock CieloLioPaymentRepositoryImpl repository, TestInfo testInfo) {
+    void init() {
         String clientId = System.getenv("CIELO_LIO_CLIENT_ID");
         String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
         String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
         CieloLioEnvironmentEnum environment = CieloLioEnvironmentEnum.SANDBOX;
-        when(repository.getAuth()).thenReturn(new CieloLioAuth(clientId, accessToken, merchantId, environment));
-        when(repository.getClient()).thenReturn(new ResteasyClientBuilder().build());
+        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        repository = new CieloLioPaymentRepositoryImpl(client, auth);
     }
 
     @Test
     public void testOrderGetAll(@Mock CieloLioPaymentRepositoryImpl repository) throws Exception {
         List<OrderCieloEntity> resultList = repository.orderGetAll();
-        System.out.println(repository);
+        System.out.println(resultList);
     }
 
     @Test
