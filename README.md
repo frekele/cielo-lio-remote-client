@@ -3,8 +3,8 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.frekele.cielo/cielo-lio-remote-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.frekele.cielo/cielo-lio-remote-client) 
 [![Build Status](https://travis-ci.org/frekele/cielo-lio-remote-client.svg?branch=master)](https://travis-ci.org/frekele/cielo-lio-remote-client)
 [![Coverage](https://codecov.io/gh/frekele/cielo-lio-remote-client/branch/master/graph/badge.svg)](https://codecov.io/gh/frekele/cielo-lio-remote-client)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/778eee87938f43ca92a94b7b613a0891)](https://www.codacy.com/app/frekele/cielo-lio-remote-client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=frekele/cielo-lio-remote-client&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/778eee87938f43ca92a94b7b613a0891)](https://www.codacy.com/app/frekele/cielo-lio-remote-client?utm_source=github.com&utm_medium=referral&utm_content=frekele/cielo-lio-remote-client&utm_campaign=Badge_Coverage)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e49f3317817425abe7f67b02c590f1b)](https://www.codacy.com/app/frekele/cielo-lio-remote-client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=frekele/cielo-lio-remote-client&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/8e49f3317817425abe7f67b02c590f1b)](https://www.codacy.com/app/frekele/cielo-lio-remote-client?utm_source=github.com&utm_medium=referral&utm_content=frekele/cielo-lio-remote-client&utm_campaign=Badge_Coverage)
 
 ### Remote integration with Cielo LIO Order Management
 
