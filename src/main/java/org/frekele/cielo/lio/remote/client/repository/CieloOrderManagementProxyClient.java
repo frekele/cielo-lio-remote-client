@@ -221,6 +221,7 @@ public interface CieloOrderManagementProxyClient extends Serializable {
                                                            @PathParam("orderId") String orderId);
 
     /**
+     *
      * GET - Consultar a transação de um pedido
      * Esse recurso é utilizado para obter as informações de uma transação realizada em um pedido.
      * O id do pedido e o id_transaction são utilizados para realizar a chamada. Em ambiente de produção, uma vez que um pagamento for realizado na Cielo LIO
