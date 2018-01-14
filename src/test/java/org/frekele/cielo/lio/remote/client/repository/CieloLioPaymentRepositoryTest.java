@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.frekele.cielo.lio.remote.client.InvokedMethodListener;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
+import org.frekele.cielo.lio.remote.client.model.IdCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
@@ -24,8 +25,14 @@ public class CieloLioPaymentRepositoryTest {
 
     private CieloLioPaymentRepository repository;
 
+    private ObjectMapper mapper = new ObjectMapper();
+
+    private OrderCieloEntity order;
+
+    private IdCieloEntity idOrder;
+
     @BeforeClass
-    public void init() {
+    public void init() throws Exception {
         String clientId = System.getenv("CIELO_LIO_CLIENT_ID");
         String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
         String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
@@ -33,11 +40,9 @@ public class CieloLioPaymentRepositoryTest {
         CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
         ResteasyClient client = new ResteasyClientBuilder().build();
         repository = new CieloLioPaymentRepositoryImpl(client, auth);
-    }
 
-    @Test
-    public void testCrud() throws Exception {
-        OrderCieloEntity order = new OrderCieloEntity();
+        order = new OrderCieloEntity();
+        order.setStatus("DRAFT");
         order.setNumber("12345");
         order.setReference("PEDIDO #12345");
         order.setNotes("Cliente Fulano de Tal");
@@ -50,77 +55,93 @@ public class CieloLioPaymentRepositoryTest {
         item.setUnitOfMeasure("UN");
         item.setUnitPrice(BigDecimal.valueOf(125.34));
         order.getItems().add(item);
-    }
 
-    @Test
-    public void testOrderGetAll() throws Exception {
-        List<OrderCieloEntity> resultList = repository.orderGetAll();
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList);
-        System.out.println(jsonInString);
-    }
-
-    @Test
-    public void testOrderGetByNumber() throws Exception {
-    }
-
-    @Test
-    public void testOrderGetByReference() throws Exception {
-    }
-
-    @Test
-    public void testOrderGetByStatus() throws Exception {
-    }
-
-    @Test
-    public void testOrderGet() throws Exception {
+        System.out.println("new OrderCieloEntity");
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(order));
     }
 
     @Test
     public void testOrderPost() throws Exception {
+        idOrder = repository.orderPost(order);
+        System.out.println("before orderPost");
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(idOrder));
     }
 
-    @Test
+    @Test(dependsOnMethods = "testOrderPost")
     public void testOrderPut() throws Exception {
+        order.setNotes("Joao Da Silva");
+        repository.orderPut(idOrder.getId(), order);
     }
 
-    @Test
+    @Test(dependsOnMethods = "testOrderPut")
     public void testOrderPutOperation() throws Exception {
+        repository.orderPutOperation(idOrder.getId(), "PLACE");
     }
 
-    @Test
+    @Test(dependsOnMethods = "testOrderPutOperation")
+    public void testOrderGet() throws Exception {
+        OrderCieloEntity orderResult = repository.orderGet(idOrder.getId());
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderResult));
+    }
+
+    @Test(dependsOnMethods = "testOrderGet")
+    public void testOrderGetByNumber() throws Exception {
+        List<OrderCieloEntity> resultList = repository.orderGetByNumber("12345");
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
+    }
+
+    @Test(dependsOnMethods = "testOrderGetByNumber")
+    public void testOrderGetByReference() throws Exception {
+        List<OrderCieloEntity> resultList = repository.orderGetByReference("PEDIDO #12345");
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
+    }
+
+    @Test(dependsOnMethods = "testOrderGetByReference")
+    public void testOrderGetByStatus() throws Exception {
+        List<OrderCieloEntity> resultList = repository.orderGetByStatus("ENTERED");
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
+    }
+
+    @Test(dependsOnMethods = "testOrderGetByStatus")
     public void testOrderDelete() throws Exception {
+        repository.orderDelete(idOrder.getId());
     }
 
-    @Test
-    public void testOrderGetItems() throws Exception {
+    @Test(dependsOnMethods = "testOrderDelete")
+    public void testOrderGetAll() throws Exception {
+        List<OrderCieloEntity> resultList = repository.orderGetAll();
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
-    @Test
-    public void testOrderGetItem() throws Exception {
-    }
-
-    @Test
-    public void testOrderPostItem() throws Exception {
-    }
-
-    @Test
-    public void testOrderPutItem() throws Exception {
-    }
-
-    @Test
-    public void testOrderDeleteItem() throws Exception {
-    }
-
-    @Test
-    public void testOrderGetTransactions() throws Exception {
-    }
-
-    @Test
-    public void testOrderGetTransactionById() throws Exception {
-    }
-
-    @Test
-    public void testOrderPostTransaction() throws Exception {
-    }
+//    @Test
+//    public void testOrderGetItems() throws Exception {
+//    }
+//
+//    @Test
+//    public void testOrderGetItem() throws Exception {
+//    }
+//
+//    @Test
+//    public void testOrderPostItem() throws Exception {
+//    }
+//
+//    @Test
+//    public void testOrderPutItem() throws Exception {
+//    }
+//
+//    @Test
+//    public void testOrderDeleteItem() throws Exception {
+//    }
+//
+//    @Test
+//    public void testOrderGetTransactions() throws Exception {
+//    }
+//
+//    @Test
+//    public void testOrderGetTransactionById() throws Exception {
+//    }
+//
+//    @Test
+//    public void testOrderPostTransaction() throws Exception {
+//    }
 }

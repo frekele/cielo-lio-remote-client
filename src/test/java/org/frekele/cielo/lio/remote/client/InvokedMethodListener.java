@@ -8,14 +8,14 @@ public class InvokedMethodListener implements IInvokedMethodListener {
 
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        System.out.println(this.getTestClassAndMethodName(method) + " Before invocation.");
+        System.out.println(this.getTestClassAndMethodName(method) + " Start method --->");
     }
 
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        System.out.println(this.getTestClassAndMethodName(method) + " After invocation.");
         long duration = testResult.getEndMillis() - testResult.getStartMillis();
-        System.out.println(this.getTestClassAndMethodName(method) + " Duration: [ " + duration + "ms ]");
+        System.out.println(this.getTestClassAndMethodName(method) + " Duration: [ " + duration + "ms ];");
+        System.out.println(this.getTestClassAndMethodName(method) + " <--- End method.\n");
     }
 
     private String getTestClassAndMethodName(IInvokedMethod method) {
