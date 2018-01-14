@@ -1,24 +1,25 @@
 package org.frekele.cielo.lio.remote.client.core;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  * @author frekele - Leandro Kersting de Freitas
  */
 public class CieloLioEntityTest {
 
-    @BeforeAll
-    static void initAll() {
+    @BeforeMethod
+    public void setUp() throws Exception {
+
     }
 
-    @BeforeEach
-    void init() {
+    @AfterMethod
+    public void tearDown() throws Exception {
     }
 
     @Test
-    public void buildBookTest() throws Exception {
+    public void test() throws Exception {
 
     }
 }
