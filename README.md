@@ -1,5 +1,6 @@
-# Cielo LIO Remote Client Java
+# Cielo LIO Remote Java Client
 
+### Remote integration with Cielo LIO Order Management
 
 
 frekele/cielo-lio-remote-client is **licensed** under the **[MIT License]**. The terms of the license are as follows:
