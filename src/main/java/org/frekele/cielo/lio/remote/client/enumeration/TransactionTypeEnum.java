@@ -14,27 +14,15 @@ import java.util.List;
  */
 @XmlType
 @XmlEnum(String.class)
-public enum UnitOfMeasureCieloLioEnum {
+public enum TransactionTypeEnum {
 
-    EACH("EACH"),
+    PAYMENT("PAYMENT"),
 
-    HOURS("HOURS"),
-
-    DAYS("DAYS"),
-
-    SECONDS("SECONDS"),
-
-    CRATE_OF_12("CRATE_OF_12"),
-
-    SIX_PACK("SIX_PACK"),
-
-    GALLON("GALLON"),
-
-    LITRE("LITRE");
+    CANCELLATION("CANCELLATION");
 
     private String value;
 
-    private UnitOfMeasureCieloLioEnum(String value) {
+    private TransactionTypeEnum(String value) {
         this.value = value;
     }
 
@@ -45,9 +33,9 @@ public enum UnitOfMeasureCieloLioEnum {
     }
 
     @JsonCreator
-    public static UnitOfMeasureCieloLioEnum fromValue(String value) {
+    public static TransactionTypeEnum fromValue(String value) {
         if (value != null && value.length() != 0) {
-            for (UnitOfMeasureCieloLioEnum obj : getAll()) {
+            for (TransactionTypeEnum obj : getAll()) {
                 if (obj.value.equals(value)) {
                     return obj;
                 }
@@ -56,8 +44,8 @@ public enum UnitOfMeasureCieloLioEnum {
         return null;
     }
 
-    public static List<UnitOfMeasureCieloLioEnum> getAll() {
-        return Arrays.asList(UnitOfMeasureCieloLioEnum.values());
+    public static List<TransactionTypeEnum> getAll() {
+        return Arrays.asList(TransactionTypeEnum.values());
     }
 
     @Override

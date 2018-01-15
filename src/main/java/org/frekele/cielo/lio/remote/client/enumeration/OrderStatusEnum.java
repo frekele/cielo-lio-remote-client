@@ -14,15 +14,27 @@ import java.util.List;
  */
 @XmlType
 @XmlEnum(String.class)
-public enum TransactionTypeCieloLioEnum {
+public enum OrderStatusEnum {
 
-    PAYMENT("PAYMENT"),
+    DRAFT("DRAFT"),
 
-    CANCELLATION("CANCELLATION");
+    ENTERED("ENTERED"),
+
+    CANCELED("CANCELED"),
+
+    PAID("PAID"),
+
+    APPROVED("APPROVED"),
+
+    REJECTED("REJECTED"),
+
+    RE_ENTERED("RE_ENTERED"),
+
+    CLOSED("CLOSED");
 
     private String value;
 
-    private TransactionTypeCieloLioEnum(String value) {
+    private OrderStatusEnum(String value) {
         this.value = value;
     }
 
@@ -33,9 +45,9 @@ public enum TransactionTypeCieloLioEnum {
     }
 
     @JsonCreator
-    public static TransactionTypeCieloLioEnum fromValue(String value) {
+    public static OrderStatusEnum fromValue(String value) {
         if (value != null && value.length() != 0) {
-            for (TransactionTypeCieloLioEnum obj : getAll()) {
+            for (OrderStatusEnum obj : getAll()) {
                 if (obj.value.equals(value)) {
                     return obj;
                 }
@@ -44,8 +56,8 @@ public enum TransactionTypeCieloLioEnum {
         return null;
     }
 
-    public static List<TransactionTypeCieloLioEnum> getAll() {
-        return Arrays.asList(TransactionTypeCieloLioEnum.values());
+    public static List<OrderStatusEnum> getAll() {
+        return Arrays.asList(OrderStatusEnum.values());
     }
 
     @Override

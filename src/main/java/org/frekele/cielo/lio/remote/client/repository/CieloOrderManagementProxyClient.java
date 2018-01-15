@@ -1,6 +1,6 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
-import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusCieloLioEnum;
+import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
 import org.frekele.cielo.lio.remote.client.model.IdEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
@@ -74,7 +74,7 @@ interface CieloOrderManagementProxyClient extends Serializable {
     List<OrderEntity> orderGetByStatus(@HeaderParam("Client-Id") String clientId,
                                        @HeaderParam("Access-Token") String accessToken,
                                        @HeaderParam("Merchant-Id") String merchantId,
-                                       @QueryParam("status") OrderStatusCieloLioEnum status);
+                                       @QueryParam("status") OrderStatusEnum status);
 
     /**
      * GET - Consultar pedido

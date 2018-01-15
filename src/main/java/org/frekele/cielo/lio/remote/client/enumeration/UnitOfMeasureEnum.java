@@ -14,27 +14,27 @@ import java.util.List;
  */
 @XmlType
 @XmlEnum(String.class)
-public enum OrderStatusCieloLioEnum {
+public enum UnitOfMeasureEnum {
 
-    DRAFT("DRAFT"),
+    EACH("EACH"),
 
-    ENTERED("ENTERED"),
+    HOURS("HOURS"),
 
-    CANCELED("CANCELED"),
+    DAYS("DAYS"),
 
-    PAID("PAID"),
+    SECONDS("SECONDS"),
 
-    APPROVED("APPROVED"),
+    CRATE_OF_12("CRATE_OF_12"),
 
-    REJECTED("REJECTED"),
+    SIX_PACK("SIX_PACK"),
 
-    RE_ENTERED("RE_ENTERED"),
+    GALLON("GALLON"),
 
-    CLOSED("CLOSED");
+    LITRE("LITRE");
 
     private String value;
 
-    private OrderStatusCieloLioEnum(String value) {
+    private UnitOfMeasureEnum(String value) {
         this.value = value;
     }
 
@@ -45,9 +45,9 @@ public enum OrderStatusCieloLioEnum {
     }
 
     @JsonCreator
-    public static OrderStatusCieloLioEnum fromValue(String value) {
+    public static UnitOfMeasureEnum fromValue(String value) {
         if (value != null && value.length() != 0) {
-            for (OrderStatusCieloLioEnum obj : getAll()) {
+            for (UnitOfMeasureEnum obj : getAll()) {
                 if (obj.value.equals(value)) {
                     return obj;
                 }
@@ -56,8 +56,8 @@ public enum OrderStatusCieloLioEnum {
         return null;
     }
 
-    public static List<OrderStatusCieloLioEnum> getAll() {
-        return Arrays.asList(OrderStatusCieloLioEnum.values());
+    public static List<UnitOfMeasureEnum> getAll() {
+        return Arrays.asList(UnitOfMeasureEnum.values());
     }
 
     @Override
