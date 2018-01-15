@@ -5,9 +5,9 @@ import org.frekele.cielo.lio.remote.client.InvokedMethodListener;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.StatusEnum;
-import org.frekele.cielo.lio.remote.client.model.IdCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
+import org.frekele.cielo.lio.remote.client.model.IdCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderItemCieloLioEntity;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.testng.annotations.BeforeClass;
@@ -28,9 +28,9 @@ public class CieloLioPaymentRepositoryTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private OrderCieloEntity order;
+    private OrderCieloLioEntity order;
 
-    private IdCieloEntity idOrder;
+    private IdCieloLioEntity idOrder;
 
     @BeforeClass
     public void init() throws Exception {
@@ -42,14 +42,14 @@ public class CieloLioPaymentRepositoryTest {
         ResteasyClient client = new ResteasyClientBuilder().build();
         repository = new CieloLioPaymentRepositoryImpl(client, auth);
 
-        order = new OrderCieloEntity();
+        order = new OrderCieloLioEntity();
         order.setStatus(StatusEnum.DRAFT);
         order.setNumber("12345");
         order.setReference("PEDIDO #12345");
         order.setNotes("Cliente Fulano de Tal");
         order.setPrice(BigDecimal.valueOf(125.34));
         order.setItems(new ArrayList<>());
-        OrderItemCieloEntity item = new OrderItemCieloEntity();
+        OrderItemCieloLioEntity item = new OrderItemCieloLioEntity();
         item.setSku("RTG-234-AQF-6587-C57");
         item.setName("Mesa de Formica Branca");
         item.setQuantity((long) 1);
@@ -81,25 +81,25 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderPutOperation")
     public void testOrderGet() throws Exception {
-        OrderCieloEntity orderResult = repository.orderGet(idOrder.getId());
+        OrderCieloLioEntity orderResult = repository.orderGet(idOrder.getId());
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderResult));
     }
 
     @Test(dependsOnMethods = "testOrderGet")
     public void testOrderGetByNumber() throws Exception {
-        List<OrderCieloEntity> resultList = repository.orderGetByNumber("12345");
+        List<OrderCieloLioEntity> resultList = repository.orderGetByNumber("12345");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
     @Test(dependsOnMethods = "testOrderGetByNumber")
     public void testOrderGetByReference() throws Exception {
-        List<OrderCieloEntity> resultList = repository.orderGetByReference("PEDIDO #12345");
+        List<OrderCieloLioEntity> resultList = repository.orderGetByReference("PEDIDO #12345");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
     @Test(dependsOnMethods = "testOrderGetByReference")
     public void testOrderGetByStatus() throws Exception {
-        List<OrderCieloEntity> resultList = repository.orderGetByStatus(StatusEnum.ENTERED);
+        List<OrderCieloLioEntity> resultList = repository.orderGetByStatus(StatusEnum.ENTERED);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
@@ -110,7 +110,7 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderDelete")
     public void testOrderGetAll() throws Exception {
-        List<OrderCieloEntity> resultList = repository.orderGetAll();
+        List<OrderCieloLioEntity> resultList = repository.orderGetAll();
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 

@@ -1,10 +1,10 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
 import org.frekele.cielo.lio.remote.client.enumeration.StatusEnum;
-import org.frekele.cielo.lio.remote.client.model.IdCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderTransactionCieloEntity;
+import org.frekele.cielo.lio.remote.client.model.IdCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderItemCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderTransactionCieloLioEntity;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -35,9 +35,9 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders")
-    List<OrderCieloEntity> orderGetAll(@HeaderParam("Client-Id") String clientId,
-                                       @HeaderParam("Access-Token") String accessToken,
-                                       @HeaderParam("Merchant-Id") String merchantId);
+    List<OrderCieloLioEntity> orderGetAll(@HeaderParam("Client-Id") String clientId,
+                                          @HeaderParam("Access-Token") String accessToken,
+                                          @HeaderParam("Merchant-Id") String merchantId);
 
     /**
      * GET - Consultar todos os Pedidos pelo id(UUID) do pedido
@@ -46,10 +46,10 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders")
-    List<OrderCieloEntity> orderGetByNumber(@HeaderParam("Client-Id") String clientId,
-                                            @HeaderParam("Access-Token") String accessToken,
-                                            @HeaderParam("Merchant-Id") String merchantId,
-                                            @QueryParam("number") String number);
+    List<OrderCieloLioEntity> orderGetByNumber(@HeaderParam("Client-Id") String clientId,
+                                               @HeaderParam("Access-Token") String accessToken,
+                                               @HeaderParam("Merchant-Id") String merchantId,
+                                               @QueryParam("number") String number);
 
     /**
      * GET - Consultar todos os Pedidos pela Referência do pedido
@@ -58,10 +58,10 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders")
-    List<OrderCieloEntity> orderGetByReference(@HeaderParam("Client-Id") String clientId,
-                                               @HeaderParam("Access-Token") String accessToken,
-                                               @HeaderParam("Merchant-Id") String merchantId,
-                                               @QueryParam("reference") String reference);
+    List<OrderCieloLioEntity> orderGetByReference(@HeaderParam("Client-Id") String clientId,
+                                                  @HeaderParam("Access-Token") String accessToken,
+                                                  @HeaderParam("Merchant-Id") String merchantId,
+                                                  @QueryParam("reference") String reference);
 
     /**
      * GET - Consultar todos os Pedidos pela Status do pedido
@@ -71,10 +71,10 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders")
-    List<OrderCieloEntity> orderGetByStatus(@HeaderParam("Client-Id") String clientId,
-                                            @HeaderParam("Access-Token") String accessToken,
-                                            @HeaderParam("Merchant-Id") String merchantId,
-                                            @QueryParam("status") StatusEnum status);
+    List<OrderCieloLioEntity> orderGetByStatus(@HeaderParam("Client-Id") String clientId,
+                                               @HeaderParam("Access-Token") String accessToken,
+                                               @HeaderParam("Merchant-Id") String merchantId,
+                                               @QueryParam("status") StatusEnum status);
 
     /**
      * GET - Consultar pedido
@@ -83,10 +83,10 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders/{orderId}")
-    OrderCieloEntity orderGet(@HeaderParam("Client-Id") String clientId,
-                              @HeaderParam("Access-Token") String accessToken,
-                              @HeaderParam("Merchant-Id") String merchantId,
-                              @PathParam("orderId") String orderId);
+    OrderCieloLioEntity orderGet(@HeaderParam("Client-Id") String clientId,
+                                 @HeaderParam("Access-Token") String accessToken,
+                                 @HeaderParam("Merchant-Id") String merchantId,
+                                 @PathParam("orderId") String orderId);
 
     /**
      * POST - Criar um pedido
@@ -95,10 +95,10 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @POST
     @Path("orders")
-    IdCieloEntity orderPost(@HeaderParam("Client-Id") String clientId,
-                            @HeaderParam("Access-Token") String accessToken,
-                            @HeaderParam("Merchant-Id") String merchantId,
-                            OrderCieloEntity order);
+    IdCieloLioEntity orderPost(@HeaderParam("Client-Id") String clientId,
+                               @HeaderParam("Access-Token") String accessToken,
+                               @HeaderParam("Merchant-Id") String merchantId,
+                               OrderCieloLioEntity order);
 
     /**
      * PUT - Altera um pedido
@@ -111,7 +111,7 @@ interface CieloOrderManagementProxyClient extends Serializable {
                   @HeaderParam("Access-Token") String accessToken,
                   @HeaderParam("Merchant-Id") String merchantId,
                   @PathParam("orderId") String orderId,
-                  OrderCieloEntity order);
+                  OrderCieloLioEntity order);
 
     /**
      * PUT - Alterar status de um pedido
@@ -149,10 +149,10 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders/{orderId}/items")
-    List<OrderItemCieloEntity> orderGetItems(@HeaderParam("Client-Id") String clientId,
-                                             @HeaderParam("Access-Token") String accessToken,
-                                             @HeaderParam("Merchant-Id") String merchantId,
-                                             @PathParam("orderId") String orderId);
+    List<OrderItemCieloLioEntity> orderGetItems(@HeaderParam("Client-Id") String clientId,
+                                                @HeaderParam("Access-Token") String accessToken,
+                                                @HeaderParam("Merchant-Id") String merchantId,
+                                                @PathParam("orderId") String orderId);
 
     /**
      * GET - Consultar o item de um pedido
@@ -161,11 +161,11 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders/{orderId}/items/{idItem}")
-    OrderItemCieloEntity orderGetItem(@HeaderParam("Client-Id") String clientId,
-                                      @HeaderParam("Access-Token") String accessToken,
-                                      @HeaderParam("Merchant-Id") String merchantId,
-                                      @PathParam("orderId") String orderId,
-                                      @PathParam("idItem") String idItem);
+    OrderItemCieloLioEntity orderGetItem(@HeaderParam("Client-Id") String clientId,
+                                         @HeaderParam("Access-Token") String accessToken,
+                                         @HeaderParam("Merchant-Id") String merchantId,
+                                         @PathParam("orderId") String orderId,
+                                         @PathParam("idItem") String idItem);
 
     /**
      * POST - Adicionar Item/Itens em um Pedido
@@ -174,11 +174,11 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @POST
     @Path("orders/{orderId}/items")
-    IdCieloEntity orderPostItem(@HeaderParam("Client-Id") String clientId,
-                                @HeaderParam("Access-Token") String accessToken,
-                                @HeaderParam("Merchant-Id") String merchantId,
-                                @PathParam("orderId") String orderId,
-                                OrderItemCieloEntity orderItem);
+    IdCieloLioEntity orderPostItem(@HeaderParam("Client-Id") String clientId,
+                                   @HeaderParam("Access-Token") String accessToken,
+                                   @HeaderParam("Merchant-Id") String merchantId,
+                                   @PathParam("orderId") String orderId,
+                                   OrderItemCieloLioEntity orderItem);
 
     /**
      * PUT - Alterar um item em um pedido
@@ -192,7 +192,7 @@ interface CieloOrderManagementProxyClient extends Serializable {
                       @HeaderParam("Merchant-Id") String merchantId,
                       @PathParam("orderId") String orderId,
                       @PathParam("idItem") String idItem,
-                      OrderItemCieloEntity orderItem);
+                      OrderItemCieloLioEntity orderItem);
 
     /**
      * DELETE - Excluir Item de um pedido
@@ -216,10 +216,10 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders/{orderId}/transactions")
-    List<OrderTransactionCieloEntity> orderGetTransactions(@HeaderParam("Client-Id") String clientId,
-                                                           @HeaderParam("Access-Token") String accessToken,
-                                                           @HeaderParam("Merchant-Id") String merchantId,
-                                                           @PathParam("orderId") String orderId);
+    List<OrderTransactionCieloLioEntity> orderGetTransactions(@HeaderParam("Client-Id") String clientId,
+                                                              @HeaderParam("Access-Token") String accessToken,
+                                                              @HeaderParam("Merchant-Id") String merchantId,
+                                                              @PathParam("orderId") String orderId);
 
     /**
      * GET - Consultar a transação de um pedido
@@ -230,11 +230,11 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders/{orderId}/transactions/{idTransaction}")
-    OrderTransactionCieloEntity orderGetTransactionById(@HeaderParam("Client-Id") String clientId,
-                                                        @HeaderParam("Access-Token") String accessToken,
-                                                        @HeaderParam("Merchant-Id") String merchantId,
-                                                        @PathParam("orderId") String orderId,
-                                                        @PathParam("idTransaction") String idTransaction);
+    OrderTransactionCieloLioEntity orderGetTransactionById(@HeaderParam("Client-Id") String clientId,
+                                                           @HeaderParam("Access-Token") String accessToken,
+                                                           @HeaderParam("Merchant-Id") String merchantId,
+                                                           @PathParam("orderId") String orderId,
+                                                           @PathParam("idTransaction") String idTransaction);
 
     /**
      * POST - Adicionar uma Transação (Recurso utilizado somente para Ambiente de Sandbox)
@@ -243,9 +243,9 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @POST
     @Path("orders/{orderId}/transactions")
-    IdCieloEntity orderPostTransaction(@HeaderParam("Client-Id") String clientId,
-                                       @HeaderParam("Access-Token") String accessToken,
-                                       @HeaderParam("Merchant-Id") String merchantId,
-                                       @PathParam("orderId") String orderId,
-                                       OrderTransactionCieloEntity transaction);
+    IdCieloLioEntity orderPostTransaction(@HeaderParam("Client-Id") String clientId,
+                                          @HeaderParam("Access-Token") String accessToken,
+                                          @HeaderParam("Merchant-Id") String merchantId,
+                                          @PathParam("orderId") String orderId,
+                                          OrderTransactionCieloLioEntity transaction);
 }

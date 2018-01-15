@@ -1,10 +1,10 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
 import org.frekele.cielo.lio.remote.client.enumeration.StatusEnum;
-import org.frekele.cielo.lio.remote.client.model.IdCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderTransactionCieloEntity;
+import org.frekele.cielo.lio.remote.client.model.IdCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderItemCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderTransactionCieloLioEntity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,21 +19,21 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso é utilizado para obter a lista e as informações de todos os pedidos cadastrados no Order Manager.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders
      */
-    List<OrderCieloEntity> orderGetAll();
+    List<OrderCieloLioEntity> orderGetAll();
 
     /**
      * GET - Consultar todos os Pedidos pelo id(UUID) do pedido
      * Esse recurso é utilizado para obter a lista e as informações de todos os pedidos cadastrados no Order Manager com filtro por number.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?number=1234567890
      */
-    List<OrderCieloEntity> orderGetByNumber(String number);
+    List<OrderCieloLioEntity> orderGetByNumber(String number);
 
     /**
      * GET - Consultar todos os Pedidos pela Referência do pedido
      * Esse recurso é utilizado para obter a lista e as informações de todos os pedidos cadastrados no Order Manager com filtro por reference.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?reference=384769536
      */
-    List<OrderCieloEntity> orderGetByReference(String reference);
+    List<OrderCieloLioEntity> orderGetByReference(String reference);
 
     /**
      * GET - Consultar todos os Pedidos pela Status do pedido
@@ -41,28 +41,28 @@ public interface CieloLioPaymentRepository extends Serializable {
      * (DRAFT, ENTERED, RE-ENTERED, PAID, CANCELED e CLOSED).
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?status=PAID
      */
-    List<OrderCieloEntity> orderGetByStatus(StatusEnum status);
+    List<OrderCieloLioEntity> orderGetByStatus(StatusEnum status);
 
     /**
      * GET - Consultar pedido
      * Esse recurso é utilizado para obter informações sobre um pedido específico. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    OrderCieloEntity orderGet(String orderId);
+    OrderCieloLioEntity orderGet(String orderId);
 
     /**
      * POST - Criar um pedido
      * Esse recurso realiza a criação de um pedido no servidor do Order Manager.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders
      */
-    IdCieloEntity orderPost(OrderCieloEntity order);
+    IdCieloLioEntity orderPost(OrderCieloLioEntity order);
 
     /**
      * PUT - Altera um pedido
      * Esse recurso realiza a alteracao de um pedido no servidor do Order Manager.
      * Exemplo de requisição: PUT https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    void orderPut(String orderId, OrderCieloEntity order);
+    void orderPut(String orderId, OrderCieloLioEntity order);
 
     /**
      * PUT - Alterar status de um pedido
@@ -87,28 +87,28 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso é utilizado para consultar os itens presentes em um pedido. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    List<OrderItemCieloEntity> orderGetItems(String orderId);
+    List<OrderItemCieloLioEntity> orderGetItems(String orderId);
 
     /**
      * GET - Consultar o item de um pedido
      * Esse recurso é utilizado para consultar um item presente em um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    OrderItemCieloEntity orderGetItem(String orderId, String idItem);
+    OrderItemCieloLioEntity orderGetItem(String orderId, String idItem);
 
     /**
      * POST - Adicionar Item/Itens em um Pedido
      * Esse recurso é utilizado para adicionar um ou mais itens em um pedido já criado. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    IdCieloEntity orderPostItem(String orderId, OrderItemCieloEntity orderItem);
+    IdCieloLioEntity orderPostItem(String orderId, OrderItemCieloLioEntity orderItem);
 
     /**
      * PUT - Alterar um item em um pedido
      * Esse recurso permite alterar informações de um item de um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: PUT https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    void orderPutItem(String orderId, String idItem, OrderItemCieloEntity orderItem);
+    void orderPutItem(String orderId, String idItem, OrderItemCieloLioEntity orderItem);
 
     /**
      * DELETE - Excluir Item de um pedido
@@ -124,7 +124,7 @@ public interface CieloLioPaymentRepository extends Serializable {
      * a transactions será adicionada automaticamente no pedido e então, será possível obter as informações do pagamento realizado a partir da chamada deste recurso.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    List<OrderTransactionCieloEntity> orderGetTransactions(String orderId);
+    List<OrderTransactionCieloLioEntity> orderGetTransactions(String orderId);
 
     /**
      * GET - Consultar a transação de um pedido
@@ -133,12 +133,12 @@ public interface CieloLioPaymentRepository extends Serializable {
      * a transactions será adicionada automaticamente no pedido e então, será possível obter as informações do pagamento realizado a partir da chamada deste recurso.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions/362d1e9e-ae99-4d79-87d6-add9aad2795c
      */
-    OrderTransactionCieloEntity orderGetTransactionById(String orderId, String idTransaction);
+    OrderTransactionCieloLioEntity orderGetTransactionById(String orderId, String idTransaction);
 
     /**
      * POST - Adicionar uma Transação (Recurso utilizado somente para Ambiente de Sandbox)
      * Esse recurso permite que o desenvolvedor simule as transações financeiras, adicionando-as manualmente, sendo possível entender o funcionamento em uma Order.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    IdCieloEntity orderPostTransaction(String orderId, OrderTransactionCieloEntity transaction);
+    IdCieloLioEntity orderPostTransaction(String orderId, OrderTransactionCieloLioEntity transaction);
 }

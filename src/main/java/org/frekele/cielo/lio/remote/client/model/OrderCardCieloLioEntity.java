@@ -11,20 +11,30 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class IdCieloEntity implements CieloLioEntity {
+public class OrderCardCieloLioEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private String brand;
 
-    public IdCieloEntity() {
+    private String mask;
+
+    public OrderCardCieloLioEntity() {
     }
 
-    public String getId() {
-        return id;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getMask() {
+        return mask;
+    }
+
+    public void setMask(String mask) {
+        this.mask = mask;
     }
 }

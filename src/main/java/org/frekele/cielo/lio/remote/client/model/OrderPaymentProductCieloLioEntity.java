@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderPaymentProductCieloEntity implements CieloLioEntity {
+public class OrderPaymentProductCieloLioEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class OrderPaymentProductCieloEntity implements CieloLioEntity {
     @JsonProperty("number_of_quotas")
     private String numberOfQuotas;
 
-    public OrderPaymentProductCieloEntity() {
+    public OrderPaymentProductCieloLioEntity() {
     }
 
     public String getPrimaryProductName() {

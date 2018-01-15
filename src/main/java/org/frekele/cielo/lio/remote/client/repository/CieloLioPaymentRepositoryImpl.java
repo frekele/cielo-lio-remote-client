@@ -4,10 +4,10 @@ import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
 import org.frekele.cielo.lio.remote.client.core.CieloLio;
 import org.frekele.cielo.lio.remote.client.enumeration.StatusEnum;
-import org.frekele.cielo.lio.remote.client.model.IdCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderTransactionCieloEntity;
+import org.frekele.cielo.lio.remote.client.model.IdCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderItemCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderTransactionCieloLioEntity;
 import org.frekele.cielo.lio.remote.client.util.CieloLioUtils;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
@@ -56,43 +56,43 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public List<OrderCieloEntity> orderGetAll() {
+    public List<OrderCieloLioEntity> orderGetAll() {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetAll(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId());
     }
 
     @Override
-    public List<OrderCieloEntity> orderGetByNumber(String number) {
+    public List<OrderCieloLioEntity> orderGetByNumber(String number) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByNumber(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), number);
     }
 
     @Override
-    public List<OrderCieloEntity> orderGetByReference(String reference) {
+    public List<OrderCieloLioEntity> orderGetByReference(String reference) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByReference(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), reference);
     }
 
     @Override
-    public List<OrderCieloEntity> orderGetByStatus(StatusEnum status) {
+    public List<OrderCieloLioEntity> orderGetByStatus(StatusEnum status) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByStatus(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), status);
     }
 
     @Override
-    public OrderCieloEntity orderGet(String orderId) {
+    public OrderCieloLioEntity orderGet(String orderId) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGet(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId);
     }
 
     @Override
-    public IdCieloEntity orderPost(OrderCieloEntity order) {
+    public IdCieloLioEntity orderPost(OrderCieloLioEntity order) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPost(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), order);
     }
 
     @Override
-    public void orderPut(String orderId, OrderCieloEntity order) {
+    public void orderPut(String orderId, OrderCieloLioEntity order) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         proxyClient.orderPut(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId, order);
     }
@@ -110,25 +110,25 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public List<OrderItemCieloEntity> orderGetItems(String orderId) {
+    public List<OrderItemCieloLioEntity> orderGetItems(String orderId) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetItems(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId);
     }
 
     @Override
-    public OrderItemCieloEntity orderGetItem(String orderId, String idItem) {
+    public OrderItemCieloLioEntity orderGetItem(String orderId, String idItem) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetItem(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId, idItem);
     }
 
     @Override
-    public IdCieloEntity orderPostItem(String orderId, OrderItemCieloEntity orderItem) {
+    public IdCieloLioEntity orderPostItem(String orderId, OrderItemCieloLioEntity orderItem) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPostItem(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId, orderItem);
     }
 
     @Override
-    public void orderPutItem(String orderId, String idItem, OrderItemCieloEntity orderItem) {
+    public void orderPutItem(String orderId, String idItem, OrderItemCieloLioEntity orderItem) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         proxyClient.orderPutItem(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId, idItem, orderItem);
     }
@@ -140,19 +140,19 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public List<OrderTransactionCieloEntity> orderGetTransactions(String orderId) {
+    public List<OrderTransactionCieloLioEntity> orderGetTransactions(String orderId) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetTransactions(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId);
     }
 
     @Override
-    public OrderTransactionCieloEntity orderGetTransactionById(String orderId, String idTransaction) {
+    public OrderTransactionCieloLioEntity orderGetTransactionById(String orderId, String idTransaction) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetTransactionById(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId, idTransaction);
     }
 
     @Override
-    public IdCieloEntity orderPostTransaction(String orderId, OrderTransactionCieloEntity transaction) {
+    public IdCieloLioEntity orderPostTransaction(String orderId, OrderTransactionCieloLioEntity transaction) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPostTransaction(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId, transaction);
     }
