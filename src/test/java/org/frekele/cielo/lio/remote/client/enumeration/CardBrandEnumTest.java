@@ -37,6 +37,8 @@ public class CardBrandEnumTest {
         assertNotEquals(null, environment);
         environment = CardBrandEnum.fromValue("VISA");
         assertNotEquals(null, environment);
+        environment = CardBrandEnum.fromValue("XXXXXXXXXX");
+        assertNull(environment);
     }
 
     @Test

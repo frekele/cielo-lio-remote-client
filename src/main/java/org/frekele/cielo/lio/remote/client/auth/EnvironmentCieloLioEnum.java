@@ -21,6 +21,17 @@ public enum EnvironmentCieloLioEnum {
         return targetUrl;
     }
 
+    public static EnvironmentCieloLioEnum fromValue(String value) {
+        if (value != null && value.length() != 0) {
+            for (EnvironmentCieloLioEnum obj : getAll()) {
+                if (obj.name().equals(value)) {
+                    return obj;
+                }
+            }
+        }
+        return null;
+    }
+
     public static List<EnvironmentCieloLioEnum> getAll() {
         return Arrays.asList(EnvironmentCieloLioEnum.values());
     }

@@ -25,6 +25,8 @@ public class OrderStatusEnumTest {
         assertNotEquals(null, environment);
         environment = OrderStatusEnum.fromValue("CLOSED");
         assertNotEquals(null, environment);
+        environment = OrderStatusEnum.fromValue("XXXXXXXXXX");
+        assertNull(environment);
     }
 
     @Test

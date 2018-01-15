@@ -29,6 +29,8 @@ public class UnitOfMeasureEnumTest {
         assertNotEquals(null, environment);
         environment = UnitOfMeasureEnum.fromValue("LITRE");
         assertNotEquals(null, environment);
+        environment = UnitOfMeasureEnum.fromValue("XXXXXXXXXX");
+        assertNull(environment);
     }
 
     @Test

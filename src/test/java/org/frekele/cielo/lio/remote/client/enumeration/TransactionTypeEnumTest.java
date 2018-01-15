@@ -17,6 +17,8 @@ public class TransactionTypeEnumTest {
         assertNotEquals(null, environment);
         environment = TransactionTypeEnum.fromValue("CANCELLATION");
         assertNotEquals(null, environment);
+        environment = TransactionTypeEnum.fromValue("XXXXXXXXXX");
+        assertNull(environment);
     }
 
     @Test

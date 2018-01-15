@@ -13,10 +13,12 @@ public class EnvironmentCieloLioEnumTest {
 
     @Test
     public void testNewInstance() throws Exception {
-        EnvironmentCieloLioEnum environment = EnvironmentCieloLioEnum.valueOf("PRODUCTION");
+        EnvironmentCieloLioEnum environment = EnvironmentCieloLioEnum.fromValue("PRODUCTION");
         assertNotEquals(null, environment);
-        environment = EnvironmentCieloLioEnum.valueOf("SANDBOX");
+        environment = EnvironmentCieloLioEnum.fromValue("SANDBOX");
         assertNotEquals(null, environment);
+        environment = EnvironmentCieloLioEnum.fromValue("XXXXXXXXXX");
+        assertNull(environment);
     }
 
     @Test

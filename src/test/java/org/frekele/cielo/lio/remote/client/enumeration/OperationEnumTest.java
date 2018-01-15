@@ -21,6 +21,8 @@ public class OperationEnumTest {
         assertNotEquals(null, environment);
         environment = OperationEnum.fromValue("PAID");
         assertNotEquals(null, environment);
+        environment = OperationEnum.fromValue("XXXXXXXXXX");
+        assertNull(environment);
     }
 
     @Test
