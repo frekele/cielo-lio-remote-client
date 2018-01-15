@@ -20,15 +20,11 @@ public enum OrderStatusEnum {
 
     ENTERED("ENTERED"),
 
-    CANCELED("CANCELED"),
+    RE_ENTERED("RE_ENTERED"),
 
     PAID("PAID"),
 
-    APPROVED("APPROVED"),
-
-    REJECTED("REJECTED"),
-
-    RE_ENTERED("RE_ENTERED"),
+    CANCELED("CANCELED"),
 
     CLOSED("CLOSED");
 
