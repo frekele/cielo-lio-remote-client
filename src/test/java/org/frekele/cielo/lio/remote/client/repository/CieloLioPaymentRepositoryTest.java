@@ -9,9 +9,10 @@ import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
 import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
-import org.frekele.cielo.lio.remote.client.testng.InvokedMethodSleepListener;
+import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -23,7 +24,7 @@ import java.util.List;
 /**
  * @author frekele - Leandro Kersting de Freitas
  */
-@Listeners(InvokedMethodSleepListener.class)
+@Listeners(InvokedMethodListener.class)
 public class CieloLioPaymentRepositoryTest {
 
     private CieloLioPaymentRepository repository;
@@ -65,6 +66,12 @@ public class CieloLioPaymentRepositoryTest {
 
         System.out.println("new OrderCieloEntity");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(order));
+    }
+
+    @AfterMethod
+    public void afterMethod() throws Exception {
+        //After Method Sleep 1 seg, for prevent (HTTP 429 Unknown Code).
+        this.sleep(1);
     }
 
     @Test
@@ -170,5 +177,16 @@ public class CieloLioPaymentRepositoryTest {
     @Test(dependsOnMethods = "testOrderGetAll")
     public void testOrderDelete() throws Exception {
         repository.orderDelete(orderId);
+    }
+
+    private void sleep(long seconds) {
+        try {
+            long millis = seconds * 1000;
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            // Restore interrupted state...
+            Thread.currentThread().interrupt();
+        }
     }
 }
