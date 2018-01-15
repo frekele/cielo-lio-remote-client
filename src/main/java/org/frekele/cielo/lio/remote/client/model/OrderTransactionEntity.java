@@ -9,6 +9,7 @@ import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonDeseriali
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonSerialize;
 import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionStatusEnum;
+import org.frekele.cielo.lio.remote.client.enumeration.TransactionTypeEnum;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -50,7 +51,7 @@ public class OrderTransactionEntity implements CieloLioEntity {
     private BigDecimal amount;
 
     @JsonProperty("transaction_type")
-    private String transactionType;
+    private TransactionTypeEnum transactionType;
 
     @JsonProperty("order_id")
     private String orderId;
@@ -101,6 +102,10 @@ public class OrderTransactionEntity implements CieloLioEntity {
         return status;
     }
 
+    public void setStatus(TransactionStatusEnum status) {
+        this.status = status;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -141,11 +146,11 @@ public class OrderTransactionEntity implements CieloLioEntity {
         this.amount = amount;
     }
 
-    public String getTransactionType() {
+    public TransactionTypeEnum getTransactionType() {
         return transactionType;
     }
 
-    public void setTransactionType(String transactionType) {
+    public void setTransactionType(TransactionTypeEnum transactionType) {
         this.transactionType = transactionType;
     }
 
