@@ -30,6 +30,8 @@ Built-based on the documentation: [https://developercielo.github.io/manual/cielo
 ```gradle
 compile 'org.frekele.cielo:cielo-lio-remote-client:1.0.0'
 ```
+### Order Status Lifecycle
+![Order Status Lifecycle](https://raw.githubusercontent.com/frekele/cielo-lio-remote-client/master/docs/img/lifecycle.png)
 
 frekele/cielo-lio-remote-client is **licensed** under the **[MIT License]**. The terms of the license are as follows:
 
