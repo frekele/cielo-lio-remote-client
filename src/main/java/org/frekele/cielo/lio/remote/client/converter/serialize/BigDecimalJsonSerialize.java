@@ -1,4 +1,4 @@
-package org.frekele.cielo.lio.remote.client.converter;
+package org.frekele.cielo.lio.remote.client.converter.serialize;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
