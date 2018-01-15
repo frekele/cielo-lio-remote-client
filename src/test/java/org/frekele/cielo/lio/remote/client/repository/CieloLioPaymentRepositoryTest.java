@@ -3,12 +3,19 @@ package org.frekele.cielo.lio.remote.client.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.EnvironmentCieloLioEnum;
+import org.frekele.cielo.lio.remote.client.enumeration.CardBrandEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
+import org.frekele.cielo.lio.remote.client.enumeration.TransactionStatusEnum;
+import org.frekele.cielo.lio.remote.client.enumeration.TransactionTypeEnum;
+import org.frekele.cielo.lio.remote.client.model.OrderCardEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderPaymentProductEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderTransactionEntity;
 import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
+import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -39,6 +46,10 @@ public class CieloLioPaymentRepositoryTest {
     private OrderItemId orderItemId2;
 
     private OrderItemEntity orderItem2;
+
+    OrderTransactionEntity orderTransaction;
+
+    OrderTransactionId orderTransactionId;
 
     @BeforeClass
     public void init() throws Exception {
@@ -142,14 +153,42 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderGet")
     public void testOrderPostTransaction() throws Exception {
+        orderTransaction = new OrderTransactionEntity();
+        orderTransaction.setStatus(TransactionStatusEnum.CONFIRMED);
+        orderTransaction.setTerminalNumber((long) 12345678);
+        orderTransaction.setAuthorizationCode((long) 3458619);
+        orderTransaction.setNumber((long) 672836);
+        orderTransaction.setAmount(BigDecimal.valueOf(325.34));
+        orderTransaction.setTransactionType(TransactionTypeEnum.PAYMENT);
+
+        OrderPaymentProductEntity orderPaymentProduct = new OrderPaymentProductEntity();
+        orderPaymentProduct.setPrimaryProductName("CREDITO");
+        orderPaymentProduct.setSecondaryProductName("A VISTA");
+        orderPaymentProduct.setNumberOfQuotas(0);
+        orderTransaction.setOrderPaymentProduct(orderPaymentProduct);
+
+        OrderCardEntity orderCard = new OrderCardEntity();
+        orderCard.setBrand(CardBrandEnum.VISA.getValue());
+        orderCard.setMask("************5487");
+        orderTransaction.setCard(orderCard);
+
+        System.out.println("new OrderTransactionEntity");
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderTransaction));
+
+        orderTransactionId = repository.orderPostTransaction(orderId, orderTransaction);
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderTransactionId));
     }
 
     @Test(dependsOnMethods = "testOrderPostTransaction")
-    public void testOrderGetTransactionById() throws Exception {
+    public void testOrderGetTransaction() throws Exception {
+        OrderTransactionEntity orderTransactionEntity = repository.orderGetTransaction(orderId, orderTransactionId);
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderTransactionEntity));
     }
 
-    @Test(dependsOnMethods = "testOrderGetTransactionById")
+    @Test(dependsOnMethods = "testOrderGetTransaction")
     public void testOrderGetTransactions() throws Exception {
+        List<OrderTransactionEntity> resultList = repository.orderGetTransactions(orderId);
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
     @Test(dependsOnMethods = "testOrderGetTransactions")
