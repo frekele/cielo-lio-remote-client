@@ -155,9 +155,9 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public OrderTransactionEntity orderGetTransactionById(OrderId orderId, OrderTransactionId transactionId) {
+    public OrderTransactionEntity orderGetTransaction(OrderId orderId, OrderTransactionId transactionId) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
-        return proxyClient.orderGetTransactionById(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
+        return proxyClient.orderGetTransaction(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), transactionId.getId());
     }
 

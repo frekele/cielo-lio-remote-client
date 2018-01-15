@@ -233,7 +233,7 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @GET
     @Path("orders/{orderId}/transactions/{idTransaction}")
-    OrderTransactionEntity orderGetTransactionById(@HeaderParam("Client-Id") String clientId,
+    OrderTransactionEntity orderGetTransaction(@HeaderParam("Client-Id") String clientId,
                                                    @HeaderParam("Access-Token") String accessToken,
                                                    @HeaderParam("Merchant-Id") String merchantId,
                                                    @PathParam("orderId") String orderId,

@@ -136,7 +136,7 @@ public interface CieloLioPaymentRepository extends Serializable {
      * a transactions será adicionada automaticamente no pedido e então, será possível obter as informações do pagamento realizado a partir da chamada deste recurso.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions/362d1e9e-ae99-4d79-87d6-add9aad2795c
      */
-    OrderTransactionEntity orderGetTransactionById(OrderId orderId, OrderTransactionId transactionId);
+    OrderTransactionEntity orderGetTransaction(OrderId orderId, OrderTransactionId transactionId);
 
     /**
      * POST - Adicionar uma Transação (Recurso utilizado somente para Ambiente de Sandbox)
