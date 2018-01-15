@@ -41,14 +41,14 @@ String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
 String environment = System.getenv("CIELO_LIO_ENVIRONMENT");
 CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
 
-//Build one client per thread, or use CDI.
+//Build one client per thread, or use CDI Injection.
 ResteasyClient client = new ResteasyClientBuilder().build();
 CieloLioPaymentRepository repository = new CieloLioPaymentRepositoryImpl(client, auth);
 
 List<OrderEntity> resultList = repository.orderGetAll();
 OrderEntity orderEntity = repository.orderGet(new OrderId("5f182dec98-1866-47b0-b69d-471448911f"));
 
-//Is important to close on finish.
+//Is important to close on finish, or use CDI.
 client.close();
 ```
 
