@@ -24,6 +24,13 @@ public final class CieloLioAuth implements Serializable {
         this.environment = environment;
     }
 
+    public CieloLioAuth(String clientId, String accessToken, String merchantId, String environment) {
+        this.clientId = clientId;
+        this.accessToken = accessToken;
+        this.merchantId = merchantId;
+        this.environment = EnvironmentCieloLioEnum.fromValue(environment);
+    }
+
     public String getClientId() {
         return clientId;
     }
