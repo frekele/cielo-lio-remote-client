@@ -1,4 +1,4 @@
-package org.frekele.cielo.lio.remote.client.enumeration;
+package org.frekele.cielo.lio.remote.client.auth;
 
 import java.util.Arrays;
 import java.util.List;

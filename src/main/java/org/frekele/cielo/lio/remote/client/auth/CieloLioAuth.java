@@ -1,7 +1,5 @@
 package org.frekele.cielo.lio.remote.client.auth;
 
-import org.frekele.cielo.lio.remote.client.enumeration.EnvironmentCieloLioEnum;
-
 import java.io.Serializable;
 
 /**

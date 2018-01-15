@@ -3,7 +3,7 @@ package org.frekele.cielo.lio.remote.client.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.frekele.cielo.lio.remote.client.InvokedMethodListener;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
-import org.frekele.cielo.lio.remote.client.enumeration.EnvironmentCieloLioEnum;
+import org.frekele.cielo.lio.remote.client.auth.EnvironmentCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.model.IdEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
