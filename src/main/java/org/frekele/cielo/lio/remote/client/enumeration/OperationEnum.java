@@ -38,7 +38,7 @@ public enum OperationEnum {
 
     @JsonCreator
     public static OperationEnum fromValue(String value) {
-        if (value != null) {
+        if (value != null && value.length() != 0) {
             for (OperationEnum obj : getAll()) {
                 if (obj.value.equals(value)) {
                     return obj;

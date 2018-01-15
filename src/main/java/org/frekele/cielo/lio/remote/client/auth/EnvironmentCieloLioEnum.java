@@ -22,7 +22,7 @@ public enum EnvironmentCieloLioEnum {
     }
 
     public static EnvironmentCieloLioEnum fromValue(String value) {
-        if (value != null) {
+        if (value != null && value.length() != 0) {
             for (EnvironmentCieloLioEnum obj : getAll()) {
                 if (obj.name().equals(value)) {
                     return obj;

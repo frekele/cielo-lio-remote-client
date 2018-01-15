@@ -36,7 +36,7 @@ public enum TransactionStatusEnum {
 
     @JsonCreator
     public static TransactionStatusEnum fromValue(String value) {
-        if (value != null) {
+        if (value != null && value.length() != 0) {
             for (TransactionStatusEnum obj : getAll()) {
                 if (obj.value.equals(value)) {
                     return obj;
