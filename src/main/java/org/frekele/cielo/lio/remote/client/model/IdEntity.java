@@ -11,13 +11,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class IdCieloLioEntity implements CieloLioEntity {
+public class IdEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
     private String id;
 
-    public IdCieloLioEntity() {
+    public IdEntity() {
     }
 
     public String getId() {

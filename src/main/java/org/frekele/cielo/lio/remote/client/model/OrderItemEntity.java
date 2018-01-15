@@ -20,7 +20,7 @@ import java.time.OffsetDateTime;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderItemCieloLioEntity implements CieloLioEntity {
+public class OrderItemEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -61,7 +61,7 @@ public class OrderItemCieloLioEntity implements CieloLioEntity {
     @JsonSerialize(using = OffsetDateTimeJsonSerialize.class)
     private OffsetDateTime updatedAt;
 
-    public OrderItemCieloLioEntity() {
+    public OrderItemEntity() {
     }
 
     public String getId() {

@@ -20,7 +20,7 @@ import java.time.OffsetDateTime;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderTransactionCieloLioEntity implements CieloLioEntity {
+public class OrderTransactionEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -65,11 +65,11 @@ public class OrderTransactionCieloLioEntity implements CieloLioEntity {
     private OffsetDateTime updatedAt;
 
     @JsonProperty("payment_fields")
-    private OrderPaymentProductCieloLioEntity orderPaymentProduct;
+    private OrderPaymentProductEntity orderPaymentProduct;
 
-    private OrderCardCieloLioEntity card;
+    private OrderCardEntity card;
 
-    public OrderTransactionCieloLioEntity() {
+    public OrderTransactionEntity() {
     }
 
     public String getId() {
@@ -176,19 +176,19 @@ public class OrderTransactionCieloLioEntity implements CieloLioEntity {
         this.updatedAt = updatedAt;
     }
 
-    public OrderPaymentProductCieloLioEntity getOrderPaymentProduct() {
+    public OrderPaymentProductEntity getOrderPaymentProduct() {
         return orderPaymentProduct;
     }
 
-    public void setOrderPaymentProduct(OrderPaymentProductCieloLioEntity orderPaymentProduct) {
+    public void setOrderPaymentProduct(OrderPaymentProductEntity orderPaymentProduct) {
         this.orderPaymentProduct = orderPaymentProduct;
     }
 
-    public OrderCardCieloLioEntity getCard() {
+    public OrderCardEntity getCard() {
         return card;
     }
 
-    public void setCard(OrderCardCieloLioEntity card) {
+    public void setCard(OrderCardEntity card) {
         this.card = card;
     }
 }

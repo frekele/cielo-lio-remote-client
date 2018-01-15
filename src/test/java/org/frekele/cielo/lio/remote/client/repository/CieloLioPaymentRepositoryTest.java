@@ -5,9 +5,9 @@ import org.frekele.cielo.lio.remote.client.InvokedMethodListener;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.StatusCieloLioEnum;
-import org.frekele.cielo.lio.remote.client.model.IdCieloLioEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderCieloLioEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderItemCieloLioEntity;
+import org.frekele.cielo.lio.remote.client.model.IdEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderEntity;
+import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.testng.annotations.BeforeClass;
@@ -28,9 +28,9 @@ public class CieloLioPaymentRepositoryTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private OrderCieloLioEntity order;
+    private OrderEntity order;
 
-    private IdCieloLioEntity idOrder;
+    private IdEntity idOrder;
 
     @BeforeClass
     public void init() throws Exception {
@@ -42,14 +42,14 @@ public class CieloLioPaymentRepositoryTest {
         ResteasyClient client = new ResteasyClientBuilder().build();
         repository = new CieloLioPaymentRepositoryImpl(client, auth);
 
-        order = new OrderCieloLioEntity();
+        order = new OrderEntity();
         order.setStatus(StatusCieloLioEnum.DRAFT);
         order.setNumber("12345");
         order.setReference("PEDIDO #12345");
         order.setNotes("Cliente Fulano de Tal");
         order.setPrice(BigDecimal.valueOf(125.34));
         order.setItems(new ArrayList<>());
-        OrderItemCieloLioEntity item = new OrderItemCieloLioEntity();
+        OrderItemEntity item = new OrderItemEntity();
         item.setSku("RTG-234-AQF-6587-C57");
         item.setName("Mesa de Formica Branca");
         item.setQuantity((long) 1);
@@ -81,25 +81,25 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderPutOperation")
     public void testOrderGet() throws Exception {
-        OrderCieloLioEntity orderResult = repository.orderGet(idOrder.getId());
+        OrderEntity orderResult = repository.orderGet(idOrder.getId());
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderResult));
     }
 
     @Test(dependsOnMethods = "testOrderGet")
     public void testOrderGetByNumber() throws Exception {
-        List<OrderCieloLioEntity> resultList = repository.orderGetByNumber("12345");
+        List<OrderEntity> resultList = repository.orderGetByNumber("12345");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
     @Test(dependsOnMethods = "testOrderGetByNumber")
     public void testOrderGetByReference() throws Exception {
-        List<OrderCieloLioEntity> resultList = repository.orderGetByReference("PEDIDO #12345");
+        List<OrderEntity> resultList = repository.orderGetByReference("PEDIDO #12345");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
     @Test(dependsOnMethods = "testOrderGetByReference")
     public void testOrderGetByStatus() throws Exception {
-        List<OrderCieloLioEntity> resultList = repository.orderGetByStatus(StatusCieloLioEnum.ENTERED);
+        List<OrderEntity> resultList = repository.orderGetByStatus(StatusCieloLioEnum.ENTERED);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
@@ -110,7 +110,7 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderDelete")
     public void testOrderGetAll() throws Exception {
-        List<OrderCieloLioEntity> resultList = repository.orderGetAll();
+        List<OrderEntity> resultList = repository.orderGetAll();
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 

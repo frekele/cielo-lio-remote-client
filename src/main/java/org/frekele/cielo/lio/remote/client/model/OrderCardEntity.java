@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderCardCieloLioEntity implements CieloLioEntity {
+public class OrderCardEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,7 +19,7 @@ public class OrderCardCieloLioEntity implements CieloLioEntity {
 
     private String mask;
 
-    public OrderCardCieloLioEntity() {
+    public OrderCardEntity() {
     }
 
     public String getBrand() {

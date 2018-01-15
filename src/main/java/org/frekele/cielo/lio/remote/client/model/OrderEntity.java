@@ -22,7 +22,7 @@ import java.util.List;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderCieloLioEntity implements CieloLioEntity {
+public class OrderEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -52,7 +52,7 @@ public class OrderCieloLioEntity implements CieloLioEntity {
     @JsonProperty("source_id")
     private String sourceId;
 
-    private List<OrderItemCieloLioEntity> items;
+    private List<OrderItemEntity> items;
 
     @JsonProperty("created_at")
     @JsonDeserialize(using = OffsetDateTimeJsonDeserialize.class)
@@ -64,9 +64,9 @@ public class OrderCieloLioEntity implements CieloLioEntity {
     @JsonSerialize(using = OffsetDateTimeJsonSerialize.class)
     private OffsetDateTime updatedAt;
 
-    private List<OrderTransactionCieloLioEntity> transactions;
+    private List<OrderTransactionEntity> transactions;
 
-    public OrderCieloLioEntity() {
+    public OrderEntity() {
     }
 
     public String getId() {
@@ -149,11 +149,11 @@ public class OrderCieloLioEntity implements CieloLioEntity {
         this.sourceId = sourceId;
     }
 
-    public List<OrderItemCieloLioEntity> getItems() {
+    public List<OrderItemEntity> getItems() {
         return items;
     }
 
-    public void setItems(List<OrderItemCieloLioEntity> items) {
+    public void setItems(List<OrderItemEntity> items) {
         this.items = items;
     }
 
@@ -173,11 +173,11 @@ public class OrderCieloLioEntity implements CieloLioEntity {
         this.updatedAt = updatedAt;
     }
 
-    public List<OrderTransactionCieloLioEntity> getTransactions() {
+    public List<OrderTransactionEntity> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(List<OrderTransactionCieloLioEntity> transactions) {
+    public void setTransactions(List<OrderTransactionEntity> transactions) {
         this.transactions = transactions;
     }
 }
