@@ -9,7 +9,7 @@ import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
 import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
-import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
+import org.frekele.cielo.lio.remote.client.testng.InvokedMethodSleepListener;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.testng.annotations.BeforeClass;
@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * @author frekele - Leandro Kersting de Freitas
  */
-@Listeners(InvokedMethodListener.class)
+@Listeners(InvokedMethodSleepListener.class)
 public class CieloLioPaymentRepositoryTest {
 
     private CieloLioPaymentRepository repository;
