@@ -23,6 +23,11 @@ public class OrderCardEntity implements CieloLioEntity {
         super();
     }
 
+    public OrderCardEntity(String brand, String mask) {
+        this.brand = brand;
+        this.mask = mask;
+    }
+
     public String getBrand() {
         return brand;
     }
