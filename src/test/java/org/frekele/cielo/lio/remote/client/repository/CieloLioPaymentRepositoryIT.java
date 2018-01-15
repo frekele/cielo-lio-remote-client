@@ -1,7 +1,6 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.frekele.cielo.lio.remote.client.InvokedMethodListener;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.EnvironmentCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
@@ -23,7 +22,7 @@ import java.util.List;
  * @author frekele - Leandro Kersting de Freitas
  */
 @Listeners(InvokedMethodListener.class)
-public class CieloLioPaymentRepositoryTest {
+public class CieloLioPaymentRepositoryIT {
 
     private CieloLioPaymentRepository repository;
 
