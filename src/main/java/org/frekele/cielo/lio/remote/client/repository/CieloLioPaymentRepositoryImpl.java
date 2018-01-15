@@ -1,7 +1,6 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
-import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
 import org.frekele.cielo.lio.remote.client.core.CieloLio;
 import org.frekele.cielo.lio.remote.client.enumeration.StatusCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.model.IdEntity;
@@ -22,8 +21,6 @@ import java.util.List;
 public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository {
 
     private static final long serialVersionUID = 1L;
-
-    private static final String targetUrl = "https://api.cielo.com.br";
 
     private final ResteasyClient client;
 
@@ -46,12 +43,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
 
     private CieloOrderManagementProxyClient getProxyClient() {
         ResteasyClient client = this.getClient();
-        ResteasyWebTarget webTarget;
-        if (CieloLioEnvironmentEnum.PRODUCTION.equals(this.getAuth().getEnvironment())) {
-            webTarget = client.target(targetUrl);
-        } else {
-            webTarget = client.target(targetUrl + "/sandbox-lio");
-        }
+        ResteasyWebTarget webTarget = client.target(this.getAuth().getEnvironment().getTargetUrl());
         return webTarget.proxy(CieloOrderManagementProxyClient.class);
     }
 

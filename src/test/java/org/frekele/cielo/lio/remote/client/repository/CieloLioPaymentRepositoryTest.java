@@ -3,7 +3,7 @@ package org.frekele.cielo.lio.remote.client.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.frekele.cielo.lio.remote.client.InvokedMethodListener;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
-import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
+import org.frekele.cielo.lio.remote.client.auth.EnvironmentCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.StatusCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.model.IdEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
@@ -37,7 +37,7 @@ public class CieloLioPaymentRepositoryTest {
         String clientId = System.getenv("CIELO_LIO_CLIENT_ID");
         String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
         String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
-        CieloLioEnvironmentEnum environment = CieloLioEnvironmentEnum.SANDBOX;
+        EnvironmentCieloLioEnum environment = EnvironmentCieloLioEnum.SANDBOX;
         CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
         ResteasyClient client = new ResteasyClientBuilder().build();
         repository = new CieloLioPaymentRepositoryImpl(client, auth);

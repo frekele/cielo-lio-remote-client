@@ -15,9 +15,9 @@ public final class CieloLioAuth implements Serializable {
 
     private final String merchantId;
 
-    private final CieloLioEnvironmentEnum environment;
+    private final EnvironmentCieloLioEnum environment;
 
-    public CieloLioAuth(String clientId, String accessToken, String merchantId, CieloLioEnvironmentEnum environment) {
+    public CieloLioAuth(String clientId, String accessToken, String merchantId, EnvironmentCieloLioEnum environment) {
         this.clientId = clientId;
         this.accessToken = accessToken;
         this.merchantId = merchantId;
@@ -36,7 +36,7 @@ public final class CieloLioAuth implements Serializable {
         return merchantId;
     }
 
-    public CieloLioEnvironmentEnum getEnvironment() {
+    public EnvironmentCieloLioEnum getEnvironment() {
         return environment;
     }
 }
