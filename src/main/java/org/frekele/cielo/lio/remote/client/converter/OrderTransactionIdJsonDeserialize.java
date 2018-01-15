@@ -13,8 +13,6 @@ import java.io.IOException;
  */
 public class OrderTransactionIdJsonDeserialize extends StdDeserializer<OrderTransactionId> {
 
-    private static final int SCALE = 2;
-
     protected OrderTransactionIdJsonDeserialize() {
         super(OrderTransactionId.class);
     }
