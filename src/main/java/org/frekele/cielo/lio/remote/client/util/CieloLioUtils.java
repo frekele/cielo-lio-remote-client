@@ -82,4 +82,10 @@ public final class CieloLioUtils {
             throw new CieloLioException("OrderTransactionId.id can not be Empty!");
         }
     }
+
+    public static void throwObject(Object obj, String objectName) {
+        if (obj == null || obj.toString().trim().isEmpty()) {
+            throw new CieloLioException("" + objectName + " can not be Null!");
+        }
+    }
 }

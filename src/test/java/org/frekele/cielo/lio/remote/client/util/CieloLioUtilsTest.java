@@ -110,12 +110,12 @@ public class CieloLioUtilsTest {
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderIdError() throws Exception {
+    public void testThrowOrderIdWithError() throws Exception {
         CieloLioUtils.throwOrderId(new OrderId(null));
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderIdError2() throws Exception {
+    public void testThrowOrderIdWithError2() throws Exception {
         CieloLioUtils.throwOrderId(new OrderId(""));
     }
 
@@ -125,12 +125,12 @@ public class CieloLioUtilsTest {
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderItemIdError() throws Exception {
+    public void testThrowOrderItemIdWithError() throws Exception {
         CieloLioUtils.throwOrderItemId(new OrderItemId(null));
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderItemIdError2() throws Exception {
+    public void testThrowOrderItemIdWithError2() throws Exception {
         CieloLioUtils.throwOrderItemId(new OrderItemId(""));
     }
 
@@ -140,12 +140,27 @@ public class CieloLioUtilsTest {
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderTransactionIdError() throws Exception {
+    public void testThrowOrderTransactionIdWithError() throws Exception {
         CieloLioUtils.throwOrderTransactionId(new OrderTransactionId(null));
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderTransactionIdError2() throws Exception {
+    public void testThrowOrderTransactionIdWithError2() throws Exception {
         CieloLioUtils.throwOrderTransactionId(new OrderTransactionId(""));
+    }
+
+    @Test
+    public void testThrowObject() throws Exception {
+        CieloLioUtils.throwObject("xxxxx", "value");
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowObjectWithError() throws Exception {
+        CieloLioUtils.throwObject(null, "value");
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowObjectWithError2() throws Exception {
+        CieloLioUtils.throwObject("", "value");
     }
 }
