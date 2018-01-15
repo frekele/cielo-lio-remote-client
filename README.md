@@ -30,6 +30,30 @@ Built-based on the documentation: [https://developercielo.github.io/manual/cielo
 ```gradle
 compile 'org.frekele.cielo:cielo-lio-remote-client:1.0.0'
 ```
+
+#### Usage
+
+```java
+//First create CieloLioAuth
+String clientId = System.getenv("CIELO_LIO_CLIENT_ID");
+String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
+String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
+String environment = System.getenv("CIELO_LIO_ENVIRONMENT");
+CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
+
+//Build one client per thread, or use CDI.
+ResteasyClient client = new ResteasyClientBuilder().build();
+CieloLioPaymentRepository repository = new CieloLioPaymentRepositoryImpl(client, auth);
+
+List<OrderEntity> resultList = repository.orderGetAll();
+OrderEntity orderEntity = repository.orderGet(new OrderId("5f182dec98-1866-47b0-b69d-471448911f"));
+
+//Is important to close on finish.
+client.close();
+```
+
+TODO
+
 ### Order Status Lifecycle
 ![Order Status Lifecycle](https://raw.githubusercontent.com/frekele/cielo-lio-remote-client/master/docs/img/lifecycle.png)
 
