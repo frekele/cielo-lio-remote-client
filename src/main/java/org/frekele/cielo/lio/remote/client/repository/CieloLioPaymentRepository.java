@@ -143,5 +143,5 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso permite que o desenvolvedor simule as transações financeiras, adicionando-as manualmente, sendo possível entender o funcionamento em uma Order.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    OrderId orderPostTransaction(OrderId orderId, OrderTransactionEntity transaction);
+    OrderTransactionId orderPostTransaction(OrderId orderId, OrderTransactionEntity transaction);
 }

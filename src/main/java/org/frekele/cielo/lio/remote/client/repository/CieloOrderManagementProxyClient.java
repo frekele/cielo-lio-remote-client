@@ -2,11 +2,12 @@ package org.frekele.cielo.lio.remote.client.repository;
 
 import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
-import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderTransactionEntity;
+import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
+import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -245,9 +246,9 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @POST
     @Path("orders/{orderId}/transactions")
-    OrderId orderPostTransaction(@HeaderParam("Client-Id") String clientId,
-                                 @HeaderParam("Access-Token") String accessToken,
-                                 @HeaderParam("Merchant-Id") String merchantId,
-                                 @PathParam("orderId") String orderId,
-                                 OrderTransactionEntity transaction);
+    OrderTransactionId orderPostTransaction(@HeaderParam("Client-Id") String clientId,
+                                            @HeaderParam("Access-Token") String accessToken,
+                                            @HeaderParam("Merchant-Id") String merchantId,
+                                            @PathParam("orderId") String orderId,
+                                            OrderTransactionEntity transaction);
 }
