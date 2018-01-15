@@ -16,6 +16,8 @@ public class InvokedMethodListener implements IInvokedMethodListener {
         long duration = testResult.getEndMillis() - testResult.getStartMillis();
         System.out.println(this.getTestClassAndMethodName(method) + " Duration: [ " + duration + "ms ];");
         System.out.println(this.getTestClassAndMethodName(method) + " <--- End method.\n");
+        //After Invocation Sleep 1 seg, for prevent (HTTP 429 Unknown Code).
+        this.sleep(1);
     }
 
     private String getTestClassAndMethodName(IInvokedMethod method) {
@@ -28,5 +30,16 @@ public class InvokedMethodListener implements IInvokedMethodListener {
 
     private String getMethodName(IInvokedMethod method) {
         return method.getTestMethod().getMethodName();
+    }
+
+    private void sleep(long seconds) {
+        try {
+            long millis = seconds * 1000;
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            // Restore interrupted state...
+            Thread.currentThread().interrupt();
+        }
     }
 }
