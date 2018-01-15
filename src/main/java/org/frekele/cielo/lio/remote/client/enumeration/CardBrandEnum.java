@@ -56,9 +56,4 @@ public enum CardBrandEnum {
     public static List<CardBrandEnum> getAll() {
         return Arrays.asList(CardBrandEnum.values());
     }
-
-    @Override
-    public String toString() {
-        return this.getValue();
-    }
 }

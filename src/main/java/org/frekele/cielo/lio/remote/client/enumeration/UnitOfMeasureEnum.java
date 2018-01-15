@@ -59,9 +59,4 @@ public enum UnitOfMeasureEnum {
     public static List<UnitOfMeasureEnum> getAll() {
         return Arrays.asList(UnitOfMeasureEnum.values());
     }
-
-    @Override
-    public String toString() {
-        return this.getValue();
-    }
 }

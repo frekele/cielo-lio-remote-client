@@ -47,9 +47,4 @@ public enum TransactionTypeEnum {
     public static List<TransactionTypeEnum> getAll() {
         return Arrays.asList(TransactionTypeEnum.values());
     }
-
-    @Override
-    public String toString() {
-        return this.getValue();
-    }
 }

@@ -51,9 +51,4 @@ public enum OperationEnum {
     public static List<OperationEnum> getAll() {
         return Arrays.asList(OperationEnum.values());
     }
-
-    @Override
-    public String toString() {
-        return this.getValue();
-    }
 }

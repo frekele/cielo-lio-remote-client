@@ -49,9 +49,4 @@ public enum TransactionStatusEnum {
     public static List<TransactionStatusEnum> getAll() {
         return Arrays.asList(TransactionStatusEnum.values());
     }
-
-    @Override
-    public String toString() {
-        return this.getValue();
-    }
 }

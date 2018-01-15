@@ -55,9 +55,4 @@ public enum OrderStatusEnum {
     public static List<OrderStatusEnum> getAll() {
         return Arrays.asList(OrderStatusEnum.values());
     }
-
-    @Override
-    public String toString() {
-        return this.getValue();
-    }
 }
