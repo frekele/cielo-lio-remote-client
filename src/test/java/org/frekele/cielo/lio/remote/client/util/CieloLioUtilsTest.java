@@ -12,11 +12,17 @@ public class CieloLioUtilsTest {
 
     @Test
     public void testThrowInjection() throws Exception {
+        CieloLioUtils c = new CieloLioUtils();
         CieloLioUtils.throwInjection("");
         CieloLioUtils.throwInjection("a");
         CieloLioUtils.throwInjection("a", "b");
         CieloLioUtils.throwInjection("a", "b", "c", 1, 3, 5);
         CieloLioUtils.throwInjection("a", "b", "c", 1, 3, 5, new BigDecimal(0.0));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowInjection2() throws Exception {
+        CieloLioUtils.throwInjection();
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
