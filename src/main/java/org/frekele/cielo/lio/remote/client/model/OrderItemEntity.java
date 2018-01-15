@@ -3,11 +3,11 @@ package org.frekele.cielo.lio.remote.client.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
 import org.frekele.cielo.lio.remote.client.converter.BigDecimalJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.BigDecimalJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonSerialize;
+import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -30,8 +30,6 @@ public class OrderItemEntity implements CieloLioEntity {
     private String uuid;
 
     private String sku;
-
-    private String skuType;
 
     private String name;
 
@@ -86,14 +84,6 @@ public class OrderItemEntity implements CieloLioEntity {
 
     public void setSku(String sku) {
         this.sku = sku;
-    }
-
-    public String getSkuType() {
-        return skuType;
-    }
-
-    public void setSkuType(String skuType) {
-        this.skuType = skuType;
     }
 
     public String getName() {
