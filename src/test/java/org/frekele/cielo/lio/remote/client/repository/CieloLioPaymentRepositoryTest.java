@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.frekele.cielo.lio.remote.client.InvokedMethodListener;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
+import org.frekele.cielo.lio.remote.client.enumeration.StatusEnum;
 import org.frekele.cielo.lio.remote.client.model.IdCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
@@ -42,7 +43,7 @@ public class CieloLioPaymentRepositoryTest {
         repository = new CieloLioPaymentRepositoryImpl(client, auth);
 
         order = new OrderCieloEntity();
-        order.setStatus("DRAFT");
+        order.setStatus(StatusEnum.DRAFT);
         order.setNumber("12345");
         order.setReference("PEDIDO #12345");
         order.setNotes("Cliente Fulano de Tal");
@@ -98,7 +99,7 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderGetByReference")
     public void testOrderGetByStatus() throws Exception {
-        List<OrderCieloEntity> resultList = repository.orderGetByStatus("ENTERED");
+        List<OrderCieloEntity> resultList = repository.orderGetByStatus(StatusEnum.ENTERED);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 

@@ -1,5 +1,6 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
+import org.frekele.cielo.lio.remote.client.enumeration.StatusEnum;
 import org.frekele.cielo.lio.remote.client.model.IdCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
@@ -40,7 +41,7 @@ public interface CieloLioPaymentRepository extends Serializable {
      * (DRAFT, ENTERED, RE-ENTERED, PAID, CANCELED e CLOSED).
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?status=PAID
      */
-    List<OrderCieloEntity> orderGetByStatus(String status);
+    List<OrderCieloEntity> orderGetByStatus(StatusEnum status);
 
     /**
      * GET - Consultar pedido
