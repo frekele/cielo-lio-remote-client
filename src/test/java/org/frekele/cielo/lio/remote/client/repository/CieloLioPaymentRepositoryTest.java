@@ -198,6 +198,26 @@ public class CieloLioPaymentRepositoryTest {
     }
 
     @Test(dependsOnMethods = "testOrderGetByNumber")
+    public void testOrderPutOperationPay() throws Exception {
+        repository.orderPutOperation(orderId, OperationEnum.PAY);
+    }
+
+    @Test(dependsOnMethods = "testOrderPutOperationPay")
+    public void testOrderPutOperationClose() throws Exception {
+        repository.orderPutOperation(orderId, OperationEnum.CLOSE);
+    }
+
+    @Test(dependsOnMethods = "testOrderPutOperationClose")
+    public void testOrderPutOperationReOpenPay() throws Exception {
+        repository.orderPutOperation(orderId, OperationEnum.PAY);
+    }
+
+    @Test(dependsOnMethods = "testOrderPutOperationReOpenPay")
+    public void testOrderPutOperationCloseAgain() throws Exception {
+        repository.orderPutOperation(orderId, OperationEnum.CLOSE);
+    }
+
+    @Test(dependsOnMethods = "testOrderPutOperationCloseAgain")
     public void testOrderGetByReference() throws Exception {
         List<OrderEntity> resultList = repository.orderGetByReference("PEDIDO #12345");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
