@@ -32,6 +32,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     @Inject
     public CieloLioPaymentRepositoryImpl(@CieloLio ResteasyClient client, @CieloLio CieloLioAuth auth) {
         CieloLioUtils.throwInjection(client, auth);
+        CieloLioUtils.throwAuth(auth);
         this.client = client;
         this.auth = auth;
     }
@@ -44,7 +45,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
         return auth;
     }
 
-    private CieloOrderManagementProxyClient getProxyClient() {
+    public CieloOrderManagementProxyClient getProxyClient() {
         ResteasyClient client = this.getClient();
         ResteasyWebTarget webTarget = client.target(this.getAuth().getEnvironment().getTargetUrl());
         return webTarget.proxy(CieloOrderManagementProxyClient.class);
