@@ -2,6 +2,7 @@ package org.frekele.cielo.lio.remote.client.repository;
 
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
+import org.frekele.cielo.lio.remote.client.core.CieloLio;
 import org.frekele.cielo.lio.remote.client.model.IdCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 /**
  * @author frekele - Leandro Kersting de Freitas
  */
+@CieloLio
 public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +29,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     private final CieloLioAuth auth;
 
     @Inject
-    public CieloLioPaymentRepositoryImpl(ResteasyClient client, CieloLioAuth auth) {
+    public CieloLioPaymentRepositoryImpl(@CieloLio ResteasyClient client, @CieloLio CieloLioAuth auth) {
         CieloLioUtils.throwInjection(client, auth);
         this.client = client;
         this.auth = auth;
