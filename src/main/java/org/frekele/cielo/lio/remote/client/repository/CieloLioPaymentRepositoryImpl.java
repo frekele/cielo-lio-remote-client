@@ -59,6 +59,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
 
     @Override
     public List<OrderEntity> orderGetByNumber(String number) {
+        CieloLioUtils.throwObject(number, "number");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByNumber(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             number);
@@ -66,6 +67,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
 
     @Override
     public List<OrderEntity> orderGetByReference(String reference) {
+        CieloLioUtils.throwObject(reference, "reference");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByReference(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             reference);
@@ -73,6 +75,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
 
     @Override
     public List<OrderEntity> orderGetByStatus(OrderStatusEnum status) {
+        CieloLioUtils.throwObject(status, "OrderStatusEnum");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByStatus(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             status);
@@ -88,6 +91,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
 
     @Override
     public OrderId orderPost(OrderEntity order) {
+        CieloLioUtils.throwObject(order, "OrderEntity");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPost(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             order);
@@ -96,6 +100,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     @Override
     public void orderPut(OrderId orderId, OrderEntity order) {
         CieloLioUtils.throwOrderId(orderId);
+        CieloLioUtils.throwObject(order, "OrderEntity");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         proxyClient.orderPut(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), order);
@@ -104,6 +109,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     @Override
     public void orderPutOperation(OrderId orderId, OperationEnum operation) {
         CieloLioUtils.throwOrderId(orderId);
+        CieloLioUtils.throwObject(operation, "OperationEnum");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         proxyClient.orderPutOperation(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), operation);
@@ -137,6 +143,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     @Override
     public OrderItemId orderPostItem(OrderId orderId, OrderItemEntity orderItem) {
         CieloLioUtils.throwOrderId(orderId);
+        CieloLioUtils.throwObject(orderItem, "OrderItemEntity");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPostItem(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), orderItem);
@@ -146,6 +153,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     public void orderPutItem(OrderId orderId, OrderItemId idItem, OrderItemEntity orderItem) {
         CieloLioUtils.throwOrderId(orderId);
         CieloLioUtils.throwOrderItemId(idItem);
+        CieloLioUtils.throwObject(orderItem, "OrderItemEntity");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         proxyClient.orderPutItem(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), idItem.getId(), orderItem);
@@ -180,6 +188,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     @Override
     public OrderTransactionId orderPostTransaction(OrderId orderId, OrderTransactionEntity transaction) {
         CieloLioUtils.throwOrderId(orderId);
+        CieloLioUtils.throwObject(transaction, "OrderTransactionEntity");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPostTransaction(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), transaction);
