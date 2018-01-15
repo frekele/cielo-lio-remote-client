@@ -42,7 +42,7 @@ public enum OrderStatusEnum {
 
     @JsonCreator
     public static OrderStatusEnum fromValue(String value) {
-        if (value != null && value.length() != 0) {
+        if (value != null) {
             for (OrderStatusEnum obj : getAll()) {
                 if (obj.value.equals(value)) {
                     return obj;

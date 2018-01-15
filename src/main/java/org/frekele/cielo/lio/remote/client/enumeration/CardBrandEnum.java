@@ -43,7 +43,7 @@ public enum CardBrandEnum {
 
     @JsonCreator
     public static CardBrandEnum fromValue(String value) {
-        if (value != null && value.length() != 0) {
+        if (value != null) {
             for (CardBrandEnum obj : getAll()) {
                 if (obj.value.equals(value)) {
                     return obj;

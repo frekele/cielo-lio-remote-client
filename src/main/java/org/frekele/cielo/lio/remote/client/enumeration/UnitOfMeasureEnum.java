@@ -46,7 +46,7 @@ public enum UnitOfMeasureEnum {
 
     @JsonCreator
     public static UnitOfMeasureEnum fromValue(String value) {
-        if (value != null && value.length() != 0) {
+        if (value != null) {
             for (UnitOfMeasureEnum obj : getAll()) {
                 if (obj.value.equals(value)) {
                     return obj;
