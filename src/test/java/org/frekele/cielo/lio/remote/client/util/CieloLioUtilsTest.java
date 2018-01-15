@@ -99,6 +99,11 @@ public class CieloLioUtilsTest {
         CieloLioUtils.throwAuth(auth);
     }
 
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowAuthWithError8() throws Exception {
+        CieloLioUtils.throwAuth(null);
+    }
+
     @Test
     public void testThrowOrderId() throws Exception {
         CieloLioUtils.throwOrderId(new OrderId("af9658-c3dd-49fa-acf29c38-2aa7aa89a"));
