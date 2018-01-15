@@ -41,6 +41,7 @@ public class OffsetDateTimeJsonDeserializeTest {
         OffsetDateTime expected = OffsetDateTime.parse(stringValue, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
         when(jsonParser.readValueAs(String.class)).thenReturn(stringValue);
         resultValue = jsonDeserialize.deserialize(jsonParser, null);
+        assertNotNull(resultValue);
         assertEquals(expected, resultValue);
     }
 }

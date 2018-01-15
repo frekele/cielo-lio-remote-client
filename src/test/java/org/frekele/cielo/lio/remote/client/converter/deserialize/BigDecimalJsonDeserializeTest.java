@@ -39,6 +39,7 @@ public class BigDecimalJsonDeserializeTest {
         long longValue = 5432;
         when(jsonParser.readValueAs(Long.class)).thenReturn(longValue);
         resultValue = jsonDeserialize.deserialize(jsonParser, null);
+        assertNotNull(resultValue);
         assertEquals(BigDecimal.valueOf(longValue, 2), resultValue);
     }
 }
