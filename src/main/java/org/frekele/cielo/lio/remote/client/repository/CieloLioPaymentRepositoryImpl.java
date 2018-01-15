@@ -4,7 +4,7 @@ import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.core.CieloLio;
 import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
-import org.frekele.cielo.lio.remote.client.model.IdEntity;
+import org.frekele.cielo.lio.remote.client.model.id.IdOrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderTransactionEntity;
@@ -79,7 +79,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public IdEntity orderPost(OrderEntity order) {
+    public IdOrderEntity orderPost(OrderEntity order) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPost(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), order);
     }
@@ -115,7 +115,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public IdEntity orderPostItem(String orderId, OrderItemEntity orderItem) {
+    public IdOrderEntity orderPostItem(String orderId, OrderItemEntity orderItem) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPostItem(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId, orderItem);
     }
@@ -145,7 +145,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public IdEntity orderPostTransaction(String orderId, OrderTransactionEntity transaction) {
+    public IdOrderEntity orderPostTransaction(String orderId, OrderTransactionEntity transaction) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPostTransaction(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), orderId, transaction);
     }

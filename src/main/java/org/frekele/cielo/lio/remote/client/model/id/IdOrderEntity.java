@@ -1,4 +1,4 @@
-package org.frekele.cielo.lio.remote.client.model;
+package org.frekele.cielo.lio.remote.client.model.id;
 
 import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
 
@@ -11,13 +11,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class IdEntity implements CieloLioEntity {
+public class IdOrderEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
     private String id;
 
-    public IdEntity() {
+    public IdOrderEntity() {
+    }
+
+    public IdOrderEntity(String id) {
+        this.id = id;
     }
 
     public String getId() {

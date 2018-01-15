@@ -2,7 +2,7 @@ package org.frekele.cielo.lio.remote.client.repository;
 
 import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
-import org.frekele.cielo.lio.remote.client.model.IdEntity;
+import org.frekele.cielo.lio.remote.client.model.id.IdOrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderTransactionEntity;
@@ -56,7 +56,7 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso realiza a criação de um pedido no servidor do Order Manager.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders
      */
-    IdEntity orderPost(OrderEntity order);
+    IdOrderEntity orderPost(OrderEntity order);
 
     /**
      * PUT - Altera um pedido
@@ -102,7 +102,7 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso é utilizado para adicionar um ou mais itens em um pedido já criado. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    IdEntity orderPostItem(String orderId, OrderItemEntity orderItem);
+    IdOrderEntity orderPostItem(String orderId, OrderItemEntity orderItem);
 
     /**
      * PUT - Alterar um item em um pedido
@@ -141,5 +141,5 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso permite que o desenvolvedor simule as transações financeiras, adicionando-as manualmente, sendo possível entender o funcionamento em uma Order.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    IdEntity orderPostTransaction(String orderId, OrderTransactionEntity transaction);
+    IdOrderEntity orderPostTransaction(String orderId, OrderTransactionEntity transaction);
 }

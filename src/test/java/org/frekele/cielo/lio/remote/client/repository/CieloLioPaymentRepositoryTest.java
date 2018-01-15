@@ -6,7 +6,7 @@ import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.EnvironmentCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
-import org.frekele.cielo.lio.remote.client.model.IdEntity;
+import org.frekele.cielo.lio.remote.client.model.id.IdOrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
@@ -31,7 +31,7 @@ public class CieloLioPaymentRepositoryTest {
 
     private OrderEntity order;
 
-    private IdEntity idOrder;
+    private IdOrderEntity idOrder;
 
     @BeforeClass
     public void init() throws Exception {
