@@ -8,12 +8,15 @@ import java.util.List;
  */
 public enum EnvironmentCieloLioEnum {
 
-    PRODUCTION("https://api.cielo.com.br"),
-    SANDBOX("https://api.cielo.com.br/sandbox-lio");
+    PRODUCTION("PRODUCTION", "https://api.cielo.com.br"),
+    SANDBOX("SANDBOX", "https://api.cielo.com.br/sandbox-lio");
+
+    private String value;
 
     private String targetUrl;
 
-    EnvironmentCieloLioEnum(String targetUrl) {
+    EnvironmentCieloLioEnum(String value, String targetUrl) {
+        this.value = value;
         this.targetUrl = targetUrl;
     }
 
@@ -21,10 +24,14 @@ public enum EnvironmentCieloLioEnum {
         return targetUrl;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     public static EnvironmentCieloLioEnum fromValue(String value) {
         if (value != null && value.length() != 0) {
             for (EnvironmentCieloLioEnum obj : getAll()) {
-                if (obj.name().equals(value)) {
+                if (obj.getValue().equals(value)) {
                     return obj;
                 }
             }
