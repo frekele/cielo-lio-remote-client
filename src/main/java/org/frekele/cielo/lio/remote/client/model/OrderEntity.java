@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.deserialize.BigDecimalJsonDeserialize;
-import org.frekele.cielo.lio.remote.client.converter.serialize.BigDecimalJsonSerialize;
-import org.frekele.cielo.lio.remote.client.converter.deserialize.OrderIdJsonDeserialize;
-import org.frekele.cielo.lio.remote.client.converter.serialize.OrderIdJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.deserialize.OffsetDateTimeJsonDeserialize;
+import org.frekele.cielo.lio.remote.client.converter.deserialize.OrderIdJsonDeserialize;
+import org.frekele.cielo.lio.remote.client.converter.serialize.BigDecimalJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.OffsetDateTimeJsonSerialize;
+import org.frekele.cielo.lio.remote.client.converter.serialize.OrderIdJsonSerialize;
 import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
 import org.frekele.cielo.lio.remote.client.model.id.OrderId;
@@ -57,8 +57,6 @@ public class OrderEntity implements CieloLioEntity {
     @JsonProperty("source_id")
     private String sourceId;
 
-    private List<OrderItemEntity> items;
-
     @JsonProperty("created_at")
     @JsonDeserialize(using = OffsetDateTimeJsonDeserialize.class)
     @JsonSerialize(using = OffsetDateTimeJsonSerialize.class)
@@ -68,6 +66,8 @@ public class OrderEntity implements CieloLioEntity {
     @JsonDeserialize(using = OffsetDateTimeJsonDeserialize.class)
     @JsonSerialize(using = OffsetDateTimeJsonSerialize.class)
     private OffsetDateTime updatedAt;
+
+    private List<OrderItemEntity> items;
 
     private List<OrderTransactionEntity> transactions;
 
@@ -155,14 +155,6 @@ public class OrderEntity implements CieloLioEntity {
         this.sourceId = sourceId;
     }
 
-    public List<OrderItemEntity> getItems() {
-        return items;
-    }
-
-    public void setItems(List<OrderItemEntity> items) {
-        this.items = items;
-    }
-
     public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
@@ -177,6 +169,14 @@ public class OrderEntity implements CieloLioEntity {
 
     public void setUpdatedAt(OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<OrderItemEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItemEntity> items) {
+        this.items = items;
     }
 
     public List<OrderTransactionEntity> getTransactions() {
