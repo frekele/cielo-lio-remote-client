@@ -44,9 +44,17 @@ public class CardBrandEnumTest {
         List<CardBrandEnum> listAll = CardBrandEnum.getAll();
         assertNotEquals(null, listAll);
         assertEquals(listAll.size(), 12);
+        assertEquals(listAll.contains(CardBrandEnum.AURA), true);
         assertEquals(listAll.contains(CardBrandEnum.AMERICAN_EXPRESS), true);
-        assertEquals(listAll.contains(CardBrandEnum.MASTERCARD), true);
-        assertEquals(listAll.contains(CardBrandEnum.VISA), true);
+        assertEquals(listAll.contains(CardBrandEnum.CABAL), true);
+        assertEquals(listAll.contains(CardBrandEnum.DINERS_CLUB), true);
+        assertEquals(listAll.contains(CardBrandEnum.DISCOVER), true);
         assertEquals(listAll.contains(CardBrandEnum.ELO), true);
+        assertEquals(listAll.contains(CardBrandEnum.HIPERCARD), true);
+        assertEquals(listAll.contains(CardBrandEnum.HIPER), true);
+        assertEquals(listAll.contains(CardBrandEnum.JCB), true);
+        assertEquals(listAll.contains(CardBrandEnum.MASTERCARD), true);
+        assertEquals(listAll.contains(CardBrandEnum.SOROCRED), true);
+        assertEquals(listAll.contains(CardBrandEnum.VISA), true);
     }
 }
