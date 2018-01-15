@@ -1,10 +1,10 @@
-package org.frekele.cielo.lio.remote.client.repository;
+package org.frekele.cielo.lio.remote.client.testng;
 
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 
-class InvokedMethodListener implements IInvokedMethodListener {
+public class InvokedMethodListener implements IInvokedMethodListener {
 
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
