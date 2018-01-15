@@ -1,5 +1,7 @@
 package org.frekele.cielo.lio.remote.client.util;
 
+import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
+import org.frekele.cielo.lio.remote.client.auth.EnvironmentCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.exception.CieloLioException;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.testng.annotations.Listeners;
@@ -9,6 +11,14 @@ import java.math.BigDecimal;
 
 @Listeners(InvokedMethodListener.class)
 public class CieloLioUtilsTest {
+
+    String clientId = "jkdsfhskdj";
+
+    String accessToken = "kjhrgfhe8354ty9r";
+
+    String merchantId = "hfjskfh-ertret-rter-tery-dreter";
+
+    EnvironmentCieloLioEnum environment = EnvironmentCieloLioEnum.SANDBOX;
 
     @Test
     public void testThrowInjection() throws Exception {
@@ -36,5 +46,53 @@ public class CieloLioUtilsTest {
         String val1 = "";
         BigDecimal val2 = null;
         CieloLioUtils.throwInjection(val1, val2);
+    }
+
+    @Test
+    public void testThrowAuth() throws Exception {
+        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
+        CieloLioUtils.throwAuth(auth);
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowAuthWithError() throws Exception {
+        CieloLioAuth auth = new CieloLioAuth(null, null, null, null);
+        CieloLioUtils.throwAuth(auth);
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowAuthWithError2() throws Exception {
+        CieloLioAuth auth = new CieloLioAuth("", null, null, null);
+        CieloLioUtils.throwAuth(auth);
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowAuthWithError3() throws Exception {
+        CieloLioAuth auth = new CieloLioAuth(clientId, null, null, null);
+        CieloLioUtils.throwAuth(auth);
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowAuthWithError4() throws Exception {
+        CieloLioAuth auth = new CieloLioAuth(clientId, "", null, null);
+        CieloLioUtils.throwAuth(auth);
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowAuthWithError5() throws Exception {
+        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, null, null);
+        CieloLioUtils.throwAuth(auth);
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowAuthWithError6() throws Exception {
+        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, "", null);
+        CieloLioUtils.throwAuth(auth);
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowAuthWithError7() throws Exception {
+        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, null);
+        CieloLioUtils.throwAuth(auth);
     }
 }
