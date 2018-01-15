@@ -29,7 +29,15 @@ public class OrderTransactionEntityTest {
         TransactionTypeEnum transactionType = TransactionTypeEnum.PAYMENT;
         OffsetDateTime createdAt = OffsetDateTime.now();
         OffsetDateTime updatedAt = OffsetDateTime.now().plusHours(4);
+
+        String orderPaymentProductPrimaryProductName = "CREDITO";
+        String orderPaymentProductSecondaryProductName = "PARCELADO_LOJA";
+        Integer orderPaymentProductNumberOfQuotas = 1;
         OrderPaymentProductEntity orderPaymentProduct = new OrderPaymentProductEntity();
+        orderPaymentProduct.setPrimaryProductName(orderPaymentProductPrimaryProductName);
+        orderPaymentProduct.setSecondaryProductName(orderPaymentProductSecondaryProductName);
+        orderPaymentProduct.setNumberOfQuotas(orderPaymentProductNumberOfQuotas);
+
         String cardBrand = CardBrandEnum.VISA.getValue();
         String cardMask = "************5487";
         OrderCardEntity card = new OrderCardEntity(cardBrand, cardMask);
@@ -63,7 +71,12 @@ public class OrderTransactionEntityTest {
         assertEquals(transactionType, entity.getTransactionType());
         assertEquals(createdAt, entity.getCreatedAt());
         assertEquals(updatedAt, entity.getUpdatedAt());
+
         assertEquals(orderPaymentProduct, entity.getOrderPaymentProduct());
+        assertEquals(orderPaymentProductPrimaryProductName, entity.getOrderPaymentProduct().getPrimaryProductName());
+        assertEquals(orderPaymentProductSecondaryProductName, entity.getOrderPaymentProduct().getSecondaryProductName());
+        assertEquals(orderPaymentProductNumberOfQuotas, entity.getOrderPaymentProduct().getNumberOfQuotas());
+
         assertEquals(card, entity.getCard());
         assertEquals(cardBrand, entity.getCard().getBrand());
         assertEquals(cardMask, entity.getCard().getMask());
