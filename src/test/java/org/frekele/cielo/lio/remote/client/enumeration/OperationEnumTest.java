@@ -20,8 +20,6 @@ public class OperationEnumTest {
         assertNotNull(operation);
         operation = OperationEnum.fromValue("CLOSE");
         assertNotNull(operation);
-        operation = OperationEnum.fromValue("PAID");
-        assertNotNull(operation);
         operation = OperationEnum.fromValue(null);
         assertNull(operation);
         operation = OperationEnum.fromValue("");
@@ -34,10 +32,9 @@ public class OperationEnumTest {
     public void testGetAll() throws Exception {
         List<OperationEnum> listAll = OperationEnum.getAll();
         assertNotNull(listAll);
-        assertEquals(listAll.size(), 4);
+        assertEquals(listAll.size(), 3);
         assertEquals(listAll.contains(OperationEnum.PLACE), true);
         assertEquals(listAll.contains(OperationEnum.PAY), true);
         assertEquals(listAll.contains(OperationEnum.CLOSE), true);
-        assertEquals(listAll.contains(OperationEnum.PAID), true);
     }
 }

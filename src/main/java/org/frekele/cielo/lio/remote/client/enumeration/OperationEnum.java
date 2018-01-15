@@ -20,9 +20,7 @@ public enum OperationEnum {
 
     PAY("PAY"),
 
-    CLOSE("CLOSE"),
-
-    PAID("PAID");
+    CLOSE("CLOSE");
 
     private String value;
 
