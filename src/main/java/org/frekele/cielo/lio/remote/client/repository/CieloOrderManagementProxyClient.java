@@ -1,5 +1,6 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
+import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
 import org.frekele.cielo.lio.remote.client.model.IdEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
@@ -128,7 +129,7 @@ interface CieloOrderManagementProxyClient extends Serializable {
                            @HeaderParam("Access-Token") String accessToken,
                            @HeaderParam("Merchant-Id") String merchantId,
                            @PathParam("orderId") String orderId,
-                           @QueryParam("operation") String operation);
+                           @QueryParam("operation") OperationEnum operation);
 
     /**
      * DELETE - Excluir um pedido

@@ -1,5 +1,6 @@
 package org.frekele.cielo.lio.remote.client.repository;
 
+import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
 import org.frekele.cielo.lio.remote.client.model.IdEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
@@ -73,7 +74,7 @@ public interface CieloLioPaymentRepository extends Serializable {
      * PAY (Alterar um pedido para pago)
      * CLOSE (Fechar um pedido)
      */
-    void orderPutOperation(String orderId, String operation);
+    void orderPutOperation(String orderId, OperationEnum operation);
 
     /**
      * DELETE - Excluir um pedido
