@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.BigDecimalJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.BigDecimalJsonSerialize;
-import org.frekele.cielo.lio.remote.client.converter.IdOrderJsonDeserialize;
-import org.frekele.cielo.lio.remote.client.converter.IdOrderJsonSerialize;
+import org.frekele.cielo.lio.remote.client.converter.OrderIdJsonDeserialize;
+import org.frekele.cielo.lio.remote.client.converter.OrderIdJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonSerialize;
 import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
@@ -29,8 +29,8 @@ public class OrderEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonDeserialize(using = IdOrderJsonDeserialize.class)
-    @JsonSerialize(using = IdOrderJsonSerialize.class)
+    @JsonDeserialize(using = OrderIdJsonDeserialize.class)
+    @JsonSerialize(using = OrderIdJsonSerialize.class)
     private OrderId id;
 
     private String number;

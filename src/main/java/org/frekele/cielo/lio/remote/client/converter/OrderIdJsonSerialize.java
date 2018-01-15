@@ -10,9 +10,9 @@ import java.io.IOException;
 /**
  * @author frekele - Leandro Kersting de Freitas
  */
-public class IdOrderJsonSerialize extends StdSerializer<OrderId> {
+public class OrderIdJsonSerialize extends StdSerializer<OrderId> {
 
-    protected IdOrderJsonSerialize() {
+    protected OrderIdJsonSerialize() {
         super(OrderId.class);
     }
 

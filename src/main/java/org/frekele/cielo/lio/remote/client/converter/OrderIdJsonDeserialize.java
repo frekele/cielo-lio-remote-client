@@ -11,11 +11,11 @@ import java.io.IOException;
 /**
  * @author frekele - Leandro Kersting de Freitas
  */
-public class IdOrderJsonDeserialize extends StdDeserializer<OrderId> {
+public class OrderIdJsonDeserialize extends StdDeserializer<OrderId> {
 
     private static final int SCALE = 2;
 
-    protected IdOrderJsonDeserialize() {
+    protected OrderIdJsonDeserialize() {
         super(OrderId.class);
     }
 
