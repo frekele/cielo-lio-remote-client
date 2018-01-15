@@ -6,6 +6,7 @@ import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderTransactionEntity;
+import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
 
 import java.io.Serializable;
 import java.util.List;
@@ -95,28 +96,28 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso é utilizado para consultar um item presente em um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    OrderItemEntity orderGetItem(OrderId orderId, String idItem);
+    OrderItemEntity orderGetItem(OrderId orderId, OrderItemId idItem);
 
     /**
      * POST - Adicionar Item/Itens em um Pedido
      * Esse recurso é utilizado para adicionar um ou mais itens em um pedido já criado. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    OrderId orderPostItem(OrderId orderId, OrderItemEntity orderItem);
+    OrderItemId orderPostItem(OrderId orderId, OrderItemEntity orderItem);
 
     /**
      * PUT - Alterar um item em um pedido
      * Esse recurso permite alterar informações de um item de um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: PUT https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    void orderPutItem(OrderId orderId, String idItem, OrderItemEntity orderItem);
+    void orderPutItem(OrderId orderId, OrderItemId idItem, OrderItemEntity orderItem);
 
     /**
      * DELETE - Excluir Item de um pedido
      * Esse recurso é utilizado para excluir um item presente em um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: DELETE https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    void orderDeleteItem(OrderId orderId, String idItem);
+    void orderDeleteItem(OrderId orderId, OrderItemId idItem);
 
     /**
      * GET - Consultar as transações de um pedido

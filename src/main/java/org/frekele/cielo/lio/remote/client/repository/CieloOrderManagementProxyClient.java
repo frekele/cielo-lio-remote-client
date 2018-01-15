@@ -6,6 +6,7 @@ import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderTransactionEntity;
+import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -175,11 +176,11 @@ interface CieloOrderManagementProxyClient extends Serializable {
      */
     @POST
     @Path("orders/{orderId}/items")
-    OrderId orderPostItem(@HeaderParam("Client-Id") String clientId,
-                          @HeaderParam("Access-Token") String accessToken,
-                          @HeaderParam("Merchant-Id") String merchantId,
-                          @PathParam("orderId") String orderId,
-                          OrderItemEntity orderItem);
+    OrderItemId orderPostItem(@HeaderParam("Client-Id") String clientId,
+                              @HeaderParam("Access-Token") String accessToken,
+                              @HeaderParam("Merchant-Id") String merchantId,
+                              @PathParam("orderId") String orderId,
+                              OrderItemEntity orderItem);
 
     /**
      * PUT - Alterar um item em um pedido
