@@ -20,7 +20,7 @@ public enum CardBrandEnum {
     AMERICAN_EXPRESS("AMEX"),
     CABAL("CABAL"),
     DINERS_CLUB("DINERS"),
-    DISCOVERY("DISCOVER"),
+    DISCOVER("DISCOVER"),
     ELO("ELO"),
     HIPERCARD("HIPERCARD"),
     HIPER("HIPER"),
