@@ -23,7 +23,7 @@ public class OrderPaymentProductEntity implements CieloLioEntity {
     private String secondaryProductName;
 
     @JsonProperty("number_of_quotas")
-    private String numberOfQuotas;
+    private Integer numberOfQuotas;
 
     public OrderPaymentProductEntity() {
     }
@@ -44,11 +44,11 @@ public class OrderPaymentProductEntity implements CieloLioEntity {
         this.secondaryProductName = secondaryProductName;
     }
 
-    public String getNumberOfQuotas() {
+    public Integer getNumberOfQuotas() {
         return numberOfQuotas;
     }
 
-    public void setNumberOfQuotas(String numberOfQuotas) {
+    public void setNumberOfQuotas(Integer numberOfQuotas) {
         this.numberOfQuotas = numberOfQuotas;
     }
 }

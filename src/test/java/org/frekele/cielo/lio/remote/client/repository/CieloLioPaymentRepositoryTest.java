@@ -52,7 +52,7 @@ public class CieloLioPaymentRepositoryTest {
         OrderItemEntity item = new OrderItemEntity();
         item.setSku("RTG-234-AQF-6587-C57");
         item.setName("Mesa de Formica Branca");
-        item.setQuantity((long) 1);
+        item.setQuantity(1);
         item.setUnitOfMeasure("UN");
         item.setUnitPrice(BigDecimal.valueOf(125.34));
         order.getItems().add(item);

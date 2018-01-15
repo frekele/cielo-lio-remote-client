@@ -42,7 +42,7 @@ public class OrderItemEntity implements CieloLioEntity {
     @JsonSerialize(using = BigDecimalJsonSerialize.class)
     private BigDecimal unitPrice;
 
-    private Long quantity;
+    private Integer quantity;
 
     @JsonProperty("unit_of_measure")
     private String unitOfMeasure;
@@ -120,11 +120,11 @@ public class OrderItemEntity implements CieloLioEntity {
         this.unitPrice = unitPrice;
     }
 
-    public Long getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
