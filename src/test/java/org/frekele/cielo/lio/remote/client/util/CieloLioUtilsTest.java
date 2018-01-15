@@ -59,49 +59,49 @@ public class CieloLioUtilsTest {
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowAuthWithError() throws Exception {
+        CieloLioUtils.throwAuth(null);
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowAuthWithError2() throws Exception {
         CieloLioAuth auth = new CieloLioAuth(null, null, null, null);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowAuthWithError2() throws Exception {
+    public void testThrowAuthWithError3() throws Exception {
         CieloLioAuth auth = new CieloLioAuth("", null, null, null);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowAuthWithError3() throws Exception {
+    public void testThrowAuthWithError4() throws Exception {
         CieloLioAuth auth = new CieloLioAuth(clientId, null, null, null);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowAuthWithError4() throws Exception {
+    public void testThrowAuthWithError5() throws Exception {
         CieloLioAuth auth = new CieloLioAuth(clientId, "", null, null);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowAuthWithError5() throws Exception {
+    public void testThrowAuthWithError6() throws Exception {
         CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, null, null);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowAuthWithError6() throws Exception {
+    public void testThrowAuthWithError7() throws Exception {
         CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, "", null);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowAuthWithError7() throws Exception {
+    public void testThrowAuthWithError8() throws Exception {
         CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, null);
         CieloLioUtils.throwAuth(auth);
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowAuthWithError8() throws Exception {
-        CieloLioUtils.throwAuth(null);
     }
 
     @Test
@@ -111,11 +111,16 @@ public class CieloLioUtilsTest {
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowOrderIdWithError() throws Exception {
-        CieloLioUtils.throwOrderId(new OrderId(null));
+        CieloLioUtils.throwOrderId(null);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowOrderIdWithError2() throws Exception {
+        CieloLioUtils.throwOrderId(new OrderId(null));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowOrderIdWithError3() throws Exception {
         CieloLioUtils.throwOrderId(new OrderId(""));
     }
 
@@ -126,11 +131,16 @@ public class CieloLioUtilsTest {
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowOrderItemIdWithError() throws Exception {
-        CieloLioUtils.throwOrderItemId(new OrderItemId(null));
+        CieloLioUtils.throwOrderItemId(null);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowOrderItemIdWithError2() throws Exception {
+        CieloLioUtils.throwOrderItemId(new OrderItemId(null));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowOrderItemIdWithError3() throws Exception {
         CieloLioUtils.throwOrderItemId(new OrderItemId(""));
     }
 
@@ -141,11 +151,16 @@ public class CieloLioUtilsTest {
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowOrderTransactionIdWithError() throws Exception {
-        CieloLioUtils.throwOrderTransactionId(new OrderTransactionId(null));
+        CieloLioUtils.throwOrderTransactionId(null);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowOrderTransactionIdWithError2() throws Exception {
+        CieloLioUtils.throwOrderTransactionId(new OrderTransactionId(null));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowOrderTransactionIdWithError3() throws Exception {
         CieloLioUtils.throwOrderTransactionId(new OrderTransactionId(""));
     }
 
