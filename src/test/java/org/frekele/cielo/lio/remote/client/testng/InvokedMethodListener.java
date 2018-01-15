@@ -4,6 +4,9 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 
+/**
+ * @author frekele - Leandro Kersting de Freitas
+ */
 public class InvokedMethodListener implements IInvokedMethodListener {
 
     @Override
