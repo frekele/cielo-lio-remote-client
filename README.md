@@ -10,6 +10,8 @@
 
 Built-based on the documentation: [https://developercielo.github.io/manual/cielo-lio](https://developercielo.github.io/manual/cielo-lio)
 
+Project built with RESTEasy 3.1.x for use in Desktop and Web Applications.
+
 
 #### Supported Java Versions:
 - requires Java 8 (or higher) at runtime.
