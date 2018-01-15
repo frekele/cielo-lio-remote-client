@@ -1,6 +1,7 @@
 package org.frekele.cielo.lio.remote.client.model;
 
 import org.frekele.cielo.lio.remote.client.enumeration.CardBrandEnum;
+import org.frekele.cielo.lio.remote.client.enumeration.TransactionStatusEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionTypeEnum;
 import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
@@ -21,6 +22,7 @@ public class OrderTransactionEntityTest {
         OrderTransactionId id = new OrderTransactionId(transactionId);
         String uuid = "cf29c38-2aaf9658-c3d7aaad-49fa-a89a";
         String externalId = "49fa-a89ac38-2aaf29c58-c37aaf-9e6ad";
+        TransactionStatusEnum status = TransactionStatusEnum.PENDING;
         String description = "xpto 12345";
         Long terminalNumber = 387856L;
         Long authorizationCode = 8947593845754L;
@@ -46,6 +48,7 @@ public class OrderTransactionEntityTest {
         entity.setId(id);
         entity.setUuid(uuid);
         entity.setExternalId(externalId);
+        entity.setStatus(status);
         entity.setDescription(description);
         entity.setTerminalNumber(terminalNumber);
         entity.setAuthorizationCode(authorizationCode);
@@ -62,6 +65,7 @@ public class OrderTransactionEntityTest {
         assertEquals(transactionId, entity.getId().getId());
         assertEquals(uuid, entity.getUuid());
         assertEquals(externalId, entity.getExternalId());
+        assertEquals(status, entity.getStatus());
         assertEquals(description, entity.getDescription());
         assertEquals(terminalNumber, entity.getTerminalNumber());
         assertEquals(authorizationCode, entity.getAuthorizationCode());
