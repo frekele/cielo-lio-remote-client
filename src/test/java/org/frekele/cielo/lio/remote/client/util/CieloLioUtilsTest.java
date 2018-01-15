@@ -3,6 +3,9 @@ package org.frekele.cielo.lio.remote.client.util;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.EnvironmentCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.exception.CieloLioException;
+import org.frekele.cielo.lio.remote.client.model.id.OrderId;
+import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
+import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -94,5 +97,50 @@ public class CieloLioUtilsTest {
     public void testThrowAuthWithError7() throws Exception {
         CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, null);
         CieloLioUtils.throwAuth(auth);
+    }
+
+    @Test
+    public void testThrowOrderId() throws Exception {
+        CieloLioUtils.throwOrderId(new OrderId("af9658-c3dd-49fa-acf29c38-2aa7aa89a"));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowOrderIdError() throws Exception {
+        CieloLioUtils.throwOrderId(new OrderId(null));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowOrderIdError2() throws Exception {
+        CieloLioUtils.throwOrderId(new OrderId(""));
+    }
+
+    @Test
+    public void testThrowOrderItemId() throws Exception {
+        CieloLioUtils.throwOrderItemId(new OrderItemId("af9658-c3dd-49fa-acf29c38-2aa7aa89a"));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowOrderItemIdError() throws Exception {
+        CieloLioUtils.throwOrderItemId(new OrderItemId(null));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowOrderItemIdError2() throws Exception {
+        CieloLioUtils.throwOrderItemId(new OrderItemId(""));
+    }
+
+    @Test
+    public void testThrowOrderTransactionId() throws Exception {
+        CieloLioUtils.throwOrderTransactionId(new OrderTransactionId("af9658-c3dd-49fa-acf29c38-2aa7aa89a"));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowOrderTransactionIdError() throws Exception {
+        CieloLioUtils.throwOrderTransactionId(new OrderTransactionId(null));
+    }
+
+    @Test(expectedExceptions = {CieloLioException.class})
+    public void testThrowOrderTransactionIdError2() throws Exception {
+        CieloLioUtils.throwOrderTransactionId(new OrderTransactionId(""));
     }
 }
