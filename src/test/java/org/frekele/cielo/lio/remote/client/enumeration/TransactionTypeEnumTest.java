@@ -13,12 +13,13 @@ public class TransactionTypeEnumTest {
 
     @Test
     public void testFromValue() throws Exception {
-        TransactionTypeEnum environment = TransactionTypeEnum.fromValue("PAYMENT");
-        assertNotNull(environment);
-        environment = TransactionTypeEnum.fromValue("CANCELLATION");
-        assertNotNull(environment);
-        environment = TransactionTypeEnum.fromValue("XXXXXXXXXX");
-        assertNull(environment);
+        TransactionTypeEnum  transactionType = TransactionTypeEnum.fromValue("PAYMENT");
+        assertNotNull(transactionType);
+        assertEquals(transactionType.getValue(), "PAYMENT");
+        transactionType = TransactionTypeEnum.fromValue("CANCELLATION");
+        assertNotNull(transactionType);
+        transactionType = TransactionTypeEnum.fromValue("XXXXXXXXXX");
+        assertNull(transactionType);
     }
 
     @Test

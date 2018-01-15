@@ -13,14 +13,15 @@ public class TransactionStatusEnumTest {
 
     @Test
     public void testFromValue() throws Exception {
-        TransactionStatusEnum environment = TransactionStatusEnum.fromValue("CONFIRMED");
-        assertNotNull(environment);
-        environment = TransactionStatusEnum.fromValue("PENDING");
-        assertNotNull(environment);
-        environment = TransactionStatusEnum.fromValue("CANCELLED");
-        assertNotNull(environment);
-        environment = TransactionStatusEnum.fromValue("XXXXXXXXXX");
-        assertNull(environment);
+        TransactionStatusEnum transactionStatus = TransactionStatusEnum.fromValue("CONFIRMED");
+        assertNotNull(transactionStatus);
+        assertEquals(transactionStatus.getValue(), "CONFIRMED");
+        transactionStatus = TransactionStatusEnum.fromValue("PENDING");
+        assertNotNull(transactionStatus);
+        transactionStatus = TransactionStatusEnum.fromValue("CANCELLED");
+        assertNotNull(transactionStatus);
+        transactionStatus = TransactionStatusEnum.fromValue("XXXXXXXXXX");
+        assertNull(transactionStatus);
     }
 
     @Test

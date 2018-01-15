@@ -13,16 +13,17 @@ public class OperationEnumTest {
 
     @Test
     public void testFromValue() throws Exception {
-        OperationEnum environment = OperationEnum.fromValue("PLACE");
-        assertNotNull(environment);
-        environment = OperationEnum.fromValue("PAY");
-        assertNotNull(environment);
-        environment = OperationEnum.fromValue("CLOSE");
-        assertNotNull(environment);
-        environment = OperationEnum.fromValue("PAID");
-        assertNotNull(environment);
-        environment = OperationEnum.fromValue("XXXXXXXXXX");
-        assertNull(environment);
+        OperationEnum operation = OperationEnum.fromValue("PLACE");
+        assertNotNull(operation);
+        assertEquals(operation.getValue(), "PLACE");
+        operation = OperationEnum.fromValue("PAY");
+        assertNotNull(operation);
+        operation = OperationEnum.fromValue("CLOSE");
+        assertNotNull(operation);
+        operation = OperationEnum.fromValue("PAID");
+        assertNotNull(operation);
+        operation = OperationEnum.fromValue("XXXXXXXXXX");
+        assertNull(operation);
     }
 
     @Test

@@ -13,24 +13,25 @@ public class UnitOfMeasureEnumTest {
 
     @Test
     public void testFromValue() throws Exception {
-        UnitOfMeasureEnum environment = UnitOfMeasureEnum.fromValue("EACH");
-        assertNotNull(environment);
-        environment = UnitOfMeasureEnum.fromValue("HOURS");
-        assertNotNull(environment);
-        environment = UnitOfMeasureEnum.fromValue("DAYS");
-        assertNotNull(environment);
-        environment = UnitOfMeasureEnum.fromValue("SECONDS");
-        assertNotNull(environment);
-        environment = UnitOfMeasureEnum.fromValue("CRATE_OF_12");
-        assertNotNull(environment);
-        environment = UnitOfMeasureEnum.fromValue("SIX_PACK");
-        assertNotNull(environment);
-        environment = UnitOfMeasureEnum.fromValue("GALLON");
-        assertNotNull(environment);
-        environment = UnitOfMeasureEnum.fromValue("LITRE");
-        assertNotNull(environment);
-        environment = UnitOfMeasureEnum.fromValue("XXXXXXXXXX");
-        assertNull(environment);
+        UnitOfMeasureEnum unitOfMeasure = UnitOfMeasureEnum.fromValue("EACH");
+        assertNotNull(unitOfMeasure);
+        assertEquals(unitOfMeasure.getValue(), "EACH");
+        unitOfMeasure = UnitOfMeasureEnum.fromValue("HOURS");
+        assertNotNull(unitOfMeasure);
+        unitOfMeasure = UnitOfMeasureEnum.fromValue("DAYS");
+        assertNotNull(unitOfMeasure);
+        unitOfMeasure = UnitOfMeasureEnum.fromValue("SECONDS");
+        assertNotNull(unitOfMeasure);
+        unitOfMeasure = UnitOfMeasureEnum.fromValue("CRATE_OF_12");
+        assertNotNull(unitOfMeasure);
+        unitOfMeasure = UnitOfMeasureEnum.fromValue("SIX_PACK");
+        assertNotNull(unitOfMeasure);
+        unitOfMeasure = UnitOfMeasureEnum.fromValue("GALLON");
+        assertNotNull(unitOfMeasure);
+        unitOfMeasure = UnitOfMeasureEnum.fromValue("LITRE");
+        assertNotNull(unitOfMeasure);
+        unitOfMeasure = UnitOfMeasureEnum.fromValue("XXXXXXXXXX");
+        assertNull(unitOfMeasure);
     }
 
     @Test

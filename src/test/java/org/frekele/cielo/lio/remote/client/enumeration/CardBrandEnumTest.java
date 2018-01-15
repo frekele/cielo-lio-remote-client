@@ -13,32 +13,34 @@ public class CardBrandEnumTest {
 
     @Test
     public void testFromValue() throws Exception {
-        CardBrandEnum environment = CardBrandEnum.fromValue("AURA");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("AMEX");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("CABAL");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("DINERS");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("DISCOVER");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("ELO");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("HIPERCARD");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("HIPER");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("JCB");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("MASTERCARD");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("SOROCRED");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("VISA");
-        assertNotNull(environment);
-        environment = CardBrandEnum.fromValue("XXXXXXXXXX");
-        assertNull(environment);
+        CardBrandEnum cardBrand = CardBrandEnum.fromValue("AURA");
+        assertNotNull(cardBrand);
+        assertEquals(cardBrand.getValue(), "AURA");
+        cardBrand = CardBrandEnum.fromValue("AMEX");
+        assertNotNull(cardBrand);
+        assertEquals(cardBrand.getValue(), "AMEX");
+        cardBrand = CardBrandEnum.fromValue("CABAL");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("DINERS");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("DISCOVER");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("ELO");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("HIPERCARD");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("HIPER");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("JCB");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("MASTERCARD");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("SOROCRED");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("VISA");
+        assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("XXXXXXXXXX");
+        assertNull(cardBrand);
     }
 
     @Test

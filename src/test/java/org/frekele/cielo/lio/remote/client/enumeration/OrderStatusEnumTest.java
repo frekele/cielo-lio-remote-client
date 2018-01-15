@@ -13,20 +13,21 @@ public class OrderStatusEnumTest {
 
     @Test
     public void testFromValue() throws Exception {
-        OrderStatusEnum environment = OrderStatusEnum.fromValue("DRAFT");
-        assertNotNull(environment);
-        environment = OrderStatusEnum.fromValue("ENTERED");
-        assertNotNull(environment);
-        environment = OrderStatusEnum.fromValue("RE_ENTERED");
-        assertNotNull(environment);
-        environment = OrderStatusEnum.fromValue("PAID");
-        assertNotNull(environment);
-        environment = OrderStatusEnum.fromValue("CANCELED");
-        assertNotNull(environment);
-        environment = OrderStatusEnum.fromValue("CLOSED");
-        assertNotNull(environment);
-        environment = OrderStatusEnum.fromValue("XXXXXXXXXX");
-        assertNull(environment);
+        OrderStatusEnum orderStatus = OrderStatusEnum.fromValue("DRAFT");
+        assertNotNull(orderStatus);
+        assertEquals(orderStatus.getValue(), "DRAFT");
+        orderStatus = OrderStatusEnum.fromValue("ENTERED");
+        assertNotNull(orderStatus);
+        orderStatus = OrderStatusEnum.fromValue("RE_ENTERED");
+        assertNotNull(orderStatus);
+        orderStatus = OrderStatusEnum.fromValue("PAID");
+        assertNotNull(orderStatus);
+        orderStatus = OrderStatusEnum.fromValue("CANCELED");
+        assertNotNull(orderStatus);
+        orderStatus = OrderStatusEnum.fromValue("CLOSED");
+        assertNotNull(orderStatus);
+        orderStatus = OrderStatusEnum.fromValue("XXXXXXXXXX");
+        assertNull(orderStatus);
     }
 
     @Test
