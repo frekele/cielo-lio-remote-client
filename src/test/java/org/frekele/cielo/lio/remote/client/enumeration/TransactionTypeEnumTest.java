@@ -14,9 +14,9 @@ public class TransactionTypeEnumTest {
     @Test
     public void testFromValue() throws Exception {
         TransactionTypeEnum environment = TransactionTypeEnum.fromValue("PAYMENT");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = TransactionTypeEnum.fromValue("CANCELLATION");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = TransactionTypeEnum.fromValue("XXXXXXXXXX");
         assertNull(environment);
     }
@@ -24,7 +24,7 @@ public class TransactionTypeEnumTest {
     @Test
     public void testGetAll() throws Exception {
         List<TransactionTypeEnum> listAll = TransactionTypeEnum.getAll();
-        assertNotEquals(null, listAll);
+        assertNotNull(listAll);
         assertEquals(listAll.size(), 2);
         assertEquals(listAll.contains(TransactionTypeEnum.PAYMENT), true);
         assertEquals(listAll.contains(TransactionTypeEnum.CANCELLATION), true);

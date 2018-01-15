@@ -18,7 +18,7 @@ public class CieloLioAuthTest {
 
         CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
 
-        assertNotEquals(null, auth);
+        assertNotNull(auth);
         assertEquals(clientId, auth.getClientId());
         assertEquals(accessToken, auth.getAccessToken());
         assertEquals(merchantId, auth.getMerchantId());

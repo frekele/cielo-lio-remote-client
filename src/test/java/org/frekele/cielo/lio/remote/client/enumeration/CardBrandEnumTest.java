@@ -14,29 +14,29 @@ public class CardBrandEnumTest {
     @Test
     public void testFromValue() throws Exception {
         CardBrandEnum environment = CardBrandEnum.fromValue("AURA");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("AMEX");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("CABAL");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("DINERS");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("DISCOVER");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("ELO");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("HIPERCARD");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("HIPER");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("JCB");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("MASTERCARD");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("SOROCRED");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("VISA");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = CardBrandEnum.fromValue("XXXXXXXXXX");
         assertNull(environment);
     }
@@ -44,7 +44,7 @@ public class CardBrandEnumTest {
     @Test
     public void testGetAll() throws Exception {
         List<CardBrandEnum> listAll = CardBrandEnum.getAll();
-        assertNotEquals(null, listAll);
+        assertNotNull(listAll);
         assertEquals(listAll.size(), 12);
         assertEquals(listAll.contains(CardBrandEnum.AURA), true);
         assertEquals(listAll.contains(CardBrandEnum.AMERICAN_EXPRESS), true);

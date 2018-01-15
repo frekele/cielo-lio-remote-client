@@ -14,11 +14,11 @@ public class TransactionStatusEnumTest {
     @Test
     public void testFromValue() throws Exception {
         TransactionStatusEnum environment = TransactionStatusEnum.fromValue("CONFIRMED");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = TransactionStatusEnum.fromValue("PENDING");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = TransactionStatusEnum.fromValue("CANCELLED");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = TransactionStatusEnum.fromValue("XXXXXXXXXX");
         assertNull(environment);
     }
@@ -26,7 +26,7 @@ public class TransactionStatusEnumTest {
     @Test
     public void testGetAll() throws Exception {
         List<TransactionStatusEnum> listAll = TransactionStatusEnum.getAll();
-        assertNotEquals(null, listAll);
+        assertNotNull(listAll);
         assertEquals(listAll.size(), 3);
         assertEquals(listAll.contains(TransactionStatusEnum.CONFIRMED), true);
         assertEquals(listAll.contains(TransactionStatusEnum.PENDING), true);

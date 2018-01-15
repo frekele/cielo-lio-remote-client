@@ -14,21 +14,21 @@ public class UnitOfMeasureEnumTest {
     @Test
     public void testFromValue() throws Exception {
         UnitOfMeasureEnum environment = UnitOfMeasureEnum.fromValue("EACH");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = UnitOfMeasureEnum.fromValue("HOURS");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = UnitOfMeasureEnum.fromValue("DAYS");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = UnitOfMeasureEnum.fromValue("SECONDS");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = UnitOfMeasureEnum.fromValue("CRATE_OF_12");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = UnitOfMeasureEnum.fromValue("SIX_PACK");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = UnitOfMeasureEnum.fromValue("GALLON");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = UnitOfMeasureEnum.fromValue("LITRE");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = UnitOfMeasureEnum.fromValue("XXXXXXXXXX");
         assertNull(environment);
     }
@@ -36,7 +36,7 @@ public class UnitOfMeasureEnumTest {
     @Test
     public void testGetAll() throws Exception {
         List<UnitOfMeasureEnum> listAll = UnitOfMeasureEnum.getAll();
-        assertNotEquals(null, listAll);
+        assertNotNull(listAll);
         assertEquals(listAll.size(), 8);
         assertEquals(listAll.contains(UnitOfMeasureEnum.EACH), true);
         assertEquals(listAll.contains(UnitOfMeasureEnum.HOURS), true);

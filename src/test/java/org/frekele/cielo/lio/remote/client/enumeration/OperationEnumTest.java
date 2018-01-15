@@ -14,13 +14,13 @@ public class OperationEnumTest {
     @Test
     public void testFromValue() throws Exception {
         OperationEnum environment = OperationEnum.fromValue("PLACE");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = OperationEnum.fromValue("PAY");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = OperationEnum.fromValue("CLOSE");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = OperationEnum.fromValue("PAID");
-        assertNotEquals(null, environment);
+        assertNotNull(environment);
         environment = OperationEnum.fromValue("XXXXXXXXXX");
         assertNull(environment);
     }
@@ -28,7 +28,7 @@ public class OperationEnumTest {
     @Test
     public void testGetAll() throws Exception {
         List<OperationEnum> listAll = OperationEnum.getAll();
-        assertNotEquals(null, listAll);
+        assertNotNull(listAll);
         assertEquals(listAll.size(), 4);
         assertEquals(listAll.contains(OperationEnum.PLACE), true);
         assertEquals(listAll.contains(OperationEnum.PAY), true);
