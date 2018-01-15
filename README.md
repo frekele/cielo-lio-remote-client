@@ -8,11 +8,28 @@
 
 ### Remote integration with Cielo LIO Payment Order Management
 
+Built-based on the documentation: [https://developercielo.github.io/manual/cielo-lio](https://developercielo.github.io/manual/cielo-lio)
+
+
+#### Supported Java Versions:
+- requires Java 8 (or higher) at runtime.
 
 ### Cielo Lio Order Management Tests CallBack
 - https://requestb.in/1lnsh1h1?inspect
 
+#### Maven dependency:
+```xml
+<dependency>
+    <groupId>org.frekele.cielo</groupId>
+    <artifactId>cielo-lio-remote-client</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 
+#### Gradle dependency:
+```gradle
+compile 'org.frekele.cielo:cielo-lio-remote-client:1.0.0'
+```
 
 frekele/cielo-lio-remote-client is **licensed** under the **[MIT License]**. The terms of the license are as follows:
 
