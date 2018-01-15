@@ -7,9 +7,12 @@ import org.frekele.cielo.lio.remote.client.converter.BigDecimalJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.BigDecimalJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonSerialize;
+import org.frekele.cielo.lio.remote.client.converter.OrderTransactionIdJsonDeserialize;
+import org.frekele.cielo.lio.remote.client.converter.OrderTransactionIdJsonSerialize;
 import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionStatusEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionTypeEnum;
+import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -26,7 +29,9 @@ public class OrderTransactionEntity implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    @JsonDeserialize(using = OrderTransactionIdJsonDeserialize.class)
+    @JsonSerialize(using = OrderTransactionIdJsonSerialize.class)
+    private OrderTransactionId id;
 
     //vem no callback
     private String uuid;
@@ -53,9 +58,6 @@ public class OrderTransactionEntity implements CieloLioEntity {
     @JsonProperty("transaction_type")
     private TransactionTypeEnum transactionType;
 
-    @JsonProperty("order_id")
-    private String orderId;
-
     @JsonProperty("created_at")
     @JsonDeserialize(using = OffsetDateTimeJsonDeserialize.class)
     @JsonSerialize(using = OffsetDateTimeJsonSerialize.class)
@@ -74,11 +76,11 @@ public class OrderTransactionEntity implements CieloLioEntity {
     public OrderTransactionEntity() {
     }
 
-    public String getId() {
+    public OrderTransactionId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(OrderTransactionId id) {
         this.id = id;
     }
 
@@ -152,14 +154,6 @@ public class OrderTransactionEntity implements CieloLioEntity {
 
     public void setTransactionType(TransactionTypeEnum transactionType) {
         this.transactionType = transactionType;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
     }
 
     public OffsetDateTime getCreatedAt() {
