@@ -7,7 +7,7 @@ import org.frekele.cielo.lio.remote.client.model.IdCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemCieloEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderTransactionCieloEntity;
-import org.frekele.cielo.lio.remote.client.utils.CieloLioUtils;
+import org.frekele.cielo.lio.remote.client.util.CieloLioUtils;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 

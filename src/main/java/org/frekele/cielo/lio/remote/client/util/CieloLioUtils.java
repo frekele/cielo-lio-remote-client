@@ -1,4 +1,4 @@
-package org.frekele.cielo.lio.remote.client.utils;
+package org.frekele.cielo.lio.remote.client.util;
 
 import org.frekele.cielo.lio.remote.client.exception.CieloLioException;
 
