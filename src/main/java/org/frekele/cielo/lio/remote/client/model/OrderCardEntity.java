@@ -20,6 +20,7 @@ public class OrderCardEntity implements CieloLioEntity {
     private String mask;
 
     public OrderCardEntity() {
+        super();
     }
 
     public String getBrand() {

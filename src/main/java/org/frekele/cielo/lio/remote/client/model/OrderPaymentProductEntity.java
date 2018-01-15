@@ -26,6 +26,7 @@ public class OrderPaymentProductEntity implements CieloLioEntity {
     private Integer numberOfQuotas;
 
     public OrderPaymentProductEntity() {
+        super();
     }
 
     public String getPrimaryProductName() {

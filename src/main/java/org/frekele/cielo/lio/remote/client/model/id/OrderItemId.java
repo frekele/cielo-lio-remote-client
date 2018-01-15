@@ -18,6 +18,7 @@ public class OrderItemId implements CieloLioEntity {
     private String id;
 
     public OrderItemId() {
+        super();
     }
 
     public OrderItemId(String id) {

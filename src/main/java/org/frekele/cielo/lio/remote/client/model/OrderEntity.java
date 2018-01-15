@@ -72,6 +72,7 @@ public class OrderEntity implements CieloLioEntity {
     private List<OrderTransactionEntity> transactions;
 
     public OrderEntity() {
+        super();
     }
 
     public OrderId getId() {
