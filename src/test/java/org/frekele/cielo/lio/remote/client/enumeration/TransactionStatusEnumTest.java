@@ -20,6 +20,10 @@ public class TransactionStatusEnumTest {
         assertNotNull(transactionStatus);
         transactionStatus = TransactionStatusEnum.fromValue("CANCELLED");
         assertNotNull(transactionStatus);
+        transactionStatus = TransactionStatusEnum.fromValue(null);
+        assertNull(transactionStatus);
+        transactionStatus = TransactionStatusEnum.fromValue("");
+        assertNull(transactionStatus);
         transactionStatus = TransactionStatusEnum.fromValue("XXXXXXXXXX");
         assertNull(transactionStatus);
     }

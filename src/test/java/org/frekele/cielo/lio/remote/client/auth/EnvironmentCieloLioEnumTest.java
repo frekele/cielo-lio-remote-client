@@ -17,6 +17,10 @@ public class EnvironmentCieloLioEnumTest {
         assertNotEquals(null, environment);
         environment = EnvironmentCieloLioEnum.fromValue("SANDBOX");
         assertNotEquals(null, environment);
+        environment = EnvironmentCieloLioEnum.fromValue(null);
+        assertNull(environment);
+        environment = EnvironmentCieloLioEnum.fromValue("");
+        assertNull(environment);
         environment = EnvironmentCieloLioEnum.fromValue("XXXXXXXXXX");
         assertNull(environment);
     }

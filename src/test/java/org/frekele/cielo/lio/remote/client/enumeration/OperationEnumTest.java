@@ -22,6 +22,10 @@ public class OperationEnumTest {
         assertNotNull(operation);
         operation = OperationEnum.fromValue("PAID");
         assertNotNull(operation);
+        operation = OperationEnum.fromValue(null);
+        assertNull(operation);
+        operation = OperationEnum.fromValue("");
+        assertNull(operation);
         operation = OperationEnum.fromValue("XXXXXXXXXX");
         assertNull(operation);
     }

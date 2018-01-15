@@ -13,11 +13,15 @@ public class TransactionTypeEnumTest {
 
     @Test
     public void testFromValue() throws Exception {
-        TransactionTypeEnum  transactionType = TransactionTypeEnum.fromValue("PAYMENT");
+        TransactionTypeEnum transactionType = TransactionTypeEnum.fromValue("PAYMENT");
         assertNotNull(transactionType);
         assertEquals(transactionType.getValue(), "PAYMENT");
         transactionType = TransactionTypeEnum.fromValue("CANCELLATION");
         assertNotNull(transactionType);
+        transactionType = TransactionTypeEnum.fromValue(null);
+        assertNull(transactionType);
+        transactionType = TransactionTypeEnum.fromValue("");
+        assertNull(transactionType);
         transactionType = TransactionTypeEnum.fromValue("XXXXXXXXXX");
         assertNull(transactionType);
     }

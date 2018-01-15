@@ -39,6 +39,10 @@ public class CardBrandEnumTest {
         assertNotNull(cardBrand);
         cardBrand = CardBrandEnum.fromValue("VISA");
         assertNotNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue(null);
+        assertNull(cardBrand);
+        cardBrand = CardBrandEnum.fromValue("");
+        assertNull(cardBrand);
         cardBrand = CardBrandEnum.fromValue("XXXXXXXXXX");
         assertNull(cardBrand);
     }

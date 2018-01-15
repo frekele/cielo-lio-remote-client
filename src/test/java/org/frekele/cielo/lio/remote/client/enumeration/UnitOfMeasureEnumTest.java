@@ -30,6 +30,10 @@ public class UnitOfMeasureEnumTest {
         assertNotNull(unitOfMeasure);
         unitOfMeasure = UnitOfMeasureEnum.fromValue("LITRE");
         assertNotNull(unitOfMeasure);
+        unitOfMeasure = UnitOfMeasureEnum.fromValue(null);
+        assertNull(unitOfMeasure);
+        unitOfMeasure = UnitOfMeasureEnum.fromValue("");
+        assertNull(unitOfMeasure);
         unitOfMeasure = UnitOfMeasureEnum.fromValue("XXXXXXXXXX");
         assertNull(unitOfMeasure);
     }

@@ -26,6 +26,10 @@ public class OrderStatusEnumTest {
         assertNotNull(orderStatus);
         orderStatus = OrderStatusEnum.fromValue("CLOSED");
         assertNotNull(orderStatus);
+        orderStatus = OrderStatusEnum.fromValue(null);
+        assertNull(orderStatus);
+        orderStatus = OrderStatusEnum.fromValue("");
+        assertNull(orderStatus);
         orderStatus = OrderStatusEnum.fromValue("XXXXXXXXXX");
         assertNull(orderStatus);
     }
