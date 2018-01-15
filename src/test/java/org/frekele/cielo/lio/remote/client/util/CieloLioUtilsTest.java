@@ -20,7 +20,7 @@ public class CieloLioUtilsTest {
         CieloLioUtils.throwInjection("a", "b", "c", 1, 3, 5, new BigDecimal(0.0));
     }
 
-    @Test(expectedExceptions = {CieloLioException.class})
+    @Test
     public void testThrowInjection2() throws Exception {
         CieloLioUtils.throwInjection();
     }
