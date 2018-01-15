@@ -31,7 +31,7 @@ public class CieloLioPaymentRepositoryTest {
 
     private OrderEntity order;
 
-    private OrderId idOrder;
+    private OrderId orderId;
 
     @BeforeClass
     public void init() throws Exception {
@@ -64,25 +64,25 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test
     public void testOrderPost() throws Exception {
-        idOrder = repository.orderPost(order);
+        orderId = repository.orderPost(order);
         System.out.println("before orderPost");
-        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(idOrder));
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderId));
     }
 
     @Test(dependsOnMethods = "testOrderPost")
     public void testOrderPut() throws Exception {
         order.setNotes("Joao Da Silva");
-        repository.orderPut(idOrder, order);
+        repository.orderPut(orderId, order);
     }
 
     @Test(dependsOnMethods = "testOrderPut")
     public void testOrderPutOperation() throws Exception {
-        repository.orderPutOperation(idOrder, OperationEnum.PLACE);
+        repository.orderPutOperation(orderId, OperationEnum.PLACE);
     }
 
     @Test(dependsOnMethods = "testOrderPutOperation")
     public void testOrderGet() throws Exception {
-        OrderEntity orderResult = repository.orderGet(idOrder);
+        OrderEntity orderResult = repository.orderGet(orderId);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderResult));
     }
 
@@ -106,7 +106,7 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderGetByStatus")
     public void testOrderDelete() throws Exception {
-        repository.orderDelete(idOrder);
+        repository.orderDelete(orderId);
     }
 
     @Test(dependsOnMethods = "testOrderDelete")
