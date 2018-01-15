@@ -6,9 +6,9 @@ import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.EnvironmentCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
-import org.frekele.cielo.lio.remote.client.model.id.IdOrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
+import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.testng.annotations.BeforeClass;
@@ -31,7 +31,7 @@ public class CieloLioPaymentRepositoryTest {
 
     private OrderEntity order;
 
-    private IdOrderEntity idOrder;
+    private OrderId idOrder;
 
     @BeforeClass
     public void init() throws Exception {
@@ -72,17 +72,17 @@ public class CieloLioPaymentRepositoryTest {
     @Test(dependsOnMethods = "testOrderPost")
     public void testOrderPut() throws Exception {
         order.setNotes("Joao Da Silva");
-        repository.orderPut(idOrder.getId(), order);
+        repository.orderPut(idOrder, order);
     }
 
     @Test(dependsOnMethods = "testOrderPut")
     public void testOrderPutOperation() throws Exception {
-        repository.orderPutOperation(idOrder.getId(), OperationEnum.PLACE);
+        repository.orderPutOperation(idOrder, OperationEnum.PLACE);
     }
 
     @Test(dependsOnMethods = "testOrderPutOperation")
     public void testOrderGet() throws Exception {
-        OrderEntity orderResult = repository.orderGet(idOrder.getId());
+        OrderEntity orderResult = repository.orderGet(idOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderResult));
     }
 
@@ -106,7 +106,7 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderGetByStatus")
     public void testOrderDelete() throws Exception {
-        repository.orderDelete(idOrder.getId());
+        repository.orderDelete(idOrder);
     }
 
     @Test(dependsOnMethods = "testOrderDelete")

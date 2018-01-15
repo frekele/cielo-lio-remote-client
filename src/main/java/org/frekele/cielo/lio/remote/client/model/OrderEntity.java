@@ -11,7 +11,7 @@ import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonDeseriali
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonSerialize;
 import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
-import org.frekele.cielo.lio.remote.client.model.id.IdOrderEntity;
+import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -31,7 +31,7 @@ public class OrderEntity implements CieloLioEntity {
 
     @JsonDeserialize(using = IdOrderJsonDeserialize.class)
     @JsonSerialize(using = IdOrderJsonSerialize.class)
-    private IdOrderEntity id;
+    private OrderId id;
 
     private String number;
 
@@ -74,11 +74,11 @@ public class OrderEntity implements CieloLioEntity {
     public OrderEntity() {
     }
 
-    public IdOrderEntity getId() {
+    public OrderId getId() {
         return id;
     }
 
-    public void setId(IdOrderEntity id) {
+    public void setId(OrderId id) {
         this.id = id;
     }
 
