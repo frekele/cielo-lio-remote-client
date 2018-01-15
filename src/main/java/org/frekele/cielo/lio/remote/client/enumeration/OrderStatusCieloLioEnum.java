@@ -14,7 +14,7 @@ import java.util.List;
  */
 @XmlType
 @XmlEnum(String.class)
-public enum StatusCieloLioEnum {
+public enum OrderStatusCieloLioEnum {
 
     DRAFT("DRAFT"),
 
@@ -34,7 +34,7 @@ public enum StatusCieloLioEnum {
 
     private String value;
 
-    private StatusCieloLioEnum(String value) {
+    private OrderStatusCieloLioEnum(String value) {
         this.value = value;
     }
 
@@ -45,9 +45,9 @@ public enum StatusCieloLioEnum {
     }
 
     @JsonCreator
-    public static StatusCieloLioEnum fromValue(String value) {
+    public static OrderStatusCieloLioEnum fromValue(String value) {
         if (value != null && value.length() != 0) {
-            for (StatusCieloLioEnum obj : getAll()) {
+            for (OrderStatusCieloLioEnum obj : getAll()) {
                 if (obj.value.equals(value)) {
                     return obj;
                 }
@@ -56,8 +56,8 @@ public enum StatusCieloLioEnum {
         return null;
     }
 
-    public static List<StatusCieloLioEnum> getAll() {
-        return Arrays.asList(StatusCieloLioEnum.values());
+    public static List<OrderStatusCieloLioEnum> getAll() {
+        return Arrays.asList(OrderStatusCieloLioEnum.values());
     }
 
     @Override
