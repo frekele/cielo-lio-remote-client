@@ -8,7 +8,7 @@ import org.frekele.cielo.lio.remote.client.converter.BigDecimalJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonSerialize;
 import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
-import org.frekele.cielo.lio.remote.client.enumeration.StatusEnum;
+import org.frekele.cielo.lio.remote.client.enumeration.StatusCieloLioEnum;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -32,7 +32,7 @@ public class OrderCieloLioEntity implements CieloLioEntity {
 
     private String reference;
 
-    private StatusEnum status;
+    private StatusCieloLioEnum status;
 
     private String notes;
 
@@ -93,11 +93,11 @@ public class OrderCieloLioEntity implements CieloLioEntity {
         this.reference = reference;
     }
 
-    public StatusEnum getStatus() {
+    public StatusCieloLioEnum getStatus() {
         return status;
     }
 
-    public void setStatus(StatusEnum status) {
+    public void setStatus(StatusCieloLioEnum status) {
         this.status = status;
     }
 

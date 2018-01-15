@@ -3,7 +3,7 @@ package org.frekele.cielo.lio.remote.client.repository;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioEnvironmentEnum;
 import org.frekele.cielo.lio.remote.client.core.CieloLio;
-import org.frekele.cielo.lio.remote.client.enumeration.StatusEnum;
+import org.frekele.cielo.lio.remote.client.enumeration.StatusCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.model.IdCieloLioEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderCieloLioEntity;
 import org.frekele.cielo.lio.remote.client.model.OrderItemCieloLioEntity;
@@ -74,7 +74,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public List<OrderCieloLioEntity> orderGetByStatus(StatusEnum status) {
+    public List<OrderCieloLioEntity> orderGetByStatus(StatusCieloLioEnum status) {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByStatus(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(), status);
     }
