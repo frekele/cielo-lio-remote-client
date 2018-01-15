@@ -1,4 +1,4 @@
-package org.frekele.cielo.lio.remote.client.converter;
+package org.frekele.cielo.lio.remote.client.converter.deserialize;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
