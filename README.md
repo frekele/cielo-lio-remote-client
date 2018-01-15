@@ -14,8 +14,8 @@ Built-based on the documentation: [https://developercielo.github.io/manual/cielo
 #### Supported Java Versions:
 - requires Java 8 (or higher) at runtime.
 
-### Cielo Lio Order Management Tests CallBack
-- https://requestb.in/1lnsh1h1?inspect
+### Cielo Lio Order Management Tests CallBack (Travis CI Captured HTTP requests)
+- https://hookbin.com/bin/Z8abPwXo
 
 #### Maven dependency:
 ```xml
