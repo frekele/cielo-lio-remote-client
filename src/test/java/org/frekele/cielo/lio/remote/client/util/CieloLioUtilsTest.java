@@ -21,6 +21,8 @@ public class CieloLioUtilsTest {
 
     String merchantId = "hfjskfh-ertret-rter-tery-dreter";
 
+    EnvironmentCieloLioEnum environmentNull = null;
+
     EnvironmentCieloLioEnum environment = EnvironmentCieloLioEnum.SANDBOX;
 
     @Test
@@ -64,43 +66,44 @@ public class CieloLioUtilsTest {
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowAuthWithError2() throws Exception {
-        CieloLioAuth auth = new CieloLioAuth(null, null, null, null);
+
+        CieloLioAuth auth = new CieloLioAuth(null, null, null, environmentNull);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowAuthWithError3() throws Exception {
-        CieloLioAuth auth = new CieloLioAuth("", null, null, null);
+        CieloLioAuth auth = new CieloLioAuth("", null, null, environmentNull);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowAuthWithError4() throws Exception {
-        CieloLioAuth auth = new CieloLioAuth(clientId, null, null, null);
+        CieloLioAuth auth = new CieloLioAuth(clientId, null, null, environmentNull);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowAuthWithError5() throws Exception {
-        CieloLioAuth auth = new CieloLioAuth(clientId, "", null, null);
+        CieloLioAuth auth = new CieloLioAuth(clientId, "", null, environmentNull);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowAuthWithError6() throws Exception {
-        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, null, null);
+        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, null, environmentNull);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowAuthWithError7() throws Exception {
-        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, "", null);
+        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, "", environmentNull);
         CieloLioUtils.throwAuth(auth);
     }
 
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowAuthWithError8() throws Exception {
-        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, null);
+        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environmentNull);
         CieloLioUtils.throwAuth(auth);
     }
 
