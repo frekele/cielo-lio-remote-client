@@ -3,12 +3,12 @@ package org.frekele.cielo.lio.remote.client.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.frekele.cielo.lio.remote.client.converter.BigDecimalJsonDeserialize;
-import org.frekele.cielo.lio.remote.client.converter.BigDecimalJsonSerialize;
-import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonDeserialize;
-import org.frekele.cielo.lio.remote.client.converter.OffsetDateTimeJsonSerialize;
-import org.frekele.cielo.lio.remote.client.converter.OrderItemIdJsonDeserialize;
-import org.frekele.cielo.lio.remote.client.converter.OrderItemIdJsonSerialize;
+import org.frekele.cielo.lio.remote.client.converter.deserialize.BigDecimalJsonDeserialize;
+import org.frekele.cielo.lio.remote.client.converter.serialize.BigDecimalJsonSerialize;
+import org.frekele.cielo.lio.remote.client.converter.deserialize.OffsetDateTimeJsonDeserialize;
+import org.frekele.cielo.lio.remote.client.converter.serialize.OffsetDateTimeJsonSerialize;
+import org.frekele.cielo.lio.remote.client.converter.deserialize.OrderItemIdJsonDeserialize;
+import org.frekele.cielo.lio.remote.client.converter.serialize.OrderItemIdJsonSerialize;
 import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
 import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
 
