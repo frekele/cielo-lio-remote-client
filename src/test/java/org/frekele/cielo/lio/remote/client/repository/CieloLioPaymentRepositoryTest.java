@@ -22,7 +22,7 @@ import java.util.List;
  * @author frekele - Leandro Kersting de Freitas
  */
 @Listeners(InvokedMethodListener.class)
-public class CieloLioPaymentRepositoryIT {
+public class CieloLioPaymentRepositoryTest {
 
     private CieloLioPaymentRepository repository;
 
