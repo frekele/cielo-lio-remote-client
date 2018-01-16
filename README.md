@@ -138,6 +138,11 @@ order.setNotes("Consumer Edward Anthony");
 repository.orderPut(orderId, order);
 ```
 
+#### Delete Order
+```java
+repository.orderDelete(orderId);
+```
+
 #### Get Order
 ```java
 OrderEntity orderResult = repository.orderGet(orderId);
@@ -184,6 +189,11 @@ orderItem.setDescription("Black dining table for sharing meals and being togethe
 
 //Put
 repository.orderPutItem(orderId, orderItemId, orderItem);
+```
+
+#### Delete Order Item
+```java
+repository.orderDeleteItem(orderId, orderItemId);
 ```
 
 #### Get Order Item
