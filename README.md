@@ -1,4 +1,4 @@
-# Cielo LIO Payment Remote Java Client
+# Cielo LIO Payment Remote Java Client (Open Source)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.frekele.cielo/cielo-lio-remote-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.frekele.cielo/cielo-lio-remote-client) 
 [![Build Status](https://travis-ci.org/frekele/cielo-lio-remote-client.svg?branch=master)](https://travis-ci.org/frekele/cielo-lio-remote-client)
