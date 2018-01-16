@@ -138,7 +138,32 @@ order.setNotes("Consumer Edward Anthony");
 repository.orderPut(orderId, order);
 ```
 
-#### Post OrderItem
+#### Get Order
+```java
+OrderEntity orderResult = repository.orderGet(orderId);
+```
+
+#### Get Orders By Number
+```java
+List<OrderEntity> resultList = repository.orderGetByNumber("12345");
+```
+
+#### Get Orders By Reference
+```java
+List<OrderEntity> resultList = repository.orderGetByReference("Order #12345");
+```
+
+#### Get Orders By Status
+```java
+List<OrderEntity> resultList = repository.orderGetByStatus(OrderStatusEnum.ENTERED);
+```
+
+#### Get All Orders
+```java
+List<OrderEntity> resultList = repository.orderGetAll();
+```
+
+#### Post Order Item
 ```java
 OrderItemEntity orderItem = new OrderItemEntity();
 orderItem.setSku("XPT-456-564-34554-3453");
@@ -151,7 +176,7 @@ orderItem.setUnitPrice(BigDecimal.valueOf(103.10));
 OrderItemId orderItemId = repository.orderPostItem(orderId, orderItem);
 ```
 
-#### Put OrderItem
+#### Put Order Item
 ```java
 //Change or Add more info.
 orderItem.setName("Black Dining Table");
@@ -159,6 +184,16 @@ orderItem.setDescription("Black dining table for sharing meals and being togethe
 
 //Put
 repository.orderPutItem(orderId, orderItemId, orderItem);
+```
+
+#### Get Order Item
+```java
+OrderEntity orderResult = repository.orderGetItem(orderId, orderItemId);
+```
+
+#### Get Order Items
+```java
+OrderEntity orderResult = repository.orderGetItems(orderId);
 ```
 
 #### Change status of an Order
