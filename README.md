@@ -129,6 +129,15 @@ order.getItems().add(item);
 OrderItemId orderId = repository.orderPost(order);
 ```
 
+#### Put Order
+```java
+//Change or Add more info.
+order.setNotes("Consumer Edward Anthony");
+
+//Put
+repository.orderPut(orderId, order);
+```
+
 #### Post OrderItem
 ```java
 OrderItemEntity orderItem = new OrderItemEntity();
@@ -139,7 +148,17 @@ orderItem.setUnitOfMeasure("EACH");
 orderItem.setUnitPrice(BigDecimal.valueOf(103.10));
 
 //Post Item
-OrderItemId itemId = repository.orderPostItem(orderId, orderItem);
+OrderItemId orderItemId = repository.orderPostItem(orderId, orderItem);
+```
+
+#### Put OrderItem
+```java
+//Change or Add more info.
+orderItem.setName("Black Dining Table");
+orderItem.setDescription("Black dining table for sharing meals and being together!");
+
+//Put
+repository.orderPutItem(orderId, orderItemId, orderItem);
 ```
 
 #### Change status of an Order
