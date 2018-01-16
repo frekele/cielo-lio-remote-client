@@ -142,6 +142,18 @@ orderItem.setUnitPrice(BigDecimal.valueOf(103.10));
 OrderItemId itemId = repository.orderPostItem(orderId, orderItem);
 ```
 
+#### Change status of an Order
+```java
+//PLACE
+repository.orderPutOperation(orderId, OperationEnum.PLACE);
+
+//PAY
+repository.orderPutOperation(orderId, OperationEnum.PAY);
+
+//CLOSE
+repository.orderPutOperation(orderId, OperationEnum.CLOSE);
+```
+
 
 ### Order Status Lifecycle
 ![Order Status Lifecycle](https://raw.githubusercontent.com/frekele/cielo-lio-remote-client/master/docs/img/lifecycle.png)
