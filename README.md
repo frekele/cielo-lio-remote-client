@@ -168,6 +168,7 @@ List<OrderEntity> resultList = repository.orderGetByStatus(OrderStatusEnum.ENTER
 List<OrderEntity> resultList = repository.orderGetAll();
 ```
 
+
 #### Post Order Item
 ```java
 OrderItemEntity orderItem = new OrderItemEntity();
@@ -205,6 +206,43 @@ OrderEntity orderResult = repository.orderGetItem(orderId, orderItemId);
 ```java
 OrderEntity orderResult = repository.orderGetItems(orderId);
 ```
+
+
+#### Post Order Transaction (Only in SandBox)
+```java
+OrderTransactionEntity orderTransaction = new OrderTransactionEntity();
+orderTransaction.setStatus(TransactionStatusEnum.CONFIRMED);
+orderTransaction.setTerminalNumber((long) 12345678);
+orderTransaction.setAuthorizationCode((long) 3458619);
+orderTransaction.setNumber((long) 672836);
+orderTransaction.setAmount(BigDecimal.valueOf(325.34));
+orderTransaction.setTransactionType(TransactionTypeEnum.PAYMENT);
+
+OrderPaymentProductEntity orderPaymentProduct = new OrderPaymentProductEntity();
+orderPaymentProduct.setPrimaryProductName("CREDITO");
+orderPaymentProduct.setSecondaryProductName("A VISTA");
+orderPaymentProduct.setNumberOfQuotas(0);
+orderTransaction.setOrderPaymentProduct(orderPaymentProduct);
+
+OrderCardEntity orderCard = new OrderCardEntity();
+orderCard.setBrand(CardBrandEnum.VISA.getValue());
+orderCard.setMask("************5487");
+orderTransaction.setCard(orderCard);
+
+//Post
+OrderTransactionId orderTransactionId = repository.orderPostTransaction(orderId, orderTransaction);
+```
+
+#### Get Order Transaction
+```java
+OrderTransactionEntity orderTransactionEntity = repository.orderGetTransaction(orderId, orderTransactionId);
+```
+
+#### Get Order Transactions
+```java
+List<OrderTransactionEntity> resultList = repository.orderGetTransactions(orderId);
+```
+
 
 #### Change status of an Order
 ```java
