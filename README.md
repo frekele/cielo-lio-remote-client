@@ -178,7 +178,7 @@ orderItem.setQuantity(4);
 orderItem.setUnitOfMeasure("EACH");
 orderItem.setUnitPrice(BigDecimal.valueOf(103.10));
 
-//Post Item
+//Post
 OrderItemId orderItemId = repository.orderPostItem(orderId, orderItem);
 ```
 
