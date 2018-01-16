@@ -106,6 +106,42 @@ public class MyService {
 
 ```
 
+### Example usage
+
+#### Post Order
+```java
+OrderEntity order = new OrderEntity();
+order.setStatus(OrderStatusEnum.DRAFT);
+order.setNumber("12345");
+order.setReference("Order #12345");
+order.setNotes("Consumer Jim Jonson");
+order.setPrice(BigDecimal.valueOf(325.34));
+order.setItems(new ArrayList<>());
+OrderItemEntity item = new OrderItemEntity();
+item.setSku("RTG-234-AQF-6587-C57");
+item.setName("White Dining Table");
+item.setQuantity(1);
+item.setUnitOfMeasure("EACH");
+item.setUnitPrice(BigDecimal.valueOf(325.34));
+order.getItems().add(item);
+
+//Post
+OrderItemId orderId = repository.orderPost(order);
+```
+
+#### Post OrderItem
+```java
+OrderItemEntity orderItem = new OrderItemEntity();
+orderItem.setSku("XPT-456-564-34554-3453");
+orderItem.setName("White Wood Chair");
+orderItem.setQuantity(4);
+orderItem.setUnitOfMeasure("EACH");
+orderItem.setUnitPrice(BigDecimal.valueOf(103.10));
+
+//Post Item
+OrderItemId itemId = repository.orderPostItem(orderId, orderItem);
+```
+
 
 ### Order Status Lifecycle
 ![Order Status Lifecycle](https://raw.githubusercontent.com/frekele/cielo-lio-remote-client/master/docs/img/lifecycle.png)
