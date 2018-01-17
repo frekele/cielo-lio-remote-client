@@ -51,7 +51,7 @@ public class MyService {
         List<OrderEntity> resultList = repository.orderGetAll();
         OrderEntity orderEntity = repository.orderGet(new OrderId("5f182dec98-1866-47b0-b69d-471448911f"));
 
-        //Is important to close on finish, or use CDI.
+        //Is important to close in end, or use CDI.
         client.close();
     }
 }
@@ -131,7 +131,7 @@ OrderItemId orderId = repository.orderPost(order);
 
 #### Put Order
 ```java
-//Change or Add more info.
+//Change or ad more info.
 order.setNotes("Consumer Edward Anthony");
 
 //Put
@@ -184,7 +184,7 @@ OrderItemId orderItemId = repository.orderPostItem(orderId, orderItem);
 
 #### Put Order Item
 ```java
-//Change or Add more info.
+//Change or add more info.
 orderItem.setName("Black Dining Table");
 orderItem.setDescription("Black dining table for sharing meals and being together!");
 
