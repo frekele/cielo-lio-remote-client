@@ -397,7 +397,7 @@ public interface CieloLioPaymentRepository extends Serializable {
 }
 ```
 
-### Cielo Lio Order Management Tests CallBack (Travis CI Captured HTTP requests)
+### Cielo Lio Order Management - Travis CI Tests - Push callback (Captured HTTP requests)
 - https://hookbin.com/bin/Z8abPwXo
 
 
