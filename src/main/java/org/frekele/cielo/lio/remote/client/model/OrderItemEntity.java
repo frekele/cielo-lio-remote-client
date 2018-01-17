@@ -31,7 +31,7 @@ public class OrderItemEntity implements CieloLioEntity {
     @JsonSerialize(using = OrderItemIdJsonSerialize.class)
     private OrderItemId id;
 
-    //return in callback
+    //return in push notification.
     private String uuid;
 
     private String sku;
