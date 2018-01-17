@@ -22,13 +22,13 @@ Project built with RESTEasy 3.1.x for use in Desktop and Web Applications.
 <dependency>
     <groupId>org.frekele.cielo</groupId>
     <artifactId>cielo-lio-remote-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
 #### Gradle dependency:
 ```gradle
-compile 'org.frekele.cielo:cielo-lio-remote-client:1.0.0'
+compile 'org.frekele.cielo:cielo-lio-remote-client:1.0.1'
 ```
 
 #### Usage
