@@ -33,7 +33,7 @@ public class OrderTransactionEntity implements CieloLioEntity {
     @JsonSerialize(using = OrderTransactionIdJsonSerialize.class)
     private OrderTransactionId id;
 
-    //vem no callback
+    //return in push notification.
     private String uuid;
 
     @JsonProperty("external_id")
