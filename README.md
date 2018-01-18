@@ -8,7 +8,7 @@
 
 ### Remote integration with Cielo LIO Payment Order Management
 
-![Cielo Lio V1 V2](https://raw.githubusercontent.com/frekele/cielo-lio-remote-client/master/docs/img/lio-v1-v2.png)
+![Cielo Lio V1 V2](https://raw.githubusercontent.com/frekele/cielo-lio-remote-client/master/docs/img/lio-v1-v2.png?v=2)
 
 Built-based on the documentation: [https://developercielo.github.io/manual/cielo-lio](https://developercielo.github.io/manual/cielo-lio)
 
