@@ -8,6 +8,10 @@
 
 ### Remote integration with Cielo LIO Payment Order Management
 
+### Order Status Lifecycle
+
+![Cielo Lio V1 V2](https://raw.githubusercontent.com/frekele/cielo-lio-remote-client/master/docs/img/lio_v1_v2.png)
+
 Built-based on the documentation: [https://developercielo.github.io/manual/cielo-lio](https://developercielo.github.io/manual/cielo-lio)
 
 Project built with RESTEasy 3.1.x for use in Desktop and Web Applications.
