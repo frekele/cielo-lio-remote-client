@@ -5,13 +5,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.deserialize.BigDecimalJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.deserialize.OffsetDateTimeJsonDeserialize;
-import org.frekele.cielo.lio.remote.client.converter.deserialize.OrderIdJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.BigDecimalJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.OffsetDateTimeJsonSerialize;
-import org.frekele.cielo.lio.remote.client.converter.serialize.OrderIdJsonSerialize;
 import org.frekele.cielo.lio.remote.client.core.CieloLioModel;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
-import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -29,9 +26,7 @@ public class Order implements CieloLioModel {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonDeserialize(using = OrderIdJsonDeserialize.class)
-    @JsonSerialize(using = OrderIdJsonSerialize.class)
-    private OrderId id;
+    private String id;
 
     private String number;
 
@@ -75,11 +70,11 @@ public class Order implements CieloLioModel {
         super();
     }
 
-    public OrderId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(OrderId id) {
+    public void setId(String id) {
         this.id = id;
     }
 

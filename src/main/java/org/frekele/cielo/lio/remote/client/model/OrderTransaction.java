@@ -5,14 +5,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.deserialize.BigDecimalJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.deserialize.OffsetDateTimeJsonDeserialize;
-import org.frekele.cielo.lio.remote.client.converter.deserialize.OrderTransactionIdJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.BigDecimalJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.OffsetDateTimeJsonSerialize;
-import org.frekele.cielo.lio.remote.client.converter.serialize.OrderTransactionIdJsonSerialize;
 import org.frekele.cielo.lio.remote.client.core.CieloLioModel;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionStatusEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionTypeEnum;
-import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -29,9 +26,7 @@ public class OrderTransaction implements CieloLioModel {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonDeserialize(using = OrderTransactionIdJsonDeserialize.class)
-    @JsonSerialize(using = OrderTransactionIdJsonSerialize.class)
-    private OrderTransactionId id;
+    private String id;
 
     //return in push notification.
     private String uuid;
@@ -77,11 +72,11 @@ public class OrderTransaction implements CieloLioModel {
         super();
     }
 
-    public OrderTransactionId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(OrderTransactionId id) {
+    public void setId(String id) {
         this.id = id;
     }
 

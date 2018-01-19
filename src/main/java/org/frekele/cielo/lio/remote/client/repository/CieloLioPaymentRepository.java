@@ -5,9 +5,6 @@ import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
 import org.frekele.cielo.lio.remote.client.model.Order;
 import org.frekele.cielo.lio.remote.client.model.OrderItem;
 import org.frekele.cielo.lio.remote.client.model.OrderTransaction;
-import org.frekele.cielo.lio.remote.client.model.id.OrderId;
-import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
-import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
 
 import java.io.Serializable;
 import java.util.List;
@@ -51,21 +48,21 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso é utilizado para obter informações sobre um pedido específico. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    Order orderGet(OrderId orderId);
+    Order orderGet(String idOrder);
 
     /**
      * POST - Criar um pedido
      * Esse recurso realiza a criação de um pedido no servidor do Order Manager.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders
      */
-    OrderId orderPost(Order order);
+    String orderPost(Order order);
 
     /**
      * PUT - Altera um pedido
      * Esse recurso realiza a alteracao de um pedido no servidor do Order Manager.
      * Exemplo de requisição: PUT https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    void orderPut(OrderId orderId, Order order);
+    void orderPut(String idOrder, Order order);
 
     /**
      * PUT - Alterar status de um pedido
@@ -76,49 +73,49 @@ public interface CieloLioPaymentRepository extends Serializable {
      * PAY (Alterar um pedido para pago)
      * CLOSE (Fechar um pedido)
      */
-    void orderPutOperation(OrderId orderId, OperationEnum operation);
+    void orderPutOperation(String idOrder, OperationEnum operation);
 
     /**
      * DELETE - Excluir um pedido
      * Esse recurso é utilizado para excluir um pedido do servidor do Order Manager. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: DELETE https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    void orderDelete(OrderId orderId);
+    void orderDelete(String idOrder);
 
     /**
      * GET - Consultar os itens de um pedido
      * Esse recurso é utilizado para consultar os itens presentes em um pedido. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    List<OrderItem> orderGetItems(OrderId orderId);
+    List<OrderItem> orderGetItems(String idOrder);
 
     /**
      * GET - Consultar o item de um pedido
      * Esse recurso é utilizado para consultar um item presente em um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    OrderItem orderGetItem(OrderId orderId, OrderItemId idItem);
+    public OrderItem orderGetItem(String idOrder, String idOrderItem);
 
     /**
      * POST - Adicionar Item/Itens em um Pedido
      * Esse recurso é utilizado para adicionar um ou mais itens em um pedido já criado. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    OrderItemId orderPostItem(OrderId orderId, OrderItem orderItem);
+    String orderPostItem(String idOrder, OrderItem orderItem);
 
     /**
      * PUT - Alterar um item em um pedido
      * Esse recurso permite alterar informações de um item de um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: PUT https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    void orderPutItem(OrderId orderId, OrderItemId idItem, OrderItem orderItem);
+    void orderPutItem(String idOrder, String idOrderItem, OrderItem orderItem);
 
     /**
      * DELETE - Excluir Item de um pedido
      * Esse recurso é utilizado para excluir um item presente em um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: DELETE https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    void orderDeleteItem(OrderId orderId, OrderItemId idItem);
+    void orderDeleteItem(String idOrder, String idOrderItem);
 
     /**
      * GET - Consultar as transações de um pedido
@@ -127,7 +124,7 @@ public interface CieloLioPaymentRepository extends Serializable {
      * a transactions será adicionada automaticamente no pedido e então, será possível obter as informações do pagamento realizado a partir da chamada deste recurso.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    List<OrderTransaction> orderGetTransactions(OrderId orderId);
+    List<OrderTransaction> orderGetTransactions(String idOrder);
 
     /**
      * GET - Consultar a transação de um pedido
@@ -136,12 +133,12 @@ public interface CieloLioPaymentRepository extends Serializable {
      * a transactions será adicionada automaticamente no pedido e então, será possível obter as informações do pagamento realizado a partir da chamada deste recurso.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions/362d1e9e-ae99-4d79-87d6-add9aad2795c
      */
-    OrderTransaction orderGetTransaction(OrderId orderId, OrderTransactionId transactionId);
+    OrderTransaction orderGetTransaction(String idOrder, String idOrderTransaction);
 
     /**
      * POST - Adicionar uma Transação (Recurso utilizado somente para Ambiente de Sandbox)
      * Esse recurso permite que o desenvolvedor simule as transações financeiras, adicionando-as manualmente, sendo possível entender o funcionamento em uma Order.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    OrderTransactionId orderPostTransaction(OrderId orderId, OrderTransaction transaction);
+    String orderPostTransaction(String idOrder, OrderTransaction orderTransaction);
 }

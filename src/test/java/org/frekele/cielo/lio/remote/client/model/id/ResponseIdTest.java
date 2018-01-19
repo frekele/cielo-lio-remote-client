@@ -7,13 +7,13 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 @Listeners(InvokedMethodListener.class)
-public class OrderIdTest {
+public class ResponseIdTest {
 
     @Test
     public void testNewInstance() throws Exception {
         String id = "af9658-c3dd-49fa-acf29c38-2aa7aa89a";
 
-        OrderId orderId = new OrderId();
+        ResponseId orderId = new ResponseId();
         orderId.setId(id);
 
         assertNotNull(orderId);

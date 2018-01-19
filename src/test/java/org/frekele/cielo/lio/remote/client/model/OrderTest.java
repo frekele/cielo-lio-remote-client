@@ -1,7 +1,6 @@
 package org.frekele.cielo.lio.remote.client.model;
 
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
-import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -18,8 +17,7 @@ public class OrderTest {
 
     @Test
     public void testNewInstance() throws Exception {
-        String orderId = "af9658-c3dd-49fa-acf29c38-2aa7aa89a";
-        OrderId id = new OrderId(orderId);
+        String idOrder = "af9658-c3dd-49fa-acf29c38-2aa7aa89a";
         String number = "1234356";
         String reference = "Order 1234356";
         OrderStatusEnum status = OrderStatusEnum.DRAFT;
@@ -35,7 +33,7 @@ public class OrderTest {
         List<OrderTransaction> transactions = new ArrayList<>();
 
         Order order = new Order();
-        order.setId(id);
+        order.setId(idOrder);
         order.setNumber(number);
         order.setReference(reference);
         order.setStatus(status);
@@ -51,8 +49,7 @@ public class OrderTest {
         order.setTransactions(transactions);
 
         assertNotNull(order);
-        assertEquals(id, order.getId());
-        assertEquals(orderId, order.getId().getId());
+        assertEquals(idOrder, order.getId());
         assertEquals(number, order.getNumber());
         assertEquals(reference, order.getReference());
         assertEquals(status, order.getStatus());

@@ -1,6 +1,5 @@
 package org.frekele.cielo.lio.remote.client.model;
 
-import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -15,8 +14,7 @@ public class OrderItemTest {
 
     @Test
     public void testNewInstance() throws Exception {
-        String orderItemId = "af9658-c3dd-49fa-acf29c38-2aa7aa89a";
-        OrderItemId id = new OrderItemId(orderItemId);
+        String idOrderItem = "af9658-c3dd-49fa-acf29c38-2aa7aa89a";
         String uuid = "cf29c38-2aaf9658-c3d7aaad-49fa-a89a";
         String sku = "RFT-546-456-5466-S345";
         String name = "Sofa 3 Lugares Preto";
@@ -30,7 +28,7 @@ public class OrderItemTest {
         OffsetDateTime updatedAt = OffsetDateTime.now().plusHours(5);
 
         OrderItem orderItem = new OrderItem();
-        orderItem.setId(id);
+        orderItem.setId(idOrderItem);
         orderItem.setUuid(uuid);
         orderItem.setSku(sku);
         orderItem.setName(name);
@@ -44,8 +42,7 @@ public class OrderItemTest {
         orderItem.setUpdatedAt(updatedAt);
 
         assertNotNull(orderItem);
-        assertEquals(id, orderItem.getId());
-        assertEquals(orderItemId, orderItem.getId().getId());
+        assertEquals(idOrderItem, orderItem.getId());
         assertEquals(uuid, orderItem.getUuid());
         assertEquals(sku, orderItem.getSku());
         assertEquals(name, orderItem.getName());

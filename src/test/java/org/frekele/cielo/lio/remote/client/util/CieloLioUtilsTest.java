@@ -3,14 +3,14 @@ package org.frekele.cielo.lio.remote.client.util;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.auth.EnvironmentCieloLioEnum;
 import org.frekele.cielo.lio.remote.client.exception.CieloLioException;
-import org.frekele.cielo.lio.remote.client.model.id.OrderId;
-import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
-import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
+import org.frekele.cielo.lio.remote.client.model.id.ResponseId;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
+
+import static org.testng.Assert.*;
 
 @Listeners(InvokedMethodListener.class)
 public class CieloLioUtilsTest {
@@ -108,66 +108,6 @@ public class CieloLioUtilsTest {
     }
 
     @Test
-    public void testThrowOrderId() throws Exception {
-        CieloLioUtils.throwOrderId(new OrderId("af9658-c3dd-49fa-acf29c38-2aa7aa89a"));
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderIdWithError() throws Exception {
-        CieloLioUtils.throwOrderId(null);
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderIdWithError2() throws Exception {
-        CieloLioUtils.throwOrderId(new OrderId(null));
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderIdWithError3() throws Exception {
-        CieloLioUtils.throwOrderId(new OrderId(""));
-    }
-
-    @Test
-    public void testThrowOrderItemId() throws Exception {
-        CieloLioUtils.throwOrderItemId(new OrderItemId("af9658-c3dd-49fa-acf29c38-2aa7aa89a"));
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderItemIdWithError() throws Exception {
-        CieloLioUtils.throwOrderItemId(null);
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderItemIdWithError2() throws Exception {
-        CieloLioUtils.throwOrderItemId(new OrderItemId(null));
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderItemIdWithError3() throws Exception {
-        CieloLioUtils.throwOrderItemId(new OrderItemId(""));
-    }
-
-    @Test
-    public void testThrowOrderTransactionId() throws Exception {
-        CieloLioUtils.throwOrderTransactionId(new OrderTransactionId("af9658-c3dd-49fa-acf29c38-2aa7aa89a"));
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderTransactionIdWithError() throws Exception {
-        CieloLioUtils.throwOrderTransactionId(null);
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderTransactionIdWithError2() throws Exception {
-        CieloLioUtils.throwOrderTransactionId(new OrderTransactionId(null));
-    }
-
-    @Test(expectedExceptions = {CieloLioException.class})
-    public void testThrowOrderTransactionIdWithError3() throws Exception {
-        CieloLioUtils.throwOrderTransactionId(new OrderTransactionId(""));
-    }
-
-    @Test
     public void testThrowObject() throws Exception {
         CieloLioUtils.throwObject("xxxxx", "value");
     }
@@ -180,5 +120,21 @@ public class CieloLioUtilsTest {
     @Test(expectedExceptions = {CieloLioException.class})
     public void testThrowObjectWithError2() throws Exception {
         CieloLioUtils.throwObject("", "value");
+    }
+
+    @Test
+    public void testResponseIdToId() throws Exception {
+        String result = CieloLioUtils.responseIdToId(null);
+        assertNull(result);
+
+        result = CieloLioUtils.responseIdToId(new ResponseId());
+        assertNull(result);
+
+        result = CieloLioUtils.responseIdToId(new ResponseId(""));
+        assertEquals("", result);
+
+        String id = "af9658-c3dd-49fa-acf29c38-2aa7aa89a";
+        result = CieloLioUtils.responseIdToId(new ResponseId(id));
+        assertEquals(id, result);
     }
 }

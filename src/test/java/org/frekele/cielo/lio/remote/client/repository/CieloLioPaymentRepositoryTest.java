@@ -8,14 +8,11 @@ import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionStatusEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionTypeEnum;
-import org.frekele.cielo.lio.remote.client.model.OrderCard;
 import org.frekele.cielo.lio.remote.client.model.Order;
+import org.frekele.cielo.lio.remote.client.model.OrderCard;
 import org.frekele.cielo.lio.remote.client.model.OrderItem;
 import org.frekele.cielo.lio.remote.client.model.OrderPaymentProduct;
 import org.frekele.cielo.lio.remote.client.model.OrderTransaction;
-import org.frekele.cielo.lio.remote.client.model.id.OrderId;
-import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
-import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -39,17 +36,17 @@ public class CieloLioPaymentRepositoryTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private OrderId orderId;
+    private String idOrder;
 
     private Order order;
 
-    private OrderItemId orderItemId2;
+    private String idOrderItem2;
 
     private OrderItem orderItem2;
 
-    OrderTransaction orderTransaction;
+    private OrderTransaction orderTransaction;
 
-    OrderTransactionId orderTransactionId;
+    private String idOorderTransaction;
 
     @BeforeClass
     public void init() throws Exception {
@@ -89,14 +86,14 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test
     public void testOrderPost() throws Exception {
-        orderId = repository.orderPost(order);
-        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderId));
+        idOrder = repository.orderPost(order);
+        System.out.println("idOrder:" + idOrder);
     }
 
     @Test(dependsOnMethods = "testOrderPost")
     public void testOrderPut() throws Exception {
         order.setNotes("Joao Da Silva");
-        repository.orderPut(orderId, order);
+        repository.orderPut(idOrder, order);
     }
 
     @Test(dependsOnMethods = "testOrderPut")
@@ -113,41 +110,41 @@ public class CieloLioPaymentRepositoryTest {
         System.out.println("new OrderItem");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderItem2));
 
-        orderItemId2 = repository.orderPostItem(orderId, orderItem2);
-        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderId));
+        idOrderItem2 = repository.orderPostItem(idOrder, orderItem2);
+        System.out.println("idOrder:" + idOrderItem2);
     }
 
     @Test(dependsOnMethods = "testOrderPostItem")
     public void testOrderPutItem() throws Exception {
         orderItem2.setUnitOfMeasure("CX");
-        repository.orderPutItem(orderId, orderItemId2, orderItem2);
+        repository.orderPutItem(idOrder, idOrderItem2, orderItem2);
     }
 
     @Test(dependsOnMethods = "testOrderPutItem")
     public void testOrderGetItem() throws Exception {
-        OrderItem orderItemResult = repository.orderGetItem(orderId, orderItemId2);
+        OrderItem orderItemResult = repository.orderGetItem(idOrder, idOrderItem2);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderItemResult));
     }
 
     @Test(dependsOnMethods = "testOrderGetItem")
     public void testOrderGetItems() throws Exception {
-        List<OrderItem> resultList = repository.orderGetItems(orderId);
+        List<OrderItem> resultList = repository.orderGetItems(idOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
     @Test(dependsOnMethods = "testOrderGetItems")
     public void testOrderDeleteItem() throws Exception {
-        repository.orderDeleteItem(orderId, orderItemId2);
+        repository.orderDeleteItem(idOrder, idOrderItem2);
     }
 
     @Test(dependsOnMethods = "testOrderDeleteItem")
     public void testOrderPutOperation() throws Exception {
-        repository.orderPutOperation(orderId, OperationEnum.PLACE);
+        repository.orderPutOperation(idOrder, OperationEnum.PLACE);
     }
 
     @Test(dependsOnMethods = "testOrderPutOperation")
     public void testOrderGet() throws Exception {
-        Order orderResult = repository.orderGet(orderId);
+        Order orderResult = repository.orderGet(idOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderResult));
     }
 
@@ -175,19 +172,19 @@ public class CieloLioPaymentRepositoryTest {
         System.out.println("new OrderTransaction");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderTransaction));
 
-        orderTransactionId = repository.orderPostTransaction(orderId, orderTransaction);
-        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderTransactionId));
+        idOorderTransaction = repository.orderPostTransaction(idOrder, orderTransaction);
+        System.out.println("idOrder:" + idOorderTransaction);
     }
 
     @Test(dependsOnMethods = "testOrderPostTransaction")
     public void testOrderGetTransaction() throws Exception {
-        OrderTransaction orderTransaction = repository.orderGetTransaction(orderId, orderTransactionId);
+        OrderTransaction orderTransaction = repository.orderGetTransaction(idOrder, idOorderTransaction);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderTransaction));
     }
 
     @Test(dependsOnMethods = "testOrderGetTransaction")
     public void testOrderGetTransactions() throws Exception {
-        List<OrderTransaction> resultList = repository.orderGetTransactions(orderId);
+        List<OrderTransaction> resultList = repository.orderGetTransactions(idOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
@@ -199,22 +196,22 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderGetByNumber")
     public void testOrderPutOperationPay() throws Exception {
-        repository.orderPutOperation(orderId, OperationEnum.PAY);
+        repository.orderPutOperation(idOrder, OperationEnum.PAY);
     }
 
     @Test(dependsOnMethods = "testOrderPutOperationPay")
     public void testOrderPutOperationClose() throws Exception {
-        repository.orderPutOperation(orderId, OperationEnum.CLOSE);
+        repository.orderPutOperation(idOrder, OperationEnum.CLOSE);
     }
 
     @Test(dependsOnMethods = "testOrderPutOperationClose")
     public void testOrderPutOperationReOpenPay() throws Exception {
-        repository.orderPutOperation(orderId, OperationEnum.PAY);
+        repository.orderPutOperation(idOrder, OperationEnum.PAY);
     }
 
     @Test(dependsOnMethods = "testOrderPutOperationReOpenPay")
     public void testOrderPutOperationCloseAgain() throws Exception {
-        repository.orderPutOperation(orderId, OperationEnum.CLOSE);
+        repository.orderPutOperation(idOrder, OperationEnum.CLOSE);
     }
 
     @Test(dependsOnMethods = "testOrderPutOperationCloseAgain")
@@ -237,7 +234,7 @@ public class CieloLioPaymentRepositoryTest {
 
     @Test(dependsOnMethods = "testOrderGetAll")
     public void testOrderDelete() throws Exception {
-        repository.orderDelete(orderId);
+        repository.orderDelete(idOrder);
     }
 
     private void sleep(long seconds) {

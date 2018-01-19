@@ -3,7 +3,6 @@ package org.frekele.cielo.lio.remote.client.model;
 import org.frekele.cielo.lio.remote.client.enumeration.CardBrandEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionStatusEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionTypeEnum;
-import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -18,8 +17,7 @@ public class OrderTransactionTest {
 
     @Test
     public void testNewInstance() throws Exception {
-        String transactionId = "af9658-c3dd-49fa-acf29c38-2aa7aa89a";
-        OrderTransactionId id = new OrderTransactionId(transactionId);
+        String idOrderTransaction = "af9658-c3dd-49fa-acf29c38-2aa7aa89a";
         String uuid = "cf29c38-2aaf9658-c3d7aaad-49fa-a89a";
         String externalId = "49fa-a89ac38-2aaf29c58-c37aaf-9e6ad";
         TransactionStatusEnum status = TransactionStatusEnum.PENDING;
@@ -45,7 +43,7 @@ public class OrderTransactionTest {
         OrderCard card = new OrderCard(cardBrand, cardMask);
 
         OrderTransaction orderTransaction = new OrderTransaction();
-        orderTransaction.setId(id);
+        orderTransaction.setId(idOrderTransaction);
         orderTransaction.setUuid(uuid);
         orderTransaction.setExternalId(externalId);
         orderTransaction.setStatus(status);
@@ -61,8 +59,7 @@ public class OrderTransactionTest {
         orderTransaction.setCard(card);
 
         assertNotNull(orderTransaction);
-        assertEquals(id, orderTransaction.getId());
-        assertEquals(transactionId, orderTransaction.getId().getId());
+        assertEquals(idOrderTransaction, orderTransaction.getId());
         assertEquals(uuid, orderTransaction.getUuid());
         assertEquals(externalId, orderTransaction.getExternalId());
         assertEquals(status, orderTransaction.getStatus());
