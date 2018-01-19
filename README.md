@@ -41,10 +41,11 @@ public class MyService {
     
     public void call() {
         //First create CieloLioAuth
-        String clientId = System.getenv("CIELO_LIO_CLIENT_ID");
-        String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
-        String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
-        String environment = System.getenv("CIELO_LIO_ENVIRONMENT");
+        Properties prop = // read Properties
+        String clientId = prop.getProperty("clientId");
+        String accessToken = prop.getProperty("accessToken");
+        String merchantId = prop.getProperty("merchantId");
+        String environment = prop.getProperty("environment");
         CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
 
         //Build one client per thread, or use CDI Injection.
