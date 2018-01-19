@@ -1,6 +1,6 @@
 package org.frekele.cielo.lio.remote.client.model;
 
-import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
+import org.frekele.cielo.lio.remote.client.core.CieloLioModel;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderCardEntity implements CieloLioEntity {
+public class OrderCard implements CieloLioModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,11 +19,11 @@ public class OrderCardEntity implements CieloLioEntity {
 
     private String mask;
 
-    public OrderCardEntity() {
+    public OrderCard() {
         super();
     }
 
-    public OrderCardEntity(String brand, String mask) {
+    public OrderCard(String brand, String mask) {
         this.brand = brand;
         this.mask = mask;
     }

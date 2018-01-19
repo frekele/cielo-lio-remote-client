@@ -9,7 +9,7 @@ import org.frekele.cielo.lio.remote.client.converter.deserialize.OrderIdJsonDese
 import org.frekele.cielo.lio.remote.client.converter.serialize.BigDecimalJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.OffsetDateTimeJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.OrderIdJsonSerialize;
-import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
+import org.frekele.cielo.lio.remote.client.core.CieloLioModel;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
 import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 
@@ -25,7 +25,7 @@ import java.util.List;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderEntity implements CieloLioEntity {
+public class Order implements CieloLioModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -67,11 +67,11 @@ public class OrderEntity implements CieloLioEntity {
     @JsonSerialize(using = OffsetDateTimeJsonSerialize.class)
     private OffsetDateTime updatedAt;
 
-    private List<OrderItemEntity> items;
+    private List<OrderItem> items;
 
-    private List<OrderTransactionEntity> transactions;
+    private List<OrderTransaction> transactions;
 
-    public OrderEntity() {
+    public Order() {
         super();
     }
 
@@ -171,19 +171,19 @@ public class OrderEntity implements CieloLioEntity {
         this.updatedAt = updatedAt;
     }
 
-    public List<OrderItemEntity> getItems() {
+    public List<OrderItem> getItems() {
         return items;
     }
 
-    public void setItems(List<OrderItemEntity> items) {
+    public void setItems(List<OrderItem> items) {
         this.items = items;
     }
 
-    public List<OrderTransactionEntity> getTransactions() {
+    public List<OrderTransaction> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(List<OrderTransactionEntity> transactions) {
+    public void setTransactions(List<OrderTransaction> transactions) {
         this.transactions = transactions;
     }
 }

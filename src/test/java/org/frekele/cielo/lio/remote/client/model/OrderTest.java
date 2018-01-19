@@ -1,0 +1,70 @@
+package org.frekele.cielo.lio.remote.client.model;
+
+import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
+import org.frekele.cielo.lio.remote.client.model.id.OrderId;
+import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.testng.Assert.*;
+
+@Listeners(InvokedMethodListener.class)
+public class OrderTest {
+
+    @Test
+    public void testNewInstance() throws Exception {
+        String orderId = "af9658-c3dd-49fa-acf29c38-2aa7aa89a";
+        OrderId id = new OrderId(orderId);
+        String number = "1234356";
+        String reference = "Order 1234356";
+        OrderStatusEnum status = OrderStatusEnum.DRAFT;
+        String notes = "Consumer Jim Jonson";
+        BigDecimal price = BigDecimal.valueOf(643.46);
+        BigDecimal remaining = BigDecimal.valueOf(10.20);
+        String orderType = "PAYMENT";
+        String merchant = "0596001092033001";
+        String sourceId = "eQDKs463ZeQz";
+        OffsetDateTime createdAt = OffsetDateTime.now();
+        OffsetDateTime updatedAt = OffsetDateTime.now().plusHours(6);
+        List<OrderItem> items = new ArrayList<>();
+        List<OrderTransaction> transactions = new ArrayList<>();
+
+        Order order = new Order();
+        order.setId(id);
+        order.setNumber(number);
+        order.setReference(reference);
+        order.setStatus(status);
+        order.setNotes(notes);
+        order.setPrice(price);
+        order.setRemaining(remaining);
+        order.setOrderType(orderType);
+        order.setMerchant(merchant);
+        order.setSourceId(sourceId);
+        order.setCreatedAt(createdAt);
+        order.setUpdatedAt(updatedAt);
+        order.setItems(items);
+        order.setTransactions(transactions);
+
+        assertNotNull(order);
+        assertEquals(id, order.getId());
+        assertEquals(orderId, order.getId().getId());
+        assertEquals(number, order.getNumber());
+        assertEquals(reference, order.getReference());
+        assertEquals(status, order.getStatus());
+        assertEquals(notes, order.getNotes());
+        assertEquals(price, order.getPrice());
+        assertEquals(remaining, order.getRemaining());
+        assertEquals(orderType, order.getOrderType());
+        assertEquals(merchant, order.getMerchant());
+        assertEquals(sourceId, order.getSourceId());
+        assertEquals(createdAt, order.getCreatedAt());
+        assertEquals(updatedAt, order.getUpdatedAt());
+        assertEquals(items, order.getItems());
+        assertEquals(transactions, order.getTransactions());
+    }
+}

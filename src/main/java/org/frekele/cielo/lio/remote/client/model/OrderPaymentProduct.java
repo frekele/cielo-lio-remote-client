@@ -1,7 +1,7 @@
 package org.frekele.cielo.lio.remote.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
+import org.frekele.cielo.lio.remote.client.core.CieloLioModel;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderPaymentProductEntity implements CieloLioEntity {
+public class OrderPaymentProduct implements CieloLioModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class OrderPaymentProductEntity implements CieloLioEntity {
     @JsonProperty("number_of_quotas")
     private Integer numberOfQuotas;
 
-    public OrderPaymentProductEntity() {
+    public OrderPaymentProduct() {
         super();
     }
 

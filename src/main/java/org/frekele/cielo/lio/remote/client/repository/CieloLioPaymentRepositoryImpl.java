@@ -4,9 +4,9 @@ import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.core.CieloLio;
 import org.frekele.cielo.lio.remote.client.enumeration.OperationEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
-import org.frekele.cielo.lio.remote.client.model.OrderEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderItemEntity;
-import org.frekele.cielo.lio.remote.client.model.OrderTransactionEntity;
+import org.frekele.cielo.lio.remote.client.model.Order;
+import org.frekele.cielo.lio.remote.client.model.OrderItem;
+import org.frekele.cielo.lio.remote.client.model.OrderTransaction;
 import org.frekele.cielo.lio.remote.client.model.id.OrderId;
 import org.frekele.cielo.lio.remote.client.model.id.OrderItemId;
 import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
@@ -52,13 +52,13 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public List<OrderEntity> orderGetAll() {
+    public List<Order> orderGetAll() {
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetAll(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId());
     }
 
     @Override
-    public List<OrderEntity> orderGetByNumber(String number) {
+    public List<Order> orderGetByNumber(String number) {
         CieloLioUtils.throwObject(number, "number");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByNumber(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
@@ -66,7 +66,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public List<OrderEntity> orderGetByReference(String reference) {
+    public List<Order> orderGetByReference(String reference) {
         CieloLioUtils.throwObject(reference, "reference");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByReference(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
@@ -74,7 +74,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public List<OrderEntity> orderGetByStatus(OrderStatusEnum status) {
+    public List<Order> orderGetByStatus(OrderStatusEnum status) {
         CieloLioUtils.throwObject(status, "OrderStatusEnum");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetByStatus(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
@@ -82,7 +82,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public OrderEntity orderGet(OrderId orderId) {
+    public Order orderGet(OrderId orderId) {
         CieloLioUtils.throwOrderId(orderId);
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGet(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
@@ -90,17 +90,17 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public OrderId orderPost(OrderEntity order) {
-        CieloLioUtils.throwObject(order, "OrderEntity");
+    public OrderId orderPost(Order order) {
+        CieloLioUtils.throwObject(order, "Order");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPost(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             order);
     }
 
     @Override
-    public void orderPut(OrderId orderId, OrderEntity order) {
+    public void orderPut(OrderId orderId, Order order) {
         CieloLioUtils.throwOrderId(orderId);
-        CieloLioUtils.throwObject(order, "OrderEntity");
+        CieloLioUtils.throwObject(order, "Order");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         proxyClient.orderPut(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), order);
@@ -124,7 +124,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public List<OrderItemEntity> orderGetItems(OrderId orderId) {
+    public List<OrderItem> orderGetItems(OrderId orderId) {
         CieloLioUtils.throwOrderId(orderId);
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetItems(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
@@ -132,7 +132,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public OrderItemEntity orderGetItem(OrderId orderId, OrderItemId idItem) {
+    public OrderItem orderGetItem(OrderId orderId, OrderItemId idItem) {
         CieloLioUtils.throwOrderId(orderId);
         CieloLioUtils.throwOrderItemId(idItem);
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
@@ -141,19 +141,19 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public OrderItemId orderPostItem(OrderId orderId, OrderItemEntity orderItem) {
+    public OrderItemId orderPostItem(OrderId orderId, OrderItem orderItem) {
         CieloLioUtils.throwOrderId(orderId);
-        CieloLioUtils.throwObject(orderItem, "OrderItemEntity");
+        CieloLioUtils.throwObject(orderItem, "OrderItem");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPostItem(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), orderItem);
     }
 
     @Override
-    public void orderPutItem(OrderId orderId, OrderItemId idItem, OrderItemEntity orderItem) {
+    public void orderPutItem(OrderId orderId, OrderItemId idItem, OrderItem orderItem) {
         CieloLioUtils.throwOrderId(orderId);
         CieloLioUtils.throwOrderItemId(idItem);
-        CieloLioUtils.throwObject(orderItem, "OrderItemEntity");
+        CieloLioUtils.throwObject(orderItem, "OrderItem");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         proxyClient.orderPutItem(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), idItem.getId(), orderItem);
@@ -169,7 +169,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public List<OrderTransactionEntity> orderGetTransactions(OrderId orderId) {
+    public List<OrderTransaction> orderGetTransactions(OrderId orderId) {
         CieloLioUtils.throwOrderId(orderId);
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderGetTransactions(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
@@ -177,7 +177,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public OrderTransactionEntity orderGetTransaction(OrderId orderId, OrderTransactionId transactionId) {
+    public OrderTransaction orderGetTransaction(OrderId orderId, OrderTransactionId transactionId) {
         CieloLioUtils.throwOrderId(orderId);
         CieloLioUtils.throwOrderTransactionId(transactionId);
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
@@ -186,9 +186,9 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     }
 
     @Override
-    public OrderTransactionId orderPostTransaction(OrderId orderId, OrderTransactionEntity transaction) {
+    public OrderTransactionId orderPostTransaction(OrderId orderId, OrderTransaction transaction) {
         CieloLioUtils.throwOrderId(orderId);
-        CieloLioUtils.throwObject(transaction, "OrderTransactionEntity");
+        CieloLioUtils.throwObject(transaction, "OrderTransaction");
         CieloOrderManagementProxyClient proxyClient = this.getProxyClient();
         return proxyClient.orderPostTransaction(this.getAuth().getClientId(), this.getAuth().getAccessToken(), this.getAuth().getMerchantId(),
             orderId.getId(), transaction);

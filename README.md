@@ -51,8 +51,8 @@ public class MyService {
         ResteasyClient client = new ResteasyClientBuilder().build();
         CieloLioPaymentRepository repository = new CieloLioPaymentRepositoryImpl(client, auth);
 
-        List<OrderEntity> resultList = repository.orderGetAll();
-        OrderEntity orderEntity = repository.orderGet(new OrderId("5f182dec98-1866-47b0-b69d-471448911f"));
+        List<Order> resultList = repository.orderGetAll();
+        Order order = repository.orderGet(new OrderId("5f182dec98-1866-47b0-b69d-471448911f"));
 
         //Is important to close in end, or use CDI.
         client.close();
@@ -102,8 +102,8 @@ public class MyService {
     private CieloLioPaymentRepository repository;
 
     public void call() {
-        List<OrderEntity> resultList = repository.orderGetAll();
-        OrderEntity orderEntity = repository.orderGet(new OrderId("5f182dec98-1866-47b0-b69d-471448911f"));
+        List<Order> resultList = repository.orderGetAll();
+        Order order = repository.orderGet(new OrderId("5f182dec98-1866-47b0-b69d-471448911f"));
     }
 }
 
@@ -113,14 +113,14 @@ public class MyService {
 
 #### Post Order
 ```java
-OrderEntity order = new OrderEntity();
+Order order = new Order();
 order.setStatus(OrderStatusEnum.DRAFT);
 order.setNumber("12345");
 order.setReference("Order #12345");
 order.setNotes("Consumer Jim Jonson");
 order.setPrice(BigDecimal.valueOf(325.34));
 order.setItems(new ArrayList<>());
-OrderItemEntity item = new OrderItemEntity();
+OrderItem item = new OrderItem();
 item.setSku("RTG-234-AQF-6587-C57");
 item.setName("White Dining Table");
 item.setQuantity(1);
@@ -148,33 +148,33 @@ repository.orderDelete(orderId);
 
 #### Get Order
 ```java
-OrderEntity orderResult = repository.orderGet(orderId);
+Order orderResult = repository.orderGet(orderId);
 ```
 
 #### Get Orders By Number
 ```java
-List<OrderEntity> resultList = repository.orderGetByNumber("12345");
+List<Order> resultList = repository.orderGetByNumber("12345");
 ```
 
 #### Get Orders By Reference
 ```java
-List<OrderEntity> resultList = repository.orderGetByReference("Order #12345");
+List<Order> resultList = repository.orderGetByReference("Order #12345");
 ```
 
 #### Get Orders By Status
 ```java
-List<OrderEntity> resultList = repository.orderGetByStatus(OrderStatusEnum.ENTERED);
+List<Order> resultList = repository.orderGetByStatus(OrderStatusEnum.ENTERED);
 ```
 
 #### Get All Orders
 ```java
-List<OrderEntity> resultList = repository.orderGetAll();
+List<Order> resultList = repository.orderGetAll();
 ```
 
 
 #### Post Order Item
 ```java
-OrderItemEntity orderItem = new OrderItemEntity();
+OrderItem orderItem = new OrderItem();
 orderItem.setSku("XPT-456-564-34554-3453");
 orderItem.setName("White Wood Chair");
 orderItem.setQuantity(4);
@@ -202,18 +202,18 @@ repository.orderDeleteItem(orderId, orderItemId);
 
 #### Get Order Item
 ```java
-OrderEntity orderResult = repository.orderGetItem(orderId, orderItemId);
+Order orderResult = repository.orderGetItem(orderId, orderItemId);
 ```
 
 #### Get Order Items
 ```java
-OrderEntity orderResult = repository.orderGetItems(orderId);
+Order orderResult = repository.orderGetItems(orderId);
 ```
 
 
 #### Post Order Transaction (Only in SandBox)
 ```java
-OrderTransactionEntity orderTransaction = new OrderTransactionEntity();
+OrderTransaction orderTransaction = new OrderTransaction();
 orderTransaction.setStatus(TransactionStatusEnum.CONFIRMED);
 orderTransaction.setTerminalNumber((long) 12345678);
 orderTransaction.setAuthorizationCode((long) 3458619);
@@ -221,13 +221,13 @@ orderTransaction.setNumber((long) 672836);
 orderTransaction.setAmount(BigDecimal.valueOf(325.34));
 orderTransaction.setTransactionType(TransactionTypeEnum.PAYMENT);
 
-OrderPaymentProductEntity orderPaymentProduct = new OrderPaymentProductEntity();
+OrderPaymentProduct orderPaymentProduct = new OrderPaymentProduct();
 orderPaymentProduct.setPrimaryProductName("CREDITO");
 orderPaymentProduct.setSecondaryProductName("A VISTA");
 orderPaymentProduct.setNumberOfQuotas(0);
 orderTransaction.setOrderPaymentProduct(orderPaymentProduct);
 
-OrderCardEntity orderCard = new OrderCardEntity();
+OrderCard orderCard = new OrderCard();
 orderCard.setBrand(CardBrandEnum.VISA.getValue());
 orderCard.setMask("************5487");
 orderTransaction.setCard(orderCard);
@@ -238,12 +238,12 @@ OrderTransactionId orderTransactionId = repository.orderPostTransaction(orderId,
 
 #### Get Order Transaction
 ```java
-OrderTransactionEntity orderTransactionEntity = repository.orderGetTransaction(orderId, orderTransactionId);
+OrderTransaction orderTransaction = repository.orderGetTransaction(orderId, orderTransactionId);
 ```
 
 #### Get Order Transactions
 ```java
-List<OrderTransactionEntity> resultList = repository.orderGetTransactions(orderId);
+List<OrderTransaction> resultList = repository.orderGetTransactions(orderId);
 ```
 
 
@@ -275,21 +275,21 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso é utilizado para obter a lista e as informações de todos os pedidos cadastrados no Order Manager.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders
      */
-    List<OrderEntity> orderGetAll();
+    List<Order> orderGetAll();
 
     /**
      * GET - Consultar todos os Pedidos pelo id(UUID) do pedido
      * Esse recurso é utilizado para obter a lista e as informações de todos os pedidos cadastrados no Order Manager com filtro por number.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?number=1234567890
      */
-    List<OrderEntity> orderGetByNumber(String number);
+    List<Order> orderGetByNumber(String number);
 
     /**
      * GET - Consultar todos os Pedidos pela Referência do pedido
      * Esse recurso é utilizado para obter a lista e as informações de todos os pedidos cadastrados no Order Manager com filtro por reference.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?reference=384769536
      */
-    List<OrderEntity> orderGetByReference(String reference);
+    List<Order> orderGetByReference(String reference);
 
     /**
      * GET - Consultar todos os Pedidos pela Status do pedido
@@ -297,28 +297,28 @@ public interface CieloLioPaymentRepository extends Serializable {
      * (DRAFT, ENTERED, RE-ENTERED, PAID, CANCELED e CLOSED).
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?status=PAID
      */
-    List<OrderEntity> orderGetByStatus(OrderStatusEnum status);
+    List<Order> orderGetByStatus(OrderStatusEnum status);
 
     /**
      * GET - Consultar pedido
      * Esse recurso é utilizado para obter informações sobre um pedido específico. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    OrderEntity orderGet(OrderId orderId);
+    Order orderGet(OrderId orderId);
 
     /**
      * POST - Criar um pedido
      * Esse recurso realiza a criação de um pedido no servidor do Order Manager.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders
      */
-    OrderId orderPost(OrderEntity order);
+    OrderId orderPost(Order order);
 
     /**
      * PUT - Altera um pedido
      * Esse recurso realiza a alteracao de um pedido no servidor do Order Manager.
      * Exemplo de requisição: PUT https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    void orderPut(OrderId orderId, OrderEntity order);
+    void orderPut(OrderId orderId, Order order);
 
     /**
      * PUT - Alterar status de um pedido
@@ -343,28 +343,28 @@ public interface CieloLioPaymentRepository extends Serializable {
      * Esse recurso é utilizado para consultar os itens presentes em um pedido. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    List<OrderItemEntity> orderGetItems(OrderId orderId);
+    List<OrderItem> orderGetItems(OrderId orderId);
 
     /**
      * GET - Consultar o item de um pedido
      * Esse recurso é utilizado para consultar um item presente em um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    OrderItemEntity orderGetItem(OrderId orderId, OrderItemId idItem);
+    OrderItem orderGetItem(OrderId orderId, OrderItemId idItem);
 
     /**
      * POST - Adicionar Item/Itens em um Pedido
      * Esse recurso é utilizado para adicionar um ou mais itens em um pedido já criado. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    OrderItemId orderPostItem(OrderId orderId, OrderItemEntity orderItem);
+    OrderItemId orderPostItem(OrderId orderId, OrderItem orderItem);
 
     /**
      * PUT - Alterar um item em um pedido
      * Esse recurso permite alterar informações de um item de um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: PUT https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    void orderPutItem(OrderId orderId, OrderItemId idItem, OrderItemEntity orderItem);
+    void orderPutItem(OrderId orderId, OrderItemId idItem, OrderItem orderItem);
 
     /**
      * DELETE - Excluir Item de um pedido
@@ -380,7 +380,7 @@ public interface CieloLioPaymentRepository extends Serializable {
      * a transactions será adicionada automaticamente no pedido e então, será possível obter as informações do pagamento realizado a partir da chamada deste recurso.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    List<OrderTransactionEntity> orderGetTransactions(OrderId orderId);
+    List<OrderTransaction> orderGetTransactions(OrderId orderId);
 
     /**
      * GET - Consultar a transação de um pedido
@@ -389,14 +389,14 @@ public interface CieloLioPaymentRepository extends Serializable {
      * a transactions será adicionada automaticamente no pedido e então, será possível obter as informações do pagamento realizado a partir da chamada deste recurso.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions/362d1e9e-ae99-4d79-87d6-add9aad2795c
      */
-    OrderTransactionEntity orderGetTransaction(OrderId orderId, OrderTransactionId transactionId);
+    OrderTransaction orderGetTransaction(OrderId orderId, OrderTransactionId transactionId);
 
     /**
      * POST - Adicionar uma Transação (Recurso utilizado somente para Ambiente de Sandbox)
      * Esse recurso permite que o desenvolvedor simule as transações financeiras, adicionando-as manualmente, sendo possível entender o funcionamento em uma Order.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    OrderTransactionId orderPostTransaction(OrderId orderId, OrderTransactionEntity transaction);
+    OrderTransactionId orderPostTransaction(OrderId orderId, OrderTransaction transaction);
 }
 ```
 

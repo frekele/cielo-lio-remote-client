@@ -13,10 +13,10 @@ public class OrderItemIdTest {
     public void testNewInstance() throws Exception {
         String id = "ac9c38-c3dd-49fa-affaa7aa29658-289a";
 
-        OrderItemId entity = new OrderItemId();
-        entity.setId(id);
+        OrderItemId orderItemId = new OrderItemId();
+        orderItemId.setId(id);
 
-        assertNotNull(entity);
-        assertEquals(id, entity.getId());
+        assertNotNull(orderItemId);
+        assertEquals(id, orderItemId.getId());
     }
 }

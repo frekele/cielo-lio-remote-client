@@ -9,7 +9,7 @@ import org.frekele.cielo.lio.remote.client.converter.deserialize.OrderTransactio
 import org.frekele.cielo.lio.remote.client.converter.serialize.BigDecimalJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.OffsetDateTimeJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.OrderTransactionIdJsonSerialize;
-import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
+import org.frekele.cielo.lio.remote.client.core.CieloLioModel;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionStatusEnum;
 import org.frekele.cielo.lio.remote.client.enumeration.TransactionTypeEnum;
 import org.frekele.cielo.lio.remote.client.model.id.OrderTransactionId;
@@ -25,7 +25,7 @@ import java.time.OffsetDateTime;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderTransactionEntity implements CieloLioEntity {
+public class OrderTransaction implements CieloLioModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -69,11 +69,11 @@ public class OrderTransactionEntity implements CieloLioEntity {
     private OffsetDateTime updatedAt;
 
     @JsonProperty("payment_fields")
-    private OrderPaymentProductEntity orderPaymentProduct;
+    private OrderPaymentProduct orderPaymentProduct;
 
-    private OrderCardEntity card;
+    private OrderCard card;
 
-    public OrderTransactionEntity() {
+    public OrderTransaction() {
         super();
     }
 
@@ -173,19 +173,19 @@ public class OrderTransactionEntity implements CieloLioEntity {
         this.updatedAt = updatedAt;
     }
 
-    public OrderPaymentProductEntity getOrderPaymentProduct() {
+    public OrderPaymentProduct getOrderPaymentProduct() {
         return orderPaymentProduct;
     }
 
-    public void setOrderPaymentProduct(OrderPaymentProductEntity orderPaymentProduct) {
+    public void setOrderPaymentProduct(OrderPaymentProduct orderPaymentProduct) {
         this.orderPaymentProduct = orderPaymentProduct;
     }
 
-    public OrderCardEntity getCard() {
+    public OrderCard getCard() {
         return card;
     }
 
-    public void setCard(OrderCardEntity card) {
+    public void setCard(OrderCard card) {
         this.card = card;
     }
 }

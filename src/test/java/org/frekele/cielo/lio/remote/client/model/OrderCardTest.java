@@ -8,19 +8,19 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 @Listeners(InvokedMethodListener.class)
-public class OrderCardEntityTest {
+public class OrderCardTest {
 
     @Test
     public void testNewInstance() throws Exception {
         String brand = CardBrandEnum.VISA.getValue();
         String mask = "************5487";
 
-        OrderCardEntity entity = new OrderCardEntity();
-        entity.setBrand(brand);
-        entity.setMask(mask);
+        OrderCard orderCard = new OrderCard();
+        orderCard.setBrand(brand);
+        orderCard.setMask(mask);
 
-        assertNotNull(entity);
-        assertEquals(brand, entity.getBrand());
-        assertEquals(mask, entity.getMask());
+        assertNotNull(orderCard);
+        assertEquals(brand, orderCard.getBrand());
+        assertEquals(mask, orderCard.getMask());
     }
 }
