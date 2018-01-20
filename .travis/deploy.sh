@@ -26,11 +26,11 @@ then
     #To avoid Travis error, you need to redirect output to / dev / null
     ${MVN_HOME}/bin/mvn --settings .travis/settings.xml versions:set -DnewVersion=${TRAVIS_TAG} 1>/dev/null 2>/dev/null
     echo "DEPLOYING RELEASE!"
-    ${MVN_HOME}/bin/mvn --settings .travis/settings.xml clean deploy -DskipTests=true -B -U
+    ${MVN_HOME}/bin/mvn --settings .travis/settings.xml clean deploy -Dmaven.javadoc.skip=false -Dmaven.source.skip=false -DskipTests=true -B -U
     echo "DEPLOYED RELEASE!"
 else
     echo "Snapshot version in pom.xml."
     echo "DEPLOYING SNAPSHOT!"
-    ${MVN_HOME}/bin/mvn --settings .travis/settings.xml clean deploy -DskipTests=true -B -U
+    ${MVN_HOME}/bin/mvn --settings .travis/settings.xml clean deploy -Dmaven.javadoc.skip=false -Dmaven.source.skip=false -DskipTests=true -B -U
     echo "DEPLOYED SNAPSHOT!"
 fi

@@ -114,11 +114,18 @@
         <versions-maven-plugin.version>2.5</versions-maven-plugin.version>
         <javadoc.additional.options>-Xdoclint:none</javadoc.additional.options>
 
-        <!-- mvn install -DskipITs=false : Skips Unit tests -->
+        <!-- mvn -DskipITs=false : Skips Unit tests -->
         <skipUTs>false</skipUTs>
 
-        <!-- mvn install -DskipITs=true : Skips Integration tests -->
+        <!-- mvn -DskipITs=true : Skips Integration tests -->
         <skipITs>true</skipITs>
+
+        <!-- mvn -Dmaven.javadoc.skip=true : Skips Generate JavaDoc .jar-->
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+
+        <!-- mvn -Dmaven.source.skip=true : Skips Generate JavaSource .jar -->
+        <maven.source.skip>true</maven.source.skip>
+
     </properties>
 
     <dependencyManagement>
