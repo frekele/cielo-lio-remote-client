@@ -77,7 +77,7 @@ public class CieloLioProducer {
         String clientId = System.getenv("CIELO_LIO_CLIENT_ID");
         String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
         String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
-        String environment = System.getenv("CIELO_LIO_ENVIRONMENT");
+        String environment = System.getenv("CIELO_LIO_ENVIRONMENT"); // PRODUCTION OR SANDBOX
         return CieloLioAuth.newBuilder()
             .withClientId(clientId)
             .withAccessToken(accessToken)
