@@ -46,7 +46,12 @@ public class MyService {
         String accessToken = prop.getProperty("accessToken");
         String merchantId = prop.getProperty("merchantId");
         String environment = prop.getProperty("environment");
-        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
+        CieloLioAuth auth = CieloLioAuth.newBuilder()
+            .withClientId(clientId)
+            .withAccessToken(accessToken)
+            .withMerchantId(merchantId)
+            .withEnvironment(environment)
+            .build();
 
         //Build one client per thread, or use CDI Injection.
         ResteasyClient client = new ResteasyClientBuilder().build();
@@ -73,7 +78,12 @@ public class CieloLioProducer {
         String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
         String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
         String environment = System.getenv("CIELO_LIO_ENVIRONMENT");
-        return new CieloLioAuth(clientId, accessToken, merchantId, environment);
+        return CieloLioAuth.newBuilder()
+            .withClientId(clientId)
+            .withAccessToken(accessToken)
+            .withMerchantId(merchantId)
+            .withEnvironment(environment)
+            .build();
     }
 
     @Produces
