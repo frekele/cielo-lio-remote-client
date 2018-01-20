@@ -24,5 +24,16 @@ public class OrderPaymentProductTest {
         assertEquals(primaryProductName, orderPaymentProduct.getPrimaryProductName());
         assertEquals(secondaryProductName, orderPaymentProduct.getSecondaryProductName());
         assertEquals(numberOfQuotas, orderPaymentProduct.getNumberOfQuotas());
+
+        orderPaymentProduct = OrderPaymentProduct.newBuilder()
+            .withPrimaryProductName(primaryProductName)
+            .withSecondaryProductName(secondaryProductName)
+            .withNumberOfQuotas(numberOfQuotas)
+            .build();
+
+        assertNotNull(orderPaymentProduct);
+        assertEquals(primaryProductName, orderPaymentProduct.getPrimaryProductName());
+        assertEquals(secondaryProductName, orderPaymentProduct.getSecondaryProductName());
+        assertEquals(numberOfQuotas, orderPaymentProduct.getNumberOfQuotas());
     }
 }

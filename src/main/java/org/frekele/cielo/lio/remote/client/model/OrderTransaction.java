@@ -72,6 +72,27 @@ public class OrderTransaction implements CieloLioModel {
         super();
     }
 
+    private OrderTransaction(Builder builder) {
+        setId(builder.id);
+        setUuid(builder.uuid);
+        setExternalId(builder.externalId);
+        setStatus(builder.status);
+        setDescription(builder.description);
+        setTerminalNumber(builder.terminalNumber);
+        setAuthorizationCode(builder.authorizationCode);
+        setNumber(builder.number);
+        setAmount(builder.amount);
+        setTransactionType(builder.transactionType);
+        setCreatedAt(builder.createdAt);
+        setUpdatedAt(builder.updatedAt);
+        setOrderPaymentProduct(builder.orderPaymentProduct);
+        setCard(builder.card);
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public String getId() {
         return id;
     }
@@ -182,5 +203,113 @@ public class OrderTransaction implements CieloLioModel {
 
     public void setCard(OrderCard card) {
         this.card = card;
+    }
+
+    public static final class Builder {
+
+        private String id;
+
+        private String uuid;
+
+        private String externalId;
+
+        private TransactionStatusEnum status;
+
+        private String description;
+
+        private Long terminalNumber;
+
+        private Long authorizationCode;
+
+        private Long number;
+
+        private BigDecimal amount;
+
+        private TransactionTypeEnum transactionType;
+
+        private OffsetDateTime createdAt;
+
+        private OffsetDateTime updatedAt;
+
+        private OrderPaymentProduct orderPaymentProduct;
+
+        private OrderCard card;
+
+        private Builder() {
+        }
+
+        public Builder withId(String val) {
+            id = val;
+            return this;
+        }
+
+        public Builder withUuid(String val) {
+            uuid = val;
+            return this;
+        }
+
+        public Builder withExternalId(String val) {
+            externalId = val;
+            return this;
+        }
+
+        public Builder withStatus(TransactionStatusEnum val) {
+            status = val;
+            return this;
+        }
+
+        public Builder withDescription(String val) {
+            description = val;
+            return this;
+        }
+
+        public Builder withTerminalNumber(Long val) {
+            terminalNumber = val;
+            return this;
+        }
+
+        public Builder withAuthorizationCode(Long val) {
+            authorizationCode = val;
+            return this;
+        }
+
+        public Builder withNumber(Long val) {
+            number = val;
+            return this;
+        }
+
+        public Builder withAmount(BigDecimal val) {
+            amount = val;
+            return this;
+        }
+
+        public Builder withTransactionType(TransactionTypeEnum val) {
+            transactionType = val;
+            return this;
+        }
+
+        public Builder withCreatedAt(OffsetDateTime val) {
+            createdAt = val;
+            return this;
+        }
+
+        public Builder withUpdatedAt(OffsetDateTime val) {
+            updatedAt = val;
+            return this;
+        }
+
+        public Builder withOrderPaymentProduct(OrderPaymentProduct val) {
+            orderPaymentProduct = val;
+            return this;
+        }
+
+        public Builder withCard(OrderCard val) {
+            card = val;
+            return this;
+        }
+
+        public OrderTransaction build() {
+            return new OrderTransaction(this);
+        }
     }
 }

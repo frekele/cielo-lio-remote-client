@@ -63,6 +63,25 @@ public class OrderItem implements CieloLioModel {
         super();
     }
 
+    private OrderItem(Builder builder) {
+        setId(builder.id);
+        setUuid(builder.uuid);
+        setSku(builder.sku);
+        setName(builder.name);
+        setDescription(builder.description);
+        setUnitPrice(builder.unitPrice);
+        setQuantity(builder.quantity);
+        setUnitOfMeasure(builder.unitOfMeasure);
+        setDetails(builder.details);
+        setReference(builder.reference);
+        setCreatedAt(builder.createdAt);
+        setUpdatedAt(builder.updatedAt);
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public String getId() {
         return id;
     }
@@ -157,5 +176,99 @@ public class OrderItem implements CieloLioModel {
 
     public void setUpdatedAt(OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public static final class Builder {
+
+        private String id;
+
+        private String uuid;
+
+        private String sku;
+
+        private String name;
+
+        private String description;
+
+        private BigDecimal unitPrice;
+
+        private Integer quantity;
+
+        private String unitOfMeasure;
+
+        private String details;
+
+        private String reference;
+
+        private OffsetDateTime createdAt;
+
+        private OffsetDateTime updatedAt;
+
+        private Builder() {
+        }
+
+        public Builder withId(String val) {
+            id = val;
+            return this;
+        }
+
+        public Builder withUuid(String val) {
+            uuid = val;
+            return this;
+        }
+
+        public Builder withSku(String val) {
+            sku = val;
+            return this;
+        }
+
+        public Builder withName(String val) {
+            name = val;
+            return this;
+        }
+
+        public Builder withDescription(String val) {
+            description = val;
+            return this;
+        }
+
+        public Builder withUnitPrice(BigDecimal val) {
+            unitPrice = val;
+            return this;
+        }
+
+        public Builder withQuantity(Integer val) {
+            quantity = val;
+            return this;
+        }
+
+        public Builder withUnitOfMeasure(String val) {
+            unitOfMeasure = val;
+            return this;
+        }
+
+        public Builder withDetails(String val) {
+            details = val;
+            return this;
+        }
+
+        public Builder withReference(String val) {
+            reference = val;
+            return this;
+        }
+
+        public Builder withCreatedAt(OffsetDateTime val) {
+            createdAt = val;
+            return this;
+        }
+
+        public Builder withUpdatedAt(OffsetDateTime val) {
+            updatedAt = val;
+            return this;
+        }
+
+        public OrderItem build() {
+            return new OrderItem(this);
+        }
     }
 }

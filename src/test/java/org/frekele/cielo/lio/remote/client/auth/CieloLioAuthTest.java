@@ -40,5 +40,19 @@ public class CieloLioAuthTest {
         assertEquals(merchantId, auth.getMerchantId());
         assertNotNull(auth.getEnvironment());
         assertEquals(environment, auth.getEnvironment().getValue());
+
+        auth = CieloLioAuth.newBuilder()
+            .withClientId(clientId)
+            .withAccessToken(accessToken)
+            .withMerchantId(merchantId)
+            .withEnvironment(environment)
+            .build();
+
+        assertNotNull(auth);
+        assertEquals(clientId, auth.getClientId());
+        assertEquals(accessToken, auth.getAccessToken());
+        assertEquals(merchantId, auth.getMerchantId());
+        assertNotNull(auth.getEnvironment());
+        assertEquals(environment, auth.getEnvironment().getValue());
     }
 }

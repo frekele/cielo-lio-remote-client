@@ -31,6 +31,17 @@ public final class CieloLioAuth implements Serializable {
         this.environment = EnvironmentCieloLioEnum.fromValue(environment);
     }
 
+    private CieloLioAuth(Builder builder) {
+        clientId = builder.clientId;
+        accessToken = builder.accessToken;
+        merchantId = builder.merchantId;
+        environment = builder.environment;
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public String getClientId() {
         return clientId;
     }
@@ -45,5 +56,47 @@ public final class CieloLioAuth implements Serializable {
 
     public EnvironmentCieloLioEnum getEnvironment() {
         return environment;
+    }
+
+    public static final class Builder {
+
+        private String clientId;
+
+        private String accessToken;
+
+        private String merchantId;
+
+        private EnvironmentCieloLioEnum environment;
+
+        private Builder() {
+        }
+
+        public Builder withClientId(String val) {
+            clientId = val;
+            return this;
+        }
+
+        public Builder withAccessToken(String val) {
+            accessToken = val;
+            return this;
+        }
+
+        public Builder withMerchantId(String val) {
+            merchantId = val;
+            return this;
+        }
+
+        public Builder withEnvironment(EnvironmentCieloLioEnum val) {
+            environment = val;
+            return this;
+        }
+
+        public Builder withEnvironment(String val) {
+            return withEnvironment(EnvironmentCieloLioEnum.fromValue(val));
+        }
+
+        public CieloLioAuth build() {
+            return new CieloLioAuth(this);
+        }
     }
 }

@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,6 +69,27 @@ public class Order implements CieloLioModel {
 
     public Order() {
         super();
+    }
+
+    private Order(Builder builder) {
+        setId(builder.id);
+        setNumber(builder.number);
+        setReference(builder.reference);
+        setStatus(builder.status);
+        setNotes(builder.notes);
+        setPrice(builder.price);
+        setRemaining(builder.remaining);
+        setOrderType(builder.orderType);
+        setMerchant(builder.merchant);
+        setSourceId(builder.sourceId);
+        setCreatedAt(builder.createdAt);
+        setUpdatedAt(builder.updatedAt);
+        setItems(builder.items);
+        setTransactions(builder.transactions);
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -180,5 +202,139 @@ public class Order implements CieloLioModel {
 
     public void setTransactions(List<OrderTransaction> transactions) {
         this.transactions = transactions;
+    }
+
+    public static final class Builder {
+
+        private String id;
+
+        private String number;
+
+        private String reference;
+
+        private OrderStatusEnum status;
+
+        private String notes;
+
+        private BigDecimal price;
+
+        private BigDecimal remaining;
+
+        private String orderType;
+
+        private String merchant;
+
+        private String sourceId;
+
+        private OffsetDateTime createdAt;
+
+        private OffsetDateTime updatedAt;
+
+        private List<OrderItem> items;
+
+        private List<OrderTransaction> transactions;
+
+        private Builder() {
+        }
+
+        public Builder withId(String val) {
+            id = val;
+            return this;
+        }
+
+        public Builder withNumber(String val) {
+            number = val;
+            return this;
+        }
+
+        public Builder withReference(String val) {
+            reference = val;
+            return this;
+        }
+
+        public Builder withStatus(OrderStatusEnum val) {
+            status = val;
+            return this;
+        }
+
+        public Builder withNotes(String val) {
+            notes = val;
+            return this;
+        }
+
+        public Builder withPrice(BigDecimal val) {
+            price = val;
+            return this;
+        }
+
+        public Builder withRemaining(BigDecimal val) {
+            remaining = val;
+            return this;
+        }
+
+        public Builder withOrderType(String val) {
+            orderType = val;
+            return this;
+        }
+
+        public Builder withMerchant(String val) {
+            merchant = val;
+            return this;
+        }
+
+        public Builder withSourceId(String val) {
+            sourceId = val;
+            return this;
+        }
+
+        public Builder withCreatedAt(OffsetDateTime val) {
+            createdAt = val;
+            return this;
+        }
+
+        public Builder withUpdatedAt(OffsetDateTime val) {
+            updatedAt = val;
+            return this;
+        }
+
+        public Builder withItems(List<OrderItem> val) {
+            this.initItens();
+            items.addAll(val);
+            return this;
+        }
+
+        public Builder withItem(OrderItem val) {
+            this.initItens();
+            items.add(val);
+            return this;
+        }
+
+        public Builder withTransactions(List<OrderTransaction> val) {
+            this.initTransactions();
+            transactions.addAll(val);
+            return this;
+        }
+
+        public Builder withTransaction(OrderTransaction val) {
+            this.initTransactions();
+            transactions.add(val);
+            return this;
+        }
+
+        private void initItens() {
+            if (items == null) {
+                items = new ArrayList<>();
+            }
+        }
+
+        private void initTransactions() {
+            if (transactions == null) {
+                transactions = new ArrayList<>();
+            }
+        }
+
+        public Order build() {
+            return new Order(this);
+        }
     }
 }

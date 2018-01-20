@@ -30,7 +30,11 @@ public class OrderTest {
         OffsetDateTime createdAt = OffsetDateTime.now();
         OffsetDateTime updatedAt = OffsetDateTime.now().plusHours(6);
         List<OrderItem> items = new ArrayList<>();
+        OrderItem orderItem = OrderItem.newBuilder().build();
+        items.add(orderItem);
         List<OrderTransaction> transactions = new ArrayList<>();
+        OrderTransaction orderTransaction = OrderTransaction.newBuilder().build();
+        transactions.add(orderTransaction);
 
         Order order = new Order();
         order.setId(idOrder);
@@ -63,5 +67,47 @@ public class OrderTest {
         assertEquals(updatedAt, order.getUpdatedAt());
         assertEquals(items, order.getItems());
         assertEquals(transactions, order.getTransactions());
+
+        order = Order.newBuilder()
+            .withId(idOrder)
+            .withNumber(number)
+            .withReference(reference)
+            .withStatus(status)
+            .withNotes(notes)
+            .withPrice(price)
+            .withRemaining(remaining)
+            .withOrderType(orderType)
+            .withMerchant(merchant)
+            .withSourceId(sourceId)
+            .withCreatedAt(createdAt)
+            .withUpdatedAt(updatedAt)
+            .withItems(items)
+            .withTransactions(transactions)
+            .build();
+
+        assertNotNull(order);
+        assertEquals(idOrder, order.getId());
+        assertEquals(number, order.getNumber());
+        assertEquals(reference, order.getReference());
+        assertEquals(status, order.getStatus());
+        assertEquals(notes, order.getNotes());
+        assertEquals(price, order.getPrice());
+        assertEquals(remaining, order.getRemaining());
+        assertEquals(orderType, order.getOrderType());
+        assertEquals(merchant, order.getMerchant());
+        assertEquals(sourceId, order.getSourceId());
+        assertEquals(createdAt, order.getCreatedAt());
+        assertEquals(updatedAt, order.getUpdatedAt());
+        assertEquals(items, order.getItems());
+        assertEquals(transactions, order.getTransactions());
+
+        order = Order.newBuilder()
+            .withItem(orderItem)
+            .withTransaction(orderTransaction)
+            .build();
+        assertNotNull(order.getItems());
+        assertEquals(orderItem, order.getItems().get(0));
+        assertNotNull(order.getTransactions());
+        assertEquals(orderTransaction, order.getTransactions().get(0));
     }
 }

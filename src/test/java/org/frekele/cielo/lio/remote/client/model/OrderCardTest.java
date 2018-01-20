@@ -22,5 +22,14 @@ public class OrderCardTest {
         assertNotNull(orderCard);
         assertEquals(brand, orderCard.getBrand());
         assertEquals(mask, orderCard.getMask());
+
+        orderCard = OrderCard.newBuilder()
+            .withBrand(brand)
+            .withMask(mask)
+            .build();
+
+        assertNotNull(orderCard);
+        assertEquals(brand, orderCard.getBrand());
+        assertEquals(mask, orderCard.getMask());
     }
 }

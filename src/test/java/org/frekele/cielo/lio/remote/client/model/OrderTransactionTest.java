@@ -68,6 +68,45 @@ public class OrderTransactionTest {
         assertEquals(authorizationCode, orderTransaction.getAuthorizationCode());
         assertEquals(number, orderTransaction.getNumber());
         assertEquals(amount, orderTransaction.getAmount());
+        assertEquals(transactionType, orderTransaction.getTransactionType());
+        assertEquals(createdAt, orderTransaction.getCreatedAt());
+        assertEquals(updatedAt, orderTransaction.getUpdatedAt());
+
+        assertEquals(orderPaymentProduct, orderTransaction.getOrderPaymentProduct());
+        assertEquals(orderPaymentProductPrimaryProductName, orderTransaction.getOrderPaymentProduct().getPrimaryProductName());
+        assertEquals(orderPaymentProductSecondaryProductName, orderTransaction.getOrderPaymentProduct().getSecondaryProductName());
+        assertEquals(orderPaymentProductNumberOfQuotas, orderTransaction.getOrderPaymentProduct().getNumberOfQuotas());
+
+        assertEquals(card, orderTransaction.getCard());
+        assertEquals(cardBrand, orderTransaction.getCard().getBrand());
+        assertEquals(cardMask, orderTransaction.getCard().getMask());
+
+        orderTransaction = OrderTransaction.newBuilder()
+            .withId(idOrderTransaction)
+            .withUuid(uuid)
+            .withExternalId(externalId)
+            .withStatus(status)
+            .withDescription(description)
+            .withTerminalNumber(terminalNumber)
+            .withAuthorizationCode(authorizationCode)
+            .withNumber(number)
+            .withAmount(amount)
+            .withTransactionType(transactionType)
+            .withCreatedAt(createdAt)
+            .withUpdatedAt(updatedAt)
+            .withOrderPaymentProduct(orderPaymentProduct)
+            .withCard(card)
+            .build();
+
+        assertNotNull(orderTransaction);
+        assertEquals(idOrderTransaction, orderTransaction.getId());
+        assertEquals(uuid, orderTransaction.getUuid());
+        assertEquals(externalId, orderTransaction.getExternalId());
+        assertEquals(status, orderTransaction.getStatus());
+        assertEquals(description, orderTransaction.getDescription());
+        assertEquals(terminalNumber, orderTransaction.getTerminalNumber());
+        assertEquals(authorizationCode, orderTransaction.getAuthorizationCode());
+        assertEquals(number, orderTransaction.getNumber());
         assertEquals(amount, orderTransaction.getAmount());
         assertEquals(transactionType, orderTransaction.getTransactionType());
         assertEquals(createdAt, orderTransaction.getCreatedAt());

@@ -28,6 +28,15 @@ public class OrderCard implements CieloLioModel {
         this.mask = mask;
     }
 
+    private OrderCard(Builder builder) {
+        setBrand(builder.brand);
+        setMask(builder.mask);
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public String getBrand() {
         return brand;
     }
@@ -42,5 +51,29 @@ public class OrderCard implements CieloLioModel {
 
     public void setMask(String mask) {
         this.mask = mask;
+    }
+
+    public static final class Builder {
+
+        private String brand;
+
+        private String mask;
+
+        private Builder() {
+        }
+
+        public Builder withBrand(String val) {
+            brand = val;
+            return this;
+        }
+
+        public Builder withMask(String val) {
+            mask = val;
+            return this;
+        }
+
+        public OrderCard build() {
+            return new OrderCard(this);
+        }
     }
 }

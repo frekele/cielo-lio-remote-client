@@ -54,5 +54,34 @@ public class OrderItemTest {
         assertEquals(reference, orderItem.getReference());
         assertEquals(createdAt, orderItem.getCreatedAt());
         assertEquals(updatedAt, orderItem.getUpdatedAt());
+
+        orderItem = OrderItem.newBuilder()
+            .withId(idOrderItem)
+            .withUuid(uuid)
+            .withSku(sku)
+            .withName(name)
+            .withDescription(description)
+            .withUnitPrice(unitPrice)
+            .withQuantity(quantity)
+            .withUnitOfMeasure(unitOfMeasure)
+            .withDetails(details)
+            .withReference(reference)
+            .withCreatedAt(createdAt)
+            .withUpdatedAt(updatedAt)
+            .build();
+
+        assertNotNull(orderItem);
+        assertEquals(idOrderItem, orderItem.getId());
+        assertEquals(uuid, orderItem.getUuid());
+        assertEquals(sku, orderItem.getSku());
+        assertEquals(name, orderItem.getName());
+        assertEquals(description, orderItem.getDescription());
+        assertEquals(unitPrice, orderItem.getUnitPrice());
+        assertEquals(quantity, orderItem.getQuantity());
+        assertEquals(unitOfMeasure, orderItem.getUnitOfMeasure());
+        assertEquals(details, orderItem.getDetails());
+        assertEquals(reference, orderItem.getReference());
+        assertEquals(createdAt, orderItem.getCreatedAt());
+        assertEquals(updatedAt, orderItem.getUpdatedAt());
     }
 }
