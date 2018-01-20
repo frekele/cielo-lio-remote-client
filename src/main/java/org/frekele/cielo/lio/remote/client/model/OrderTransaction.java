@@ -64,7 +64,7 @@ public class OrderTransaction implements CieloLioModel {
     private OffsetDateTime updatedAt;
 
     @JsonProperty("payment_fields")
-    private OrderPaymentProduct orderPaymentProduct;
+    private OrderPaymentProduct paymentProduct;
 
     private OrderCard card;
 
@@ -85,7 +85,7 @@ public class OrderTransaction implements CieloLioModel {
         setTransactionType(builder.transactionType);
         setCreatedAt(builder.createdAt);
         setUpdatedAt(builder.updatedAt);
-        setOrderPaymentProduct(builder.orderPaymentProduct);
+        setPaymentProduct(builder.paymentProduct);
         setCard(builder.card);
     }
 
@@ -189,12 +189,12 @@ public class OrderTransaction implements CieloLioModel {
         this.updatedAt = updatedAt;
     }
 
-    public OrderPaymentProduct getOrderPaymentProduct() {
-        return orderPaymentProduct;
+    public OrderPaymentProduct getPaymentProduct() {
+        return paymentProduct;
     }
 
-    public void setOrderPaymentProduct(OrderPaymentProduct orderPaymentProduct) {
-        this.orderPaymentProduct = orderPaymentProduct;
+    public void setPaymentProduct(OrderPaymentProduct paymentProduct) {
+        this.paymentProduct = paymentProduct;
     }
 
     public OrderCard getCard() {
@@ -231,7 +231,7 @@ public class OrderTransaction implements CieloLioModel {
 
         private OffsetDateTime updatedAt;
 
-        private OrderPaymentProduct orderPaymentProduct;
+        private OrderPaymentProduct paymentProduct;
 
         private OrderCard card;
 
@@ -298,8 +298,8 @@ public class OrderTransaction implements CieloLioModel {
             return this;
         }
 
-        public Builder withOrderPaymentProduct(OrderPaymentProduct val) {
-            orderPaymentProduct = val;
+        public Builder withPaymentProduct(OrderPaymentProduct val) {
+            paymentProduct = val;
             return this;
         }
 

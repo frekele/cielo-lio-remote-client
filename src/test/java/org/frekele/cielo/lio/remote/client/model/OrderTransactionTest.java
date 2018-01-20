@@ -55,7 +55,7 @@ public class OrderTransactionTest {
         orderTransaction.setTransactionType(transactionType);
         orderTransaction.setCreatedAt(createdAt);
         orderTransaction.setUpdatedAt(updatedAt);
-        orderTransaction.setOrderPaymentProduct(orderPaymentProduct);
+        orderTransaction.setPaymentProduct(orderPaymentProduct);
         orderTransaction.setCard(card);
 
         assertNotNull(orderTransaction);
@@ -72,10 +72,10 @@ public class OrderTransactionTest {
         assertEquals(createdAt, orderTransaction.getCreatedAt());
         assertEquals(updatedAt, orderTransaction.getUpdatedAt());
 
-        assertEquals(orderPaymentProduct, orderTransaction.getOrderPaymentProduct());
-        assertEquals(orderPaymentProductPrimaryProductName, orderTransaction.getOrderPaymentProduct().getPrimaryProductName());
-        assertEquals(orderPaymentProductSecondaryProductName, orderTransaction.getOrderPaymentProduct().getSecondaryProductName());
-        assertEquals(orderPaymentProductNumberOfQuotas, orderTransaction.getOrderPaymentProduct().getNumberOfQuotas());
+        assertEquals(orderPaymentProduct, orderTransaction.getPaymentProduct());
+        assertEquals(orderPaymentProductPrimaryProductName, orderTransaction.getPaymentProduct().getPrimaryProductName());
+        assertEquals(orderPaymentProductSecondaryProductName, orderTransaction.getPaymentProduct().getSecondaryProductName());
+        assertEquals(orderPaymentProductNumberOfQuotas, orderTransaction.getPaymentProduct().getNumberOfQuotas());
 
         assertEquals(card, orderTransaction.getCard());
         assertEquals(cardBrand, orderTransaction.getCard().getBrand());
@@ -94,7 +94,7 @@ public class OrderTransactionTest {
             .withTransactionType(transactionType)
             .withCreatedAt(createdAt)
             .withUpdatedAt(updatedAt)
-            .withOrderPaymentProduct(orderPaymentProduct)
+            .withPaymentProduct(orderPaymentProduct)
             .withCard(card)
             .build();
 
@@ -112,10 +112,10 @@ public class OrderTransactionTest {
         assertEquals(createdAt, orderTransaction.getCreatedAt());
         assertEquals(updatedAt, orderTransaction.getUpdatedAt());
 
-        assertEquals(orderPaymentProduct, orderTransaction.getOrderPaymentProduct());
-        assertEquals(orderPaymentProductPrimaryProductName, orderTransaction.getOrderPaymentProduct().getPrimaryProductName());
-        assertEquals(orderPaymentProductSecondaryProductName, orderTransaction.getOrderPaymentProduct().getSecondaryProductName());
-        assertEquals(orderPaymentProductNumberOfQuotas, orderTransaction.getOrderPaymentProduct().getNumberOfQuotas());
+        assertEquals(orderPaymentProduct, orderTransaction.getPaymentProduct());
+        assertEquals(orderPaymentProductPrimaryProductName, orderTransaction.getPaymentProduct().getPrimaryProductName());
+        assertEquals(orderPaymentProductSecondaryProductName, orderTransaction.getPaymentProduct().getSecondaryProductName());
+        assertEquals(orderPaymentProductNumberOfQuotas, orderTransaction.getPaymentProduct().getNumberOfQuotas());
 
         assertEquals(card, orderTransaction.getCard());
         assertEquals(cardBrand, orderTransaction.getCard().getBrand());

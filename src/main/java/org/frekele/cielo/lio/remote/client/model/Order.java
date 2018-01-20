@@ -298,24 +298,34 @@ public class Order implements CieloLioModel {
         }
 
         public Builder withItems(List<OrderItem> val) {
+            items = val;
+            return this;
+        }
+
+        public Builder withTransactions(List<OrderTransaction> val) {
+            transactions = val;
+            return this;
+        }
+
+        public Builder addItems(List<OrderItem> val) {
             this.initItens();
             items.addAll(val);
             return this;
         }
 
-        public Builder withItem(OrderItem val) {
+        public Builder addItem(OrderItem val) {
             this.initItens();
             items.add(val);
             return this;
         }
 
-        public Builder withTransactions(List<OrderTransaction> val) {
+        public Builder addTransactions(List<OrderTransaction> val) {
             this.initTransactions();
             transactions.addAll(val);
             return this;
         }
 
-        public Builder withTransaction(OrderTransaction val) {
+        public Builder addTransaction(OrderTransaction val) {
             this.initTransactions();
             transactions.add(val);
             return this;

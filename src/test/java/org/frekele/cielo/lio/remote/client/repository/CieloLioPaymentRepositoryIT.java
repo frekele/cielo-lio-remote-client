@@ -23,8 +23,8 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author frekele - Leandro Kersting de Freitas
@@ -35,6 +35,10 @@ public class CieloLioPaymentRepositoryIT {
     private CieloLioPaymentRepository repository;
 
     private ObjectMapper mapper = new ObjectMapper();
+
+    String numberOrder;
+
+    String referenceOrder;
 
     private String idOrder;
 
@@ -55,24 +59,33 @@ public class CieloLioPaymentRepositoryIT {
         String accessToken = System.getenv("CIELO_LIO_ACCESS_TOKEN");
         String merchantId = System.getenv("CIELO_LIO_MERCHANT_ID");
         EnvironmentCieloLioEnum environment = EnvironmentCieloLioEnum.SANDBOX;
-        CieloLioAuth auth = new CieloLioAuth(clientId, accessToken, merchantId, environment);
+        CieloLioAuth auth = CieloLioAuth.newBuilder()
+            .withClientId(clientId)
+            .withAccessToken(accessToken)
+            .withMerchantId(merchantId)
+            .withEnvironment(environment)
+            .build();
         ResteasyClient client = new ResteasyClientBuilder().build();
         repository = new CieloLioPaymentRepositoryImpl(client, auth);
 
-        order = new Order();
-        order.setStatus(OrderStatusEnum.DRAFT);
-        order.setNumber("12345");
-        order.setReference("PEDIDO #12345");
-        order.setNotes("Cliente Fulano de Tal");
-        order.setPrice(BigDecimal.valueOf(325.34));
-        order.setItems(new ArrayList<>());
-        OrderItem item = new OrderItem();
-        item.setSku("RTG-234-AQF-6587-C57");
-        item.setName("Mesa de Formica Branca");
-        item.setQuantity(1);
-        item.setUnitOfMeasure("UN");
-        item.setUnitPrice(BigDecimal.valueOf(325.34));
-        order.getItems().add(item);
+        numberOrder = "" + new Random().nextInt(6);
+        referenceOrder = "Order #" + numberOrder;
+        OrderItem item = OrderItem.newBuilder()
+            .withSku("RTG-234-AQF-6587-C57")
+            .withName("White Dining Table")
+            .withQuantity(1)
+            .withUnitOfMeasure("EACH")
+            .withUnitPrice(BigDecimal.valueOf(325.34))
+            .build();
+
+        order = Order.newBuilder()
+            .withStatus(OrderStatusEnum.DRAFT)
+            .withNumber(numberOrder)
+            .withReference(referenceOrder)
+            .withNotes("Consumer Jim Jonson")
+            .withPrice(BigDecimal.valueOf(325.34))
+            .addItem(item)
+            .build();
 
         System.out.println("new OrderCielo");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(order));
@@ -92,18 +105,20 @@ public class CieloLioPaymentRepositoryIT {
 
     @Test(dependsOnMethods = "testOrderPost")
     public void testOrderPut() throws Exception {
-        order.setNotes("Joao Da Silva");
+        order.setNotes("Consumer Edward Anthony");
         repository.orderPut(idOrder, order);
     }
 
     @Test(dependsOnMethods = "testOrderPut")
     public void testOrderPostItem() throws Exception {
-        orderItem2 = new OrderItem();
-        orderItem2.setSku("XPT-456-564-34554-3453");
-        orderItem2.setName("Cadeira de Madeira Branca");
-        orderItem2.setQuantity(4);
-        orderItem2.setUnitOfMeasure("UN");
-        orderItem2.setUnitPrice(BigDecimal.valueOf(103.10));
+        orderItem2 = OrderItem.newBuilder()
+            .withSku("XPT-456-564-34554-3453")
+            .withName("White Wood Chair")
+            .withQuantity(4)
+            .withUnitOfMeasure("EACH")
+            .withUnitPrice(BigDecimal.valueOf(103.10))
+            .build();
+
         order.getItems().add(orderItem2);
         BigDecimal orderPrice = orderItem2.getUnitPrice().multiply(BigDecimal.valueOf(orderItem2.getQuantity())).add(order.getPrice());
         order.setPrice(orderPrice);
@@ -150,24 +165,28 @@ public class CieloLioPaymentRepositoryIT {
 
     @Test(dependsOnMethods = "testOrderGet")
     public void testOrderPostTransaction() throws Exception {
-        orderTransaction = new OrderTransaction();
-        orderTransaction.setStatus(TransactionStatusEnum.CONFIRMED);
-        orderTransaction.setTerminalNumber((long) 12345678);
-        orderTransaction.setAuthorizationCode((long) 3458619);
-        orderTransaction.setNumber((long) 672836);
-        orderTransaction.setAmount(BigDecimal.valueOf(325.34));
-        orderTransaction.setTransactionType(TransactionTypeEnum.PAYMENT);
 
-        OrderPaymentProduct orderPaymentProduct = new OrderPaymentProduct();
-        orderPaymentProduct.setPrimaryProductName("CREDITO");
-        orderPaymentProduct.setSecondaryProductName("A VISTA");
-        orderPaymentProduct.setNumberOfQuotas(0);
-        orderTransaction.setOrderPaymentProduct(orderPaymentProduct);
+        OrderPaymentProduct orderPaymentProduct = OrderPaymentProduct.newBuilder()
+            .withPrimaryProductName("CREDITO")
+            .withSecondaryProductName("A VISTA")
+            .withNumberOfQuotas(0)
+            .build();
 
-        OrderCard orderCard = new OrderCard();
-        orderCard.setBrand(CardBrandEnum.VISA.getValue());
-        orderCard.setMask("************5487");
-        orderTransaction.setCard(orderCard);
+        OrderCard orderCard = OrderCard.newBuilder()
+            .withBrand(CardBrandEnum.VISA.getValue())
+            .withMask("************5487")
+            .build();
+
+        OrderTransaction orderTransaction = OrderTransaction.newBuilder()
+            .withStatus(TransactionStatusEnum.CONFIRMED)
+            .withTerminalNumber((long) 12345678)
+            .withAuthorizationCode((long) 3458619)
+            .withNumber((long) 672836)
+            .withAmount(BigDecimal.valueOf(325.34))
+            .withTransactionType(TransactionTypeEnum.PAYMENT)
+            .withPaymentProduct(orderPaymentProduct)
+            .withCard(orderCard)
+            .build();
 
         System.out.println("new OrderTransaction");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderTransaction));
@@ -190,7 +209,7 @@ public class CieloLioPaymentRepositoryIT {
 
     @Test(dependsOnMethods = "testOrderGetTransactions")
     public void testOrderGetByNumber() throws Exception {
-        List<Order> resultList = repository.orderGetByNumber("12345");
+        List<Order> resultList = repository.orderGetByNumber(numberOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
@@ -216,7 +235,7 @@ public class CieloLioPaymentRepositoryIT {
 
     @Test(dependsOnMethods = "testOrderPutOperationCloseAgain")
     public void testOrderGetByReference() throws Exception {
-        List<Order> resultList = repository.orderGetByReference("PEDIDO #12345");
+        List<Order> resultList = repository.orderGetByReference(referenceOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 

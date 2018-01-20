@@ -102,9 +102,18 @@ public class OrderTest {
         assertEquals(transactions, order.getTransactions());
 
         order = Order.newBuilder()
-            .withItem(orderItem)
-            .withTransaction(orderTransaction)
+            .addItems(items)
+            .addTransactions(transactions)
             .build();
+        assertNotNull(order);
+        assertEquals(items, order.getItems());
+        assertEquals(transactions, order.getTransactions());
+
+        order = Order.newBuilder()
+            .addItem(orderItem)
+            .addTransaction(orderTransaction)
+            .build();
+        assertNotNull(order);
         assertNotNull(order.getItems());
         assertEquals(orderItem, order.getItems().get(0));
         assertNotNull(order.getTransactions());
