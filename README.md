@@ -187,12 +187,13 @@ List<Order> resultList = repository.orderGetAll();
 
 #### Post Order Item
 ```java
-OrderItem orderItem = new OrderItem();
-orderItem.setSku("XPT-456-564-34554-3453");
-orderItem.setName("White Wood Chair");
-orderItem.setQuantity(4);
-orderItem.setUnitOfMeasure("EACH");
-orderItem.setUnitPrice(BigDecimal.valueOf(103.10));
+OrderItem orderItem = OrderItem.newBuilder()
+     .withSku("XPT-456-564-34554-3453")
+     .withName("White Wood Chair")
+     .withQuantity(4)
+     .withUnitOfMeasure("EACH")
+     .withUnitPrice(BigDecimal.valueOf(103.10))
+     .build();
 
 //Post
 String idOrderItem = repository.orderPostItem(idOrder, orderItem);
