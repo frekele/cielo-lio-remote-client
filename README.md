@@ -149,7 +149,7 @@ String idOrder = repository.orderPost(order);
 
 #### Put Order
 ```java
-//Change or ad more info.
+//Change or adD more info.
 order.setNotes("Consumer Edward Anthony");
 
 //Put
