@@ -45,7 +45,7 @@ public class MyService {
         String clientId = prop.getProperty("clientId");
         String accessToken = prop.getProperty("accessToken");
         String merchantId = prop.getProperty("merchantId");
-        String environment = prop.getProperty("environment");
+        String environment = prop.getProperty("environment"); // PRODUCTION OR SANDBOX
         CieloLioAuth auth = CieloLioAuth.newBuilder()
             .withClientId(clientId)
             .withAccessToken(accessToken)
