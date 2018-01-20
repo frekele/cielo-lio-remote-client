@@ -124,6 +124,7 @@ public class MyService {
 
 #### Post Order
 ```java
+//Build item
 OrderItem item = OrderItem.newBuilder()
      .withSku("RTG-234-AQF-6587-C57")
      .withName("White Dining Table")
@@ -132,6 +133,7 @@ OrderItem item = OrderItem.newBuilder()
      .withUnitPrice(BigDecimal.valueOf(325.34))
      .build();
 
+//Build order and add item.
 Order order = Order.newBuilder()
     .withStatus(OrderStatusEnum.DRAFT)
     .withNumber("12345")
@@ -187,6 +189,7 @@ List<Order> resultList = repository.orderGetAll();
 
 #### Post Order Item
 ```java
+//Build item
 OrderItem orderItem = OrderItem.newBuilder()
      .withSku("XPT-456-564-34554-3453")
      .withName("White Wood Chair")
@@ -227,24 +230,30 @@ Order orderResult = repository.orderGetItems(idOrder);
 
 #### Post Order Transaction (Only in SandBox)
 ```java
-OrderTransaction orderTransaction = new OrderTransaction();
-orderTransaction.setStatus(TransactionStatusEnum.CONFIRMED);
-orderTransaction.setTerminalNumber((long) 12345678);
-orderTransaction.setAuthorizationCode((long) 3458619);
-orderTransaction.setNumber((long) 672836);
-orderTransaction.setAmount(BigDecimal.valueOf(325.34));
-orderTransaction.setTransactionType(TransactionTypeEnum.PAYMENT);
+//Build paymentProduct
+OrderPaymentProduct orderPaymentProduct = OrderPaymentProduct.newBuilder()
+    .withPrimaryProductName("CREDITO")
+    .withSecondaryProductName("A VISTA")
+    .withNumberOfQuotas(0)
+    .build();
 
-OrderPaymentProduct orderPaymentProduct = new OrderPaymentProduct();
-orderPaymentProduct.setPrimaryProductName("CREDITO");
-orderPaymentProduct.setSecondaryProductName("A VISTA");
-orderPaymentProduct.setNumberOfQuotas(0);
-orderTransaction.setOrderPaymentProduct(orderPaymentProduct);
+//Build card
+OrderCard orderCard = OrderCard.newBuilder()
+    .withBrand(CardBrandEnum.VISA.getValue())
+    .withMask("************5487")
+    .build();
 
-OrderCard orderCard = new OrderCard();
-orderCard.setBrand(CardBrandEnum.VISA.getValue());
-orderCard.setMask("************5487");
-orderTransaction.setCard(orderCard);
+//Build transaction
+OrderTransaction orderTransaction = OrderTransaction.newBuilder()
+    .withStatus(TransactionStatusEnum.CONFIRMED)
+    .withTerminalNumber((long) 12345678)
+    .withAuthorizationCode((long) 3458619)
+    .withNumber((long) 672836)
+    .withAmount(BigDecimal.valueOf(325.34))
+    .withTransactionType(TransactionTypeEnum.PAYMENT)
+    .withPaymentProduct(orderPaymentProduct)
+    .withCard(orderCard)
+    .build();
 
 //Post
 String idOrderTransaction = repository.orderPostTransaction(idOrder, orderTransaction);
