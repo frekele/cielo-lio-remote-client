@@ -124,20 +124,22 @@ public class MyService {
 
 #### Post Order
 ```java
-Order order = new Order();
-order.setStatus(OrderStatusEnum.DRAFT);
-order.setNumber("12345");
-order.setReference("Order #12345");
-order.setNotes("Consumer Jim Jonson");
-order.setPrice(BigDecimal.valueOf(325.34));
-order.setItems(new ArrayList<>());
-OrderItem item = new OrderItem();
-item.setSku("RTG-234-AQF-6587-C57");
-item.setName("White Dining Table");
-item.setQuantity(1);
-item.setUnitOfMeasure("EACH");
-item.setUnitPrice(BigDecimal.valueOf(325.34));
-order.getItems().add(item);
+OrderItem item = OrderItem.newBuilder()
+     .withSku("RTG-234-AQF-6587-C57")
+     .withName("White Dining Table")
+     .withQuantity(1)
+     .withUnitOfMeasure("EACH")
+     .withUnitPrice(BigDecimal.valueOf(325.34))
+     .build();
+
+Order order = Order.newBuilder()
+    .withStatus(OrderStatusEnum.DRAFT)
+    .withNumber("12345")
+    .withReference("Order #12345")
+    .withNotes("Consumer Jim Jonson")
+    .withPrice(BigDecimal.valueOf(325.34))
+    .addItem(item)
+    .build();
 
 //Post
 String idOrder = repository.orderPost(order);
