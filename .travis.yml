@@ -33,7 +33,7 @@ install:
 before_script:
 
 script:
-  - ${MVN_HOME}/bin/mvn --settings .travis/settings.xml install -Dgpg.skip -Dmaven.javadoc.skip=true -Dmaven.source.skip=true -B -V
+  - ${MVN_HOME}/bin/mvn --settings .travis/settings.xml install -Dgpg.skip -Dmaven.javadoc.skip=true -Dmaven.source.skip=true -DskipITs=false -B -V
 
 before_cache:
 

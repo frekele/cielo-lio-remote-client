@@ -102,6 +102,8 @@
         <mockito-core.version>2.13.0</mockito-core.version>
         <jacoco.version>0.8.0</jacoco.version>
 
+        <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
@@ -111,6 +113,12 @@
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
         <versions-maven-plugin.version>2.5</versions-maven-plugin.version>
         <javadoc.additional.options>-Xdoclint:none</javadoc.additional.options>
+
+        <!-- mvn install -DskipITs=false : Skips Unit tests -->
+        <skipUTs>false</skipUTs>
+
+        <!-- mvn install -DskipITs=true : Skips Integration tests -->
+        <skipITs>true</skipITs>
     </properties>
 
     <dependencyManagement>
@@ -357,19 +365,50 @@
                 <version>${versions-maven-plugin.version}</version>
             </plugin>
 
+
+            <!-- CONFIGURA TESTE UNITARIO-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+
+            <!-- CONFIGURA TESTE DE INTEGRACAO-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
                 <executions>
                     <execution>
+                        <id>jacoco-initialize</id>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>report</id>
-                        <phase>test</phase>
+                        <id>jacoco-report</id>
+                        <phase>verify</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
