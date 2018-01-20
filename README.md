@@ -405,6 +405,21 @@ public interface CieloLioPaymentRepository extends Serializable {
 - https://hookbin.com/bin/Z8abPwXo
 
 
+#### Compile with Maven:
+```
+mvn clean install -Dgpg.skip
+```
+
+#### Compile with integration Tests:
+You need to add the environment variables to run the integration tests.
+ - CIELO_LIO_CLIENT_ID    = //Your Client-Id.
+ - CIELO_LIO_ACCESS_TOKEN = //Your Access-Token
+ - CIELO_LIO_MERCHANT_ID  = //Your Merchant-Id
+```
+mvn clean install -Dgpg.skip -DskipITs=false
+```
+
+
 frekele/cielo-lio-remote-client is **licensed** under the **[MIT License]**. The terms of the license are as follows:
 
     MIT License
