@@ -1,15 +1,18 @@
 package org.frekele.cielo.lio.remote.client.converter.serialize;
 
 import com.fasterxml.jackson.core.JsonGenerator;
+import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.time.OffsetDateTime;
 
 import static org.testng.Assert.*;
 
+@Listeners(InvokedMethodListener.class)
 public class OffsetDateTimeJsonSerializeTest {
 
     @Mock
