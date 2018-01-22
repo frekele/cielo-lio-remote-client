@@ -13,6 +13,7 @@ import org.frekele.cielo.lio.remote.client.model.OrderCard;
 import org.frekele.cielo.lio.remote.client.model.OrderItem;
 import org.frekele.cielo.lio.remote.client.model.OrderPaymentProduct;
 import org.frekele.cielo.lio.remote.client.model.OrderTransaction;
+import org.frekele.cielo.lio.remote.client.resteasy.LoggingFilter;
 import org.frekele.cielo.lio.remote.client.testng.InvokedMethodListener;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -65,7 +66,9 @@ public class CieloLioPaymentRepositoryIT {
             .withMerchantId(merchantId)
             .withEnvironment(environment)
             .build();
-        ResteasyClient client = new ResteasyClientBuilder().build();
+        ResteasyClient client = new ResteasyClientBuilder()
+            .register(LoggingFilter.class)
+            .build();
         repository = new CieloLioPaymentRepositoryImpl(client, auth);
 
         numberOrder = "" + new Random().nextInt(6);
