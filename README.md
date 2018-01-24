@@ -60,7 +60,7 @@ public class MyService {
         CieloLioRemoteRepository repository = new CieloLioRemoteRepositoryImpl(client, auth);
 
         List<Order> resultList = repository.findOrders();
-        Order order = repository.orderGet("5f182dec98-1866-47b0-b69d-471448911f");
+        Order order = repository.findOrder("5f182dec98-1866-47b0-b69d-471448911f");
 
         //Is important to close in end, or use CDI.
         client.close();
@@ -118,7 +118,7 @@ public class MyService {
 
     public void call() {
         List<Order> resultList = repository.findOrders();
-        Order order = repository.orderGet("5f182dec98-1866-47b0-b69d-471448911f");
+        Order order = repository.findOrder("5f182dec98-1866-47b0-b69d-471448911f");
     }
 }
 
