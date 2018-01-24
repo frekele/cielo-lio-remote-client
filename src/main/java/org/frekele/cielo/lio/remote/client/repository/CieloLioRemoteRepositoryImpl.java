@@ -19,7 +19,7 @@ import java.util.List;
  * @author frekele - Leandro Kersting de Freitas
  */
 @CieloLio
-public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository {
+public class CieloLioRemoteRepositoryImpl implements CieloLioRemoteRepository {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class CieloLioPaymentRepositoryImpl implements CieloLioPaymentRepository 
     private final CieloLioAuth auth;
 
     @Inject
-    public CieloLioPaymentRepositoryImpl(@CieloLio ResteasyClient client, @CieloLio CieloLioAuth auth) {
+    public CieloLioRemoteRepositoryImpl(@CieloLio ResteasyClient client, @CieloLio CieloLioAuth auth) {
         CieloLioUtils.throwInjection(client, auth);
         CieloLioUtils.throwAuth(auth);
         this.client = client;

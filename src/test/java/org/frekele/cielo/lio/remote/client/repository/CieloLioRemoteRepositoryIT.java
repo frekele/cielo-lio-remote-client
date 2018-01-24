@@ -31,9 +31,9 @@ import java.util.Random;
  * @author frekele - Leandro Kersting de Freitas
  */
 @Listeners(InvokedMethodListener.class)
-public class CieloLioPaymentRepositoryIT {
+public class CieloLioRemoteRepositoryIT {
 
-    private CieloLioPaymentRepository repository;
+    private CieloLioRemoteRepository repository;
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -69,7 +69,7 @@ public class CieloLioPaymentRepositoryIT {
         ResteasyClient client = new ResteasyClientBuilder()
             .register(LoggingFilter.class)
             .build();
-        repository = new CieloLioPaymentRepositoryImpl(client, auth);
+        repository = new CieloLioRemoteRepositoryImpl(client, auth);
 
         numberOrder = "" + new Random().nextInt(6);
         referenceOrder = "Order #" + numberOrder;

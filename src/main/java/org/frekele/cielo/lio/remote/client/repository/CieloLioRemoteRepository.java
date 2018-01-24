@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author frekele - Leandro Kersting de Freitas
  */
-public interface CieloLioPaymentRepository extends Serializable {
+public interface CieloLioRemoteRepository extends Serializable {
 
     /**
      * GET - Consultar todos os Pedidos

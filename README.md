@@ -55,7 +55,7 @@ public class MyService {
 
         //Build one client per thread, or use CDI Injection.
         ResteasyClient client = new ResteasyClientBuilder().build();
-        CieloLioPaymentRepository repository = new CieloLioPaymentRepositoryImpl(client, auth);
+        CieloLioRemoteRepository repository = new CieloLioRemoteRepositoryImpl(client, auth);
 
         List<Order> resultList = repository.orderGetAll();
         Order order = repository.orderGet("5f182dec98-1866-47b0-b69d-471448911f");
@@ -110,7 +110,7 @@ public class MyService {
 
     @Inject
     @CieloLio
-    private CieloLioPaymentRepository repository;
+    private CieloLioRemoteRepository repository;
 
     public void call() {
         List<Order> resultList = repository.orderGetAll();
@@ -288,10 +288,10 @@ repository.orderPutOperation(idOrder, OperationEnum.CLOSE);
 
 
 
-### CieloLioPaymentRepository Interface.
+### CieloLioRemoteRepository Interface.
 
 ```java
-public interface CieloLioPaymentRepository extends Serializable {
+public interface CieloLioRemoteRepository extends Serializable {
 
     /**
      * GET - Consultar todos os Pedidos
