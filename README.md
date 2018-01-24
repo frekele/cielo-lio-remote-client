@@ -13,7 +13,7 @@
 
 Built-based on the documentation: [https://developercielo.github.io/manual/cielo-lio](https://developercielo.github.io/manual/cielo-lio)
 
-Project built with RESTEasy 3.1.x + Jackson 2.x.x for use in Desktop and Web Applications.
+Project built with RESTEasy 3.1.x + Jackson 2.x.x.
 
 
 #### Supported Java Versions:
