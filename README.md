@@ -258,7 +258,7 @@ Order orderResult = repository.findOrderItem(idOrder, idOrderItem);
 
 #### Find Order Items - GET
 ```java
-Order orderResult = repository.findOrderItems(idOrder);
+List<OrderItem> resultList = repository.findOrderItems(idOrder);
 ```
 
 
