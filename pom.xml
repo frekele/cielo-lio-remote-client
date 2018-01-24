@@ -32,7 +32,7 @@
 
     <groupId>org.frekele.cielo</groupId>
     <artifactId>cielo-lio-remote-client</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
 
     <packaging>jar</packaging>
     <inceptionYear>2018</inceptionYear>
@@ -116,16 +116,12 @@
 
         <!-- mvn -DskipITs=false : Skips Unit tests -->
         <skipUTs>false</skipUTs>
-
         <!-- mvn -DskipITs=true : Skips Integration tests -->
         <skipITs>true</skipITs>
-
         <!-- mvn -Dmaven.javadoc.skip=true : Skips Generate JavaDoc .jar-->
         <maven.javadoc.skip>true</maven.javadoc.skip>
-
         <!-- mvn -Dmaven.source.skip=true : Skips Generate JavaSource .jar -->
         <maven.source.skip>true</maven.source.skip>
-
     </properties>
 
     <dependencyManagement>
