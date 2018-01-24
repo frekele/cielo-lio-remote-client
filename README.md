@@ -466,7 +466,7 @@ String json = "{ \"number\": \"0992f1d5cee540d9a9648f4d6a9e4aa6\", \"reference\"
 Order order = mapper.readValue(json, Order.class);
 ```
 
-#### Json --> List<Object>
+#### Json --> List
 ```java
 ObjectMapper mapper = new ObjectMapper();
 String jsonArray = "[{ \"number\": \"0992f1d5cee540d9a9648f4d6a9e4aa6\", \"reference\": \"Order #1234\", \"status\": \"DRAFT\", ........ }]";
@@ -480,7 +480,7 @@ Order order = Order.newBuilder().build();
 String json = objectMapper.writeValueAsString(order);
 ```
 
-#### List<Object> --> Json
+#### List --> Json
 ```java
 ObjectMapper mapper = new ObjectMapper();
 List<Order> listOrder = new ArrayList<>();
