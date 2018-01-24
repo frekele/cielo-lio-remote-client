@@ -457,6 +457,39 @@ public interface CieloLioRemoteRepository extends Serializable {
 }
 ```
 
+### If you need to convert Json or Objects manually, do so:
+
+#### Json --> Object
+```java
+ObjectMapper mapper = new ObjectMapper();
+String json = "{ \"number\": \"0992f1d5cee540d9a9648f4d6a9e4aa6\", \"reference\": \"Order #1234\", \"status\": \"DRAFT\", ........ }";
+Order order = mapper.readValue(json, Order.class);
+```
+
+#### Json --> List<Object>
+```java
+ObjectMapper mapper = new ObjectMapper();
+String jsonArray = "[{ \"number\": \"0992f1d5cee540d9a9648f4d6a9e4aa6\", \"reference\": \"Order #1234\", \"status\": \"DRAFT\", ........ }]";
+List<Order> listOrder = mapper.readValue(jsonArray, new TypeReference<List<Order>>(){});
+```
+
+#### Object --> Json
+```java
+ObjectMapper mapper = new ObjectMapper();
+Order order = Order.newBuilder().build();
+String json = objectMapper.writeValueAsString(order);
+```
+
+#### List<Object> --> Json
+```java
+ObjectMapper mapper = new ObjectMapper();
+List<Order> listOrder = new ArrayList<>();
+listOrder.add(order1);
+listOrder.add(order2);
+String jsonArray = objectMapper.writeValueAsString(listOrder);
+```
+
+
 ### Cielo Lio Order Management - Travis CI Tests - Push Notification (Captured HTTP requests)
 - https://hookbin.com/bin/Z8abPwXo
 
