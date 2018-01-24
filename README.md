@@ -13,12 +13,11 @@
 
 Built-based on the documentation: [https://developercielo.github.io/manual/cielo-lio](https://developercielo.github.io/manual/cielo-lio)
 
-Project built with RESTEasy 3.1.x + Jackson 2.x.x.
-
 
 #### Supported Java Versions:
 - requires Java 8 (or higher) at runtime.
 
+Project built with RESTEasy 3.1.x + Jackson 2.x.x.
 
 #### Maven dependency:
 ```xml
