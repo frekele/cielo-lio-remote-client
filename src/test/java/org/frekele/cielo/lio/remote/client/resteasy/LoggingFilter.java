@@ -24,7 +24,7 @@ public class LoggingFilter implements ClientResponseFilter, ClientRequestFilter 
     public void filter(ClientRequestContext requestContext, ClientResponseContext responseContext) throws IOException {
         System.out.println("------------------------------------------------------------------");
         System.out.println("<-- Response Filter:");
-        System.out.println("--> Response - Status= " + responseContext.getStatus());
+        System.out.println("<-- Response - Status= " + responseContext.getStatus());
         System.out.println("------------------------------------------------------------------");
     }
 }
