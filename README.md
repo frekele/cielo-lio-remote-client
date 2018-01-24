@@ -145,7 +145,7 @@ public class CustomLoggingFilter implements ClientResponseFilter, ClientRequestF
     @Override
     public void filter(ClientRequestContext requestContext, ClientResponseContext responseContext) throws IOException {
         this.getLogger().debug("<-- Response LoggingFilter:");
-        this.getLogger().debug("--> Response LoggingFilter: Status = " + responseContext.getStatus());
+        this.getLogger().debug("<-- Response LoggingFilter: Status = " + responseContext.getStatus());
         // Add more logs as you want.
     }
 
