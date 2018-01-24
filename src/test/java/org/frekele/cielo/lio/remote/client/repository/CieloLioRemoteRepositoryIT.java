@@ -101,19 +101,19 @@ public class CieloLioRemoteRepositoryIT {
     }
 
     @Test
-    public void testOrderPost() throws Exception {
-        idOrder = repository.orderPost(order);
+    public void testCreateOrder() throws Exception {
+        idOrder = repository.createOrder(order);
         System.out.println("idOrder:" + idOrder);
     }
 
-    @Test(dependsOnMethods = "testOrderPost")
-    public void testOrderPut() throws Exception {
+    @Test(dependsOnMethods = "testCreateOrder")
+    public void testUpdateOrder() throws Exception {
         order.setNotes("Consumer Edward Anthony");
-        repository.orderPut(idOrder, order);
+        repository.updateOrder(idOrder, order);
     }
 
-    @Test(dependsOnMethods = "testOrderPut")
-    public void testOrderPostItem() throws Exception {
+    @Test(dependsOnMethods = "testUpdateOrder")
+    public void testCreateOrderItem() throws Exception {
         orderItem2 = OrderItem.newBuilder()
             .withSku("XPT-456-564-34554-3453")
             .withName("White Wood Chair")
@@ -128,46 +128,46 @@ public class CieloLioRemoteRepositoryIT {
         System.out.println("new OrderItem");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderItem2));
 
-        idOrderItem2 = repository.orderPostItem(idOrder, orderItem2);
+        idOrderItem2 = repository.createOrderItem(idOrder, orderItem2);
         System.out.println("idOrder:" + idOrderItem2);
     }
 
-    @Test(dependsOnMethods = "testOrderPostItem")
-    public void testOrderPutItem() throws Exception {
+    @Test(dependsOnMethods = "testCreateOrderItem")
+    public void testUpdateOrderItem() throws Exception {
         orderItem2.setUnitOfMeasure("CX");
-        repository.orderPutItem(idOrder, idOrderItem2, orderItem2);
+        repository.updateOrderItem(idOrder, idOrderItem2, orderItem2);
     }
 
-    @Test(dependsOnMethods = "testOrderPutItem")
-    public void testOrderGetItem() throws Exception {
-        OrderItem orderItemResult = repository.orderGetItem(idOrder, idOrderItem2);
+    @Test(dependsOnMethods = "testUpdateOrderItem")
+    public void testFindOrderItem() throws Exception {
+        OrderItem orderItemResult = repository.findOrderItem(idOrder, idOrderItem2);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderItemResult));
     }
 
-    @Test(dependsOnMethods = "testOrderGetItem")
-    public void testOrderGetItems() throws Exception {
-        List<OrderItem> resultList = repository.orderGetItems(idOrder);
+    @Test(dependsOnMethods = "testFindOrderItem")
+    public void testFindOrderItems() throws Exception {
+        List<OrderItem> resultList = repository.findOrderItems(idOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
-    @Test(dependsOnMethods = "testOrderGetItems")
-    public void testOrderDeleteItem() throws Exception {
-        repository.orderDeleteItem(idOrder, idOrderItem2);
+    @Test(dependsOnMethods = "testFindOrderItems")
+    public void testDeleteOrderItem() throws Exception {
+        repository.deleteOrderItem(idOrder, idOrderItem2);
     }
 
-    @Test(dependsOnMethods = "testOrderDeleteItem")
-    public void testOrderPutOperation() throws Exception {
-        repository.orderPutOperation(idOrder, OperationEnum.PLACE);
+    @Test(dependsOnMethods = "testDeleteOrderItem")
+    public void testUpdateOrderStatus() throws Exception {
+        repository.updateOrderStatus(idOrder, OperationEnum.PLACE);
     }
 
-    @Test(dependsOnMethods = "testOrderPutOperation")
-    public void testOrderGet() throws Exception {
-        Order orderResult = repository.orderGet(idOrder);
+    @Test(dependsOnMethods = "testUpdateOrderStatus")
+    public void testFindOrder() throws Exception {
+        Order orderResult = repository.findOrder(idOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderResult));
     }
 
-    @Test(dependsOnMethods = "testOrderGet")
-    public void testOrderPostTransaction() throws Exception {
+    @Test(dependsOnMethods = "testFindOrder")
+    public void testCreateOrderTransaction() throws Exception {
 
         OrderPaymentProduct orderPaymentProduct = OrderPaymentProduct.newBuilder()
             .withPrimaryProductName("CREDITO")
@@ -194,69 +194,69 @@ public class CieloLioRemoteRepositoryIT {
         System.out.println("new OrderTransaction");
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderTransaction));
 
-        idOorderTransaction = repository.orderPostTransaction(idOrder, orderTransaction);
+        idOorderTransaction = repository.createOrderTransaction(idOrder, orderTransaction);
         System.out.println("idOrder:" + idOorderTransaction);
     }
 
-    @Test(dependsOnMethods = "testOrderPostTransaction")
-    public void testOrderGetTransaction() throws Exception {
-        OrderTransaction orderTransaction = repository.orderGetTransaction(idOrder, idOorderTransaction);
+    @Test(dependsOnMethods = "testCreateOrderTransaction")
+    public void testFindOrderTransaction() throws Exception {
+        OrderTransaction orderTransaction = repository.findOrderTransaction(idOrder, idOorderTransaction);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orderTransaction));
     }
 
-    @Test(dependsOnMethods = "testOrderGetTransaction")
-    public void testOrderGetTransactions() throws Exception {
-        List<OrderTransaction> resultList = repository.orderGetTransactions(idOrder);
+    @Test(dependsOnMethods = "testFindOrderTransaction")
+    public void testFindOrderTransactions() throws Exception {
+        List<OrderTransaction> resultList = repository.findOrderTransactions(idOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
-    @Test(dependsOnMethods = "testOrderGetTransactions")
-    public void testOrderGetByNumber() throws Exception {
-        List<Order> resultList = repository.orderGetByNumber(numberOrder);
+    @Test(dependsOnMethods = "testFindOrderTransactions")
+    public void testFindOrdersByNumber() throws Exception {
+        List<Order> resultList = repository.findOrdersByNumber(numberOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
-    @Test(dependsOnMethods = "testOrderGetByNumber")
-    public void testOrderPutOperationPay() throws Exception {
-        repository.orderPutOperation(idOrder, OperationEnum.PAY);
+    @Test(dependsOnMethods = "testFindOrdersByNumber")
+    public void testUpdateOrderStatusPay() throws Exception {
+        repository.updateOrderStatus(idOrder, OperationEnum.PAY);
     }
 
-    @Test(dependsOnMethods = "testOrderPutOperationPay")
-    public void testOrderPutOperationClose() throws Exception {
-        repository.orderPutOperation(idOrder, OperationEnum.CLOSE);
+    @Test(dependsOnMethods = "testUpdateOrderStatusPay")
+    public void testUpdateOrderStatusClose() throws Exception {
+        repository.updateOrderStatus(idOrder, OperationEnum.CLOSE);
     }
 
-    @Test(dependsOnMethods = "testOrderPutOperationClose")
-    public void testOrderPutOperationReOpenPay() throws Exception {
-        repository.orderPutOperation(idOrder, OperationEnum.PAY);
+    @Test(dependsOnMethods = "testUpdateOrderStatusClose")
+    public void testUpdateOrderStatusReOpenPay() throws Exception {
+        repository.updateOrderStatus(idOrder, OperationEnum.PAY);
     }
 
-    @Test(dependsOnMethods = "testOrderPutOperationReOpenPay")
-    public void testOrderPutOperationCloseAgain() throws Exception {
-        repository.orderPutOperation(idOrder, OperationEnum.CLOSE);
+    @Test(dependsOnMethods = "testUpdateOrderStatusReOpenPay")
+    public void testUpdateOrderStatusCloseAgain() throws Exception {
+        repository.updateOrderStatus(idOrder, OperationEnum.CLOSE);
     }
 
-    @Test(dependsOnMethods = "testOrderPutOperationCloseAgain")
-    public void testOrderGetByReference() throws Exception {
-        List<Order> resultList = repository.orderGetByReference(referenceOrder);
+    @Test(dependsOnMethods = "testUpdateOrderStatusCloseAgain")
+    public void testFindOrdersByReference() throws Exception {
+        List<Order> resultList = repository.findOrdersByReference(referenceOrder);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
-    @Test(dependsOnMethods = "testOrderGetByReference")
-    public void testOrderGetByStatus() throws Exception {
-        List<Order> resultList = repository.orderGetByStatus(OrderStatusEnum.ENTERED);
+    @Test(dependsOnMethods = "testFindOrdersByReference")
+    public void testFindOrdersByStatus() throws Exception {
+        List<Order> resultList = repository.findOrdersByStatus(OrderStatusEnum.ENTERED);
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
-    @Test(dependsOnMethods = "testOrderGetByStatus")
-    public void testOrderGetAll() throws Exception {
-        List<Order> resultList = repository.orderGetAll();
+    @Test(dependsOnMethods = "testFindOrdersByStatus")
+    public void testFindOrders() throws Exception {
+        List<Order> resultList = repository.findOrders();
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
-    @Test(dependsOnMethods = "testOrderGetAll")
-    public void testOrderDelete() throws Exception {
-        repository.orderDelete(idOrder);
+    @Test(dependsOnMethods = "testFindOrders")
+    public void testDeleteOrder() throws Exception {
+        repository.deleteOrder(idOrder);
     }
 
     private void sleep(long seconds) {
