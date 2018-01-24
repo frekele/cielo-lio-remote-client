@@ -59,7 +59,7 @@ public class MyService {
                 .build();
         CieloLioRemoteRepository repository = new CieloLioRemoteRepositoryImpl(client, auth);
 
-        List<Order> resultList = repository.orderGetAll();
+        List<Order> resultList = repository.findOrders();
         Order order = repository.orderGet("5f182dec98-1866-47b0-b69d-471448911f");
 
         //Is important to close in end, or use CDI.
@@ -117,7 +117,7 @@ public class MyService {
     private CieloLioRemoteRepository repository;
 
     public void call() {
-        List<Order> resultList = repository.orderGetAll();
+        List<Order> resultList = repository.findOrders();
         Order order = repository.orderGet("5f182dec98-1866-47b0-b69d-471448911f");
     }
 }
@@ -156,7 +156,7 @@ public class CustomLoggingFilter implements ClientResponseFilter, ClientRequestF
 
 ### Example usage
 
-#### Post Order
+#### Create Order - POST
 ```java
 //Build item
 OrderItem item = OrderItem.newBuilder()
@@ -178,50 +178,50 @@ Order order = Order.newBuilder()
     .build();
 
 //Post
-String idOrder = repository.orderPost(order);
+String idOrder = repository.createOrder(order);
 ```
 
-#### Put Order
+#### Update Order - PUT
 ```java
 //Change or add more info.
 order.setNotes("Consumer Edward Anthony");
 
 //Put
-repository.orderPut(idOrder, order);
+repository.updateOrder(idOrder, order);
 ```
 
-#### Delete Order
+#### Delete Order - DELETE
 ```java
-repository.orderDelete(idOrder);
+repository.deleteOrder(idOrder);
 ```
 
-#### Get Order
+#### Find Order - GET
 ```java
-Order orderResult = repository.orderGet(idOrder);
+Order orderResult = repository.findOrder(idOrder);
 ```
 
-#### Get Orders By Number
+#### Find Orders By Number - GET
 ```java
-List<Order> resultList = repository.orderGetByNumber("12345");
+List<Order> resultList = repository.findOrdersByNumber("12345");
 ```
 
-#### Get Orders By Reference
+#### Find Orders By Reference - GET
 ```java
-List<Order> resultList = repository.orderGetByReference("Order #12345");
+List<Order> resultList = repository.findOrdersByReference("Order #12345");
 ```
 
-#### Get Orders By Status
+#### Find Orders By Status - GET
 ```java
-List<Order> resultList = repository.orderGetByStatus(OrderStatusEnum.ENTERED);
+List<Order> resultList = repository.findOrdersByStatus(OrderStatusEnum.ENTERED);
 ```
 
-#### Get All Orders
+#### Find All Orders - GET
 ```java
-List<Order> resultList = repository.orderGetAll();
+List<Order> resultList = repository.findOrders();
 ```
 
 
-#### Post Order Item
+#### Create Order Item - POST
 ```java
 //Build item
 OrderItem orderItem = OrderItem.newBuilder()
@@ -233,36 +233,36 @@ OrderItem orderItem = OrderItem.newBuilder()
      .build();
 
 //Post
-String idOrderItem = repository.orderPostItem(idOrder, orderItem);
+String idOrderItem = repository.createOrderItem(idOrder, orderItem);
 ```
 
-#### Put Order Item
+#### Update Order Item - PUT
 ```java
 //Change or add more info.
 orderItem.setName("Black Dining Table");
 orderItem.setDescription("Black dining table for sharing meals and being together!");
 
 //Put
-repository.orderPutItem(idOrder, idOrderItem, orderItem);
+repository.updateOrderItem(idOrder, idOrderItem, orderItem);
 ```
 
-#### Delete Order Item
+#### Delete Order Item - DELETE
 ```java
-repository.orderDeleteItem(idOrder, idOrderItem);
+repository.deleteOrderItem(idOrder, idOrderItem);
 ```
 
-#### Get Order Item
+#### Find Order Item - GET
 ```java
-Order orderResult = repository.orderGetItem(idOrder, idOrderItem);
+Order orderResult = repository.findOrderItem(idOrder, idOrderItem);
 ```
 
-#### Get Order Items
+#### Find Order Items - GET
 ```java
-Order orderResult = repository.orderGetItems(idOrder);
+Order orderResult = repository.findOrderItems(idOrder);
 ```
 
 
-#### Post Order Transaction (Only in SandBox)
+#### Create Order Transaction - POST (Only in SandBox)
 ```java
 //Build paymentProduct
 OrderPaymentProduct orderPaymentProduct = OrderPaymentProduct.newBuilder()
@@ -290,30 +290,30 @@ OrderTransaction orderTransaction = OrderTransaction.newBuilder()
     .build();
 
 //Post
-String idOrderTransaction = repository.orderPostTransaction(idOrder, orderTransaction);
+String idOrderTransaction = repository.createOrderTransaction(idOrder, orderTransaction);
 ```
 
-#### Get Order Transaction
+#### Find Order Transaction - GET
 ```java
-OrderTransaction orderTransaction = repository.orderGetTransaction(idOrder, idOrderTransaction);
+OrderTransaction orderTransaction = repository.findOrderTransaction(idOrder, idOrderTransaction);
 ```
 
-#### Get Order Transactions
+#### Find Order Transactions - GET
 ```java
-List<OrderTransaction> resultList = repository.orderGetTransactions(idOrder);
+List<OrderTransaction> resultList = repository.findOrderTransactions(idOrder);
 ```
 
 
 #### Change status of an Order
 ```java
 //PLACE
-repository.orderPutOperation(idOrder, OperationEnum.PLACE);
+repository.updateOrderStatus(idOrder, OperationEnum.PLACE);
 
 //PAY
-repository.orderPutOperation(idOrder, OperationEnum.PAY);
+repository.updateOrderStatus(idOrder, OperationEnum.PAY);
 
 //CLOSE
-repository.orderPutOperation(idOrder, OperationEnum.CLOSE);
+repository.updateOrderStatus(idOrder, OperationEnum.CLOSE);
 ```
 
 
@@ -332,21 +332,21 @@ public interface CieloLioRemoteRepository extends Serializable {
      * Esse recurso é utilizado para obter a lista e as informações de todos os pedidos cadastrados no Order Manager.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders
      */
-    List<Order> orderGetAll();
+    List<Order> findOrders();
 
     /**
      * GET - Consultar todos os Pedidos pelo id(UUID) do pedido
      * Esse recurso é utilizado para obter a lista e as informações de todos os pedidos cadastrados no Order Manager com filtro por number.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?number=1234567890
      */
-    List<Order> orderGetByNumber(String number);
+    List<Order> findOrdersByNumber(String number);
 
     /**
      * GET - Consultar todos os Pedidos pela Referência do pedido
      * Esse recurso é utilizado para obter a lista e as informações de todos os pedidos cadastrados no Order Manager com filtro por reference.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?reference=384769536
      */
-    List<Order> orderGetByReference(String reference);
+    List<Order> findOrdersByReference(String reference);
 
     /**
      * GET - Consultar todos os Pedidos pela Status do pedido
@@ -354,28 +354,28 @@ public interface CieloLioRemoteRepository extends Serializable {
      * (DRAFT, ENTERED, RE-ENTERED, PAID, CANCELED e CLOSED).
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders?status=PAID
      */
-    List<Order> orderGetByStatus(OrderStatusEnum status);
+    List<Order> findOrdersByStatus(OrderStatusEnum status);
 
     /**
      * GET - Consultar pedido
      * Esse recurso é utilizado para obter informações sobre um pedido específico. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    Order orderGet(String idOrder);
+    Order findOrder(String idOrder);
 
     /**
      * POST - Criar um pedido
      * Esse recurso realiza a criação de um pedido no servidor do Order Manager.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders
      */
-    String orderPost(Order order);
+    String createOrder(Order order);
 
     /**
      * PUT - Altera um pedido
      * Esse recurso realiza a alteracao de um pedido no servidor do Order Manager.
      * Exemplo de requisição: PUT https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    void orderPut(String idOrder, Order order);
+    void updateOrder(String idOrder, Order order);
 
     /**
      * PUT - Alterar status de um pedido
@@ -386,49 +386,49 @@ public interface CieloLioRemoteRepository extends Serializable {
      * PAY (Alterar um pedido para pago)
      * CLOSE (Fechar um pedido)
      */
-    void orderPutOperation(String idOrder, OperationEnum operation);
+    void updateOrderStatus(String idOrder, OperationEnum operation);
 
     /**
      * DELETE - Excluir um pedido
      * Esse recurso é utilizado para excluir um pedido do servidor do Order Manager. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: DELETE https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f
      */
-    void orderDelete(String idOrder);
+    void deleteOrder(String idOrder);
 
     /**
      * GET - Consultar os itens de um pedido
      * Esse recurso é utilizado para consultar os itens presentes em um pedido. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    List<OrderItem> orderGetItems(String idOrder);
+    List<OrderItem> findOrderItems(String idOrder);
 
     /**
      * GET - Consultar o item de um pedido
      * Esse recurso é utilizado para consultar um item presente em um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    public OrderItem orderGetItem(String idOrder, String idOrderItem);
+    public OrderItem findOrderItem(String idOrder, String idOrderItem);
 
     /**
      * POST - Adicionar Item/Itens em um Pedido
      * Esse recurso é utilizado para adicionar um ou mais itens em um pedido já criado. O id do pedido é utilizado para realizar a chamada.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items
      */
-    String orderPostItem(String idOrder, OrderItem orderItem);
+    String createOrderItem(String idOrder, OrderItem orderItem);
 
     /**
      * PUT - Alterar um item em um pedido
      * Esse recurso permite alterar informações de um item de um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: PUT https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    void orderPutItem(String idOrder, String idOrderItem, OrderItem orderItem);
+    void updateOrderItem(String idOrder, String idOrderItem, OrderItem orderItem);
 
     /**
      * DELETE - Excluir Item de um pedido
      * Esse recurso é utilizado para excluir um item presente em um pedido. O id do pedido e o id_item são utilizados para realizar a chamada.
      * Exemplo de requisição: DELETE https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/items/dce7def3-72b2-40a0-91a1-096eed18eab3
      */
-    void orderDeleteItem(String idOrder, String idOrderItem);
+    void deleteOrderItem(String idOrder, String idOrderItem);
 
     /**
      * GET - Consultar as transações de um pedido
@@ -437,7 +437,7 @@ public interface CieloLioRemoteRepository extends Serializable {
      * a transactions será adicionada automaticamente no pedido e então, será possível obter as informações do pagamento realizado a partir da chamada deste recurso.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    List<OrderTransaction> orderGetTransactions(String idOrder);
+    List<OrderTransaction> findOrderTransactions(String idOrder);
 
     /**
      * GET - Consultar a transação de um pedido
@@ -446,14 +446,14 @@ public interface CieloLioRemoteRepository extends Serializable {
      * a transactions será adicionada automaticamente no pedido e então, será possível obter as informações do pagamento realizado a partir da chamada deste recurso.
      * Exemplo de requisição: GET https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions/362d1e9e-ae99-4d79-87d6-add9aad2795c
      */
-    OrderTransaction orderGetTransaction(String idOrder, String idOrderTransaction);
+    OrderTransaction findOrderTransaction(String idOrder, String idOrderTransaction);
 
     /**
      * POST - Adicionar uma Transação (Recurso utilizado somente para Ambiente de Sandbox)
      * Esse recurso permite que o desenvolvedor simule as transações financeiras, adicionando-as manualmente, sendo possível entender o funcionamento em uma Order.
      * Exemplo de requisição: POST https://api.cielo.com.br/order-management/v1/orders/c393ce9f-3741-413f-8ad5-2f142eaed51f/transactions
      */
-    String orderPostTransaction(String idOrder, OrderTransaction orderTransaction);
+    String createOrderTransaction(String idOrder, OrderTransaction orderTransaction);
 }
 ```
 
