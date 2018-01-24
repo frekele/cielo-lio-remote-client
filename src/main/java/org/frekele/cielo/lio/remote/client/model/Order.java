@@ -7,7 +7,7 @@ import org.frekele.cielo.lio.remote.client.converter.deserialize.BigDecimalJsonD
 import org.frekele.cielo.lio.remote.client.converter.deserialize.OffsetDateTimeJsonDeserialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.BigDecimalJsonSerialize;
 import org.frekele.cielo.lio.remote.client.converter.serialize.OffsetDateTimeJsonSerialize;
-import org.frekele.cielo.lio.remote.client.core.CieloLioModel;
+import org.frekele.cielo.lio.remote.client.core.CieloLioEntity;
 import org.frekele.cielo.lio.remote.client.enumeration.OrderStatusEnum;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,7 +23,7 @@ import java.util.List;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Order implements CieloLioModel {
+public class Order implements CieloLioEntity {
 
     private static final long serialVersionUID = 1L;
 
