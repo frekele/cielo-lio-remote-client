@@ -1,7 +1,7 @@
 # Cielo LIO Payment Remote Java REST Client (Open Source)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.frekele.cielo/cielo-lio-remote-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.frekele.cielo/cielo-lio-remote-client)
-[![Javadocs](http://www.javadoc.io/badge/org.frekele.cielo/cielo-lio-remote-client.svg?color=blue)](http://www.javadoc.io/doc/org.frekele.cielo/cielo-lio-remote-client)
+[![Javadocs](http://www.javadoc.io/badge/org.frekele.cielo/cielo-lio-remote-client.svg?color=blue&v=1.3.0)](http://www.javadoc.io/doc/org.frekele.cielo/cielo-lio-remote-client)
 [![Build Status](https://travis-ci.org/frekele/cielo-lio-remote-client.svg?branch=master)](https://travis-ci.org/frekele/cielo-lio-remote-client)
 [![Coverage](https://codecov.io/gh/frekele/cielo-lio-remote-client/branch/master/graph/badge.svg)](https://codecov.io/gh/frekele/cielo-lio-remote-client)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e49f3317817425abe7f67b02c590f1b)](https://www.codacy.com/app/frekele/cielo-lio-remote-client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=frekele/cielo-lio-remote-client&amp;utm_campaign=Badge_Grade)
@@ -491,7 +491,7 @@ String jsonArray = objectMapper.writeValueAsString(listOrder);
 
 
 ### Cielo Lio Order Management - Travis CI Tests - Push Notification (Captured HTTP requests)
-- https://hookbin.com/bin/Z8abPwXo
+- https://hookbin.com/bin/vP8bVo09
 
 
 #### Compile with Maven:
