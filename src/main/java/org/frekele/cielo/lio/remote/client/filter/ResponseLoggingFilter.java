@@ -28,11 +28,9 @@ public class ResponseLoggingFilter implements ClientResponseFilter {
         sb.append("\n");
         sb.append("<-- Response Filter:");
         sb.append("\n");
-        sb.append("--> Request Filter:");
+        sb.append("<-- Response - Method = " + requestContext.getMethod());
         sb.append("\n");
-        sb.append("--> Request - Method = " + requestContext.getMethod());
-        sb.append("\n");
-        sb.append("--> Request - Uri = " + requestContext.getUri());
+        sb.append("<-- Response - Uri = " + requestContext.getUri());
         sb.append("\n");
         sb.append("<-- Response - Status = " + responseContext.getStatus());
         sb.append("\n");
