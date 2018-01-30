@@ -229,6 +229,11 @@ public class CieloLioRemoteRepositoryIT {
     }
 
     @Test(dependsOnMethods = "testUpdateOrderStatusClose")
+    public void testUpdateOrderStatusReOpenPlace() throws Exception {
+        repository.updateOrderStatus(idOrder, OperationEnum.PLACE);
+    }
+
+    @Test(dependsOnMethods = "testUpdateOrderStatusReOpenPlace")
     public void testUpdateOrderStatusReOpenPay() throws Exception {
         repository.updateOrderStatus(idOrder, OperationEnum.PAY);
     }
