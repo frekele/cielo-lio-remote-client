@@ -477,7 +477,7 @@ List<Order> listOrder = mapper.readValue(jsonArray, new TypeReference<List<Order
 ```java
 ObjectMapper mapper = new ObjectMapper();
 Order order = Order.newBuilder().build();
-String json = objectMapper.writeValueAsString(order);
+String json = mapper.writeValueAsString(order);
 ```
 
 #### List --> Json
@@ -486,7 +486,7 @@ ObjectMapper mapper = new ObjectMapper();
 List<Order> listOrder = new ArrayList<>();
 listOrder.add(order1);
 listOrder.add(order2);
-String jsonArray = objectMapper.writeValueAsString(listOrder);
+String jsonArray = mapper.writeValueAsString(listOrder);
 ```
 
 
