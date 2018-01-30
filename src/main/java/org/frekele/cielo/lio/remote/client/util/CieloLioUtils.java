@@ -1,8 +1,15 @@
 package org.frekele.cielo.lio.remote.client.util;
 
+import org.apache.commons.io.IOUtils;
 import org.frekele.cielo.lio.remote.client.auth.CieloLioAuth;
 import org.frekele.cielo.lio.remote.client.exception.CieloLioException;
 import org.frekele.cielo.lio.remote.client.model.id.ResponseId;
+
+import javax.ws.rs.client.ClientResponseContext;
+import javax.ws.rs.core.MediaType;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 
 /**
  * @author frekele - Leandro Kersting de Freitas
@@ -53,5 +60,28 @@ public final class CieloLioUtils {
 
     public static String responseIdToId(ResponseId responseId) {
         return responseId == null ? null : responseId.getId();
+    }
+
+    public static String responseBodyToString(ClientResponseContext responseContext) throws IOException {
+        String body = null;
+        if (responseContext.hasEntity()) {
+            try (InputStream entityStream = responseContext.getEntityStream()) {
+                Charset charset = null;
+                MediaType mediaType = responseContext.getMediaType();
+                if (mediaType != null) {
+                    String charsetName = mediaType.getParameters().get("charset");
+                    if (charsetName != null) {
+                        charset = Charset.forName(charsetName);
+                    }
+                }
+                if (charset == null) {
+                    charset = Charset.defaultCharset();
+                }
+                body = IOUtils.toString(entityStream, charset);
+                //Original EntityStream is closed, add InputStream again for Security.
+                responseContext.setEntityStream(IOUtils.toInputStream(body, charset));
+            }
+        }
+        return body;
     }
 }
