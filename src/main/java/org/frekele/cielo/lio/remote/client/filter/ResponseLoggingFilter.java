@@ -39,8 +39,8 @@ public class ResponseLoggingFilter implements ClientResponseFilter {
         if (requestContext.hasEntity()) {
             String body = CieloLioUtils.responseBodyToString(responseContext);
             if (body != null && !body.trim().isEmpty()) {
-                JsonNode jsonNode = mapper.readTree(body);
-                body = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
+                JsonNode jsonNode = this.getMapper().readTree(body);
+                body = this.getMapper().writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
                 sb.append(body);
                 sb.append("\n");
             }
