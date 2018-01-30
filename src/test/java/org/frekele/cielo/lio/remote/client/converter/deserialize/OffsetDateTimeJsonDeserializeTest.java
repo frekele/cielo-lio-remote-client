@@ -14,6 +14,9 @@ import java.time.format.DateTimeFormatter;
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
 
+/**
+ * @author frekele - Leandro Kersting de Freitas
+ */
 @Listeners(InvokedMethodListener.class)
 public class OffsetDateTimeJsonDeserializeTest {
 

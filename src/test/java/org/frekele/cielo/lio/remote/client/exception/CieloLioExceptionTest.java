@@ -6,6 +6,9 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+/**
+ * @author frekele - Leandro Kersting de Freitas
+ */
 @Listeners(InvokedMethodListener.class)
 public class CieloLioExceptionTest {
 
