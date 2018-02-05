@@ -1,7 +1,7 @@
 # Cielo LIO Payment Remote Java REST Client (Open Source)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.frekele.cielo/cielo-lio-remote-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.frekele.cielo/cielo-lio-remote-client)
-[![Javadocs](http://www.javadoc.io/badge/org.frekele.cielo/cielo-lio-remote-client.svg?color=blue&v=1.3.0)](http://www.javadoc.io/doc/org.frekele.cielo/cielo-lio-remote-client)
+[![Javadocs](http://www.javadoc.io/badge/org.frekele.cielo/cielo-lio-remote-client.svg?color=blue)](http://www.javadoc.io/doc/org.frekele.cielo/cielo-lio-remote-client)
 [![Build Status](https://travis-ci.org/frekele/cielo-lio-remote-client.svg?branch=master)](https://travis-ci.org/frekele/cielo-lio-remote-client)
 [![Coverage](https://codecov.io/gh/frekele/cielo-lio-remote-client/branch/master/graph/badge.svg)](https://codecov.io/gh/frekele/cielo-lio-remote-client)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e49f3317817425abe7f67b02c590f1b)](https://www.codacy.com/app/frekele/cielo-lio-remote-client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=frekele/cielo-lio-remote-client&amp;utm_campaign=Badge_Grade)
@@ -9,7 +9,7 @@
 
 ### REST Client for remote integration with Cielo LIO Payment Order Management
 
-![Cielo Lio V1 V2](https://raw.githubusercontent.com/frekele/cielo-lio-remote-client/master/docs/img/lio-v1-v2.png?v=2)
+![Cielo Lio V1 V2](https://raw.githubusercontent.com/frekele/cielo-lio-remote-client/master/docs/img/lio-v1-v2.png)
 
 Built-based on the documentation: [https://developercielo.github.io/manual/cielo-lio](https://developercielo.github.io/manual/cielo-lio)
 
@@ -24,13 +24,13 @@ Project built with RESTEasy 3.1.x + Jackson 2.x.x.
 <dependency>
     <groupId>org.frekele.cielo</groupId>
     <artifactId>cielo-lio-remote-client</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
 #### Gradle dependency:
 ```gradle
-compile 'org.frekele.cielo:cielo-lio-remote-client:1.3.0'
+compile 'org.frekele.cielo:cielo-lio-remote-client:1.3.1'
 ```
 
 #### Usage
