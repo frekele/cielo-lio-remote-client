@@ -101,7 +101,7 @@
 
         <testng.version>6.14.3</testng.version>
         <mockito-core.version>2.18.0</mockito-core.version>
-        <jacoco.version>0.8.0</jacoco.version>
+        <jacoco.version>0.8.1</jacoco.version>
 
         <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
