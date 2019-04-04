@@ -14,6 +14,7 @@ cache:
 
 before_install:
   - chmod +x .travis/*
+  - env
   - echo ${GPG_PUBLIC_KEYS}  | base64 --decode > /tmp/frekele-pubkey.asc
   - echo ${GPG_PRIVATE_KEYS} | base64 --decode > /tmp/frekele-privkey.asc
   - echo ${GPG_OWNERTRUST}   | base64 --decode > /tmp/frekele-ownertrust.asc
