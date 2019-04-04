@@ -39,7 +39,7 @@ before_script:
   - ulimit -a && free -m
 
 script:
-  - ${MVN_HOME}/bin/mvn --settings .travis/settings.xml install -Dgpg.skip -DskipUTs=false -DskipITs=false -B -V
+  - ${MVN_HOME}/bin/mvn --settings .travis/settings.xml install -Dgpg.skip -DskipUTs=false -DskipITs=false -DargLine='-Xms1024m -Xmx2048m' -B -V
   - ulimit -a && free -m
 
 before_cache:
