@@ -17,7 +17,7 @@ Built-based on the documentation: [https://developercielo.github.io/manual/cielo
 #### Supported Java Versions:
 - requires Java 8 (or higher) at runtime.
 
-Project built with RESTEasy 3.5.x + Jackson 2.x.x.
+Project built with RESTEasy 3.6.x + Jackson 2.x.x.
 
 #### Maven dependency:
 ```xml
