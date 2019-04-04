@@ -513,7 +513,7 @@ frekele/cielo-lio-remote-client is **licensed** under the **[MIT License]**. The
 
     MIT License
 
-    Copyright (c) 2018 @frekele<Leandro Kersting de Freitas>
+    Copyright (c) 2018-2019 @frekele<Leandro Kersting de Freitas>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
