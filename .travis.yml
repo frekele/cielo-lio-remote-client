@@ -36,7 +36,6 @@ install:
   - wget -qO- https://archive.apache.org/dist/maven/maven-3/${MAVEN}/binaries/apache-maven-${MAVEN}-bin.tar.gz | tar xz --strip 1 -C ${MVN_HOME}
 
 before_script:
-  - ulimit -a && free -m
 
 script:
   - ${MVN_HOME}/bin/mvn --settings .travis/settings.xml install -Dgpg.skip -DskipUTs=false -DskipITs=false -B -V
