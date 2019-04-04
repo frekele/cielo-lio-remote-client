@@ -370,11 +370,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <!--suppress MavenModelInspection -->
-                    <argLine>${argLine} -Xmx1024m -Xms256m</argLine>
-                    <skipTests>${skipUTs}</skipTests>
-                </configuration>
             </plugin>
 
             <!-- CONFIGURA TESTE DE INTEGRACAO-->
@@ -382,13 +377,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>
-                <configuration>
-                    <skipTests>${skipTests}</skipTests>
-                    <skipITs>${skipITs}</skipITs>
-                    <argLine>-Xmx1024m -Xms256m</argLine>
-                    <forkCount>1</forkCount>
-                    <reuseForks>false</reuseForks>
-                </configuration>
                 <executions>
                     <execution>
                         <id>integration-test</id>
