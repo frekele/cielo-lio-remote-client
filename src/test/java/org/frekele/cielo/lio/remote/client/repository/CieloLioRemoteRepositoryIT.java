@@ -24,7 +24,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import javax.ws.rs.NotFoundException;
+import javax.ws.rs.BadRequestException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
@@ -262,10 +262,10 @@ public class CieloLioRemoteRepositoryIT {
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
-    //@Test(dependsOnMethods = "testFindOrders", expectedExceptions = {NotFoundException.class})
-    //public void testDeleteOrder() throws Exception {
-    //    repository.deleteOrder(idOrder);
-    //}
+    @Test(dependsOnMethods = "testFindOrders", expectedExceptions = {BadRequestException.class})
+    public void testDeleteOrder() throws Exception {
+        repository.deleteOrder(idOrder);
+    }
 
     private void sleep(long seconds) {
         try {
