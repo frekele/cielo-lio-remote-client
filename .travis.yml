@@ -14,7 +14,6 @@ cache:
 
 before_install:
   - chmod +x .travis/*
-  - env
   - echo ${GPG_PUBLIC_KEYS}  | base64 --decode > /tmp/frekele-pubkey.asc
   - echo ${GPG_PRIVATE_KEYS} | base64 --decode > /tmp/frekele-privkey.asc
   - echo ${GPG_OWNERTRUST}   | base64 --decode > /tmp/frekele-ownertrust.asc
@@ -31,12 +30,13 @@ before_install:
   #- wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
 
 install:
-  - wget -qO- https://archive.apache.org/dist/maven/maven-3/${MAVEN}/binaries/apache-maven-${MAVEN}-bin.tar.gz | tar xz --strip 1 -C ${MVN_HOME}
+  #- wget -qO- https://archive.apache.org/dist/maven/maven-3/${MAVEN}/binaries/apache-maven-${MAVEN}-bin.tar.gz | tar xz --strip 1 -C ${MVN_HOME}
 
 before_script:
 
 script:
-  - ${MVN_HOME}/bin/mvn --settings .travis/settings.xml install -Dgpg.skip -DskipUTs=false -DskipITs=false -B -V
+  #- ${MVN_HOME}/bin/mvn --settings .travis/settings.xml install -Dgpg.skip -DskipUTs=false -DskipITs=false -B -V
+  - mvn --settings .travis/settings.xml install -Dgpg.skip -DskipUTs=false -DskipITs=false -B -V
 
 before_cache:
 
