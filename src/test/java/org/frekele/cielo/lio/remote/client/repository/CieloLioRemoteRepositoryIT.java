@@ -262,10 +262,10 @@ public class CieloLioRemoteRepositoryIT {
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(resultList));
     }
 
-    @Test(dependsOnMethods = "testFindOrders", expectedExceptions = {NotFoundException.class})
-    public void testDeleteOrder() throws Exception {
-        repository.deleteOrder(idOrder);
-    }
+    //@Test(dependsOnMethods = "testFindOrders", expectedExceptions = {NotFoundException.class})
+    //public void testDeleteOrder() throws Exception {
+    //    repository.deleteOrder(idOrder);
+    //}
 
     private void sleep(long seconds) {
         try {
