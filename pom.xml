@@ -97,7 +97,7 @@
         <project.scm.id>github</project.scm.id>
 
         <resteasy.version>3.6.3.Final</resteasy.version>
-        <cdi-api.version>1.2</cdi-api.version>
+        <cdi-api.version>2.0.SP1</cdi-api.version>
 
         <testng.version>6.14.3</testng.version>
         <mockito-core.version>2.25.1</mockito-core.version>
