@@ -69,8 +69,8 @@ public class CieloLioRemoteRepositoryIT {
             .withEnvironment(environment)
             .build();
         ResteasyClient client = new ResteasyClientBuilder()
-            //.register(RequestLoggingFilter.class)
-            //.register(ResponseLoggingFilter.class)
+            .register(RequestLoggingFilter.class)
+            .register(ResponseLoggingFilter.class)
             .build();
         repository = new CieloLioRemoteRepositoryImpl(client, auth);
 
